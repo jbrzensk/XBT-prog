@@ -1,0 +1,5 @@
+# Ignore compiled binaries, .o, .mod, and executables .x
+/*.o
+/*.mod
+/*.x
+

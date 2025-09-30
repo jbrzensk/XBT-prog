@@ -134,6 +134,9 @@ fi
 
 # Run tenm3_chgcoef.x
 echo "Running tenm3_chgcoef.x"
+echo "Changing coefficients for ${base}, min drop: ${mindrop}, max drop: ${maxdrop}"
+# Those values are passed to tenm3_chgcoef.x
+# The 'n' at the end is to not change the dat file name:
 echo -e "${new_name}\n${mindrop} ${maxdrop}\nn" | tenm3_chgcoef.x 2>&1 | tee -a analysis.log
 
 

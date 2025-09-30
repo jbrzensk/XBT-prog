@@ -10,6 +10,9 @@
 *.tmp
 *.temp
 
+# Ignore ferret jnl files
+*.jnl
+
 # Ignore log files
 *.log
 

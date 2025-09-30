@@ -3,3 +3,41 @@
 /*.mod
 /*.x
 
+# Ignore backup files
+*~
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore log files
+*.log
+
+# Ignore output image files
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Ignore data files
+*.dat
+*.csv
+
+# Ignore configuration files
+*.cfg
+*.conf
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+

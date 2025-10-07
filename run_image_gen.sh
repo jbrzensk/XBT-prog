@@ -175,8 +175,13 @@ run-bath-new_2025.sh
 # interp_to_grid
 #################################################
 echo -e "\033[1m **Running interp_to_grid_2025.x for ${prefixa}** \033[0m"
-echo "$prefixa" | interp_to_grid_2025.x
-
+if [[ $line_number == 'p37' ]]; then
+    echo "Line 37 detected, using custom grid"
+    echo -e "$prefixa\n2\n" | interp_to_grid_2025.x
+else
+    echo "Using default grid file grid.txt"
+    echo "$prefixa" | interp_to_grid_2025.x 
+fi
 #################################################
 # Run mapxbt for sal, and del
 #################################################

@@ -38,9 +38,11 @@ append_if_missing() {
     fi
 }
 
-# Is this necessary BRZENSKI
-source /usr/local/bin/ferret_paths
-setenv FER_PALETTE     "/home/llehmann/ferret . $FER_DIR/ppl"
+# Ferret paths is sourced if ferret environmenet is loaded
+# Both these commands are taken care of
+# source /usr/local/bin/ferret_paths
+# Actual source for this is /kakapo/home/llehmann/ferret
+# setenv FER_PALETTE     "/home/llehmann/ferret . $FER_DIR/ppl"
 
 set -e  # Exit on first error
 set -o pipefail  # Propagate errors through pipes
@@ -53,11 +55,16 @@ echo " Starting line bat html processing at $(date)"
 echo " Log: $LOGFILE"
 echo "===================================================="
 
+# Set standard directory for outputting argo
+ARGO_DIR="/home/jabrzenski/argo-project/pub/html/www-hrx"
+echo "Argo directory is set to $ARGO_DIR"
+echo ""
+
 # Make sure the argo drive is loaded, and accessible
-if [[ -d "/argo-project/pub/html/www-hrx/" ]]; then
-    echo "Directory /argo-project/pub/html/www-hrx/ exists"
+if [[ -d $ARGO_DIR ]]; then
+    echo "Directory ${ARGO_DIR} exists"
 else
-    echo "Directory /argo-project/pub/html/www-hrx/ does NOT exist"
+    echo "Directory ${ARGO_DIR} does NOT exist"
     echo "Are you sure the argo drive is mounted?"
     echo "Exiting..."
     echo ""
@@ -179,65 +186,65 @@ if [[ $line -eq 28 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x494! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x250! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/ix${line}/img/i${prefix}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/ix${line}/img/i${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/ix${line}/img/i${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/ix${line}/img/i${prefix}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}t-t.gif"
 
 elif [[ $line -eq 15 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 3022x1510! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x250! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/ix15/img/i${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/ix15/img/i${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/ix15/img/i${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/ix15/img/i${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/ix15/img/i${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/ix15/img/i${line}${i}t-t.gif"
 
 elif [[ $line -eq 21 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x500! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x250! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/ix21/img/i${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/ix21/img/i${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/ix21/img/i${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/ix21/img/i${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/ix21/img/i${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/ix21/img/i${line}${i}t-t.gif"
 
 elif [[ $line -eq 22 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x487! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x244! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/ax22/img/a${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/ax22/img/a${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/ax22/img/a${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/ax22/img/a${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/ax22/img/a${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/ax22/img/a${line}${i}t-t.gif"
 
 elif [[ $line -eq 31 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x505! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x252! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
 elif [[ $line -eq 34 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x505! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x252! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
 elif [[ $line -eq 40 ]]; then
     convert -density 600 -trim +repage -geometry 1000x504! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -geometry 500x252! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
 elif [[ $line -eq 44 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x505! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x252! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x51!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
 elif [[ $line -eq 37 ]]; then
     if [[ $ch == p ]]; then
@@ -247,17 +254,17 @@ elif [[ $line -eq 37 ]]; then
         convert -density 600 -trim +repage -rotate -90 -geometry 1000x505! -flatten fer.pdf t-b.gif
         convert -density 600 -trim +repage -rotate -90 -geometry 500x252! -flatten fer.pdf t-s.gif
         convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-        mv t-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-b.gif"
-        mv t-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-s.gif"
-        mv t-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-t.gif"
+        mv t-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-b.gif"
+        mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
+        mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
     elif [[ $ch == s ]]; then
         convert -density 600 -trim +repage -rotate -90 -geometry 1000x501! -flatten fer.pdf t-b.gif
         convert -density 600 -trim +repage -rotate -90 -geometry 500x251! -flatten fer.pdf t-s.gif
         convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-        mv t-b.gif "/argo-project/pub/html/www-hrx/p${line}s/img/p${line}${i}t-b.gif"
-        mv t-s.gif "/argo-project/pub/html/www-hrx/p${line}s/img/p${line}${i}t-s.gif"
-        mv t-t.gif "/argo-project/pub/html/www-hrx/p${line}s/img/p${line}${i}t-t.gif"
+        mv t-b.gif "${ARGO_DIR}/p${line}s/img/p${line}${i}t-b.gif"
+        mv t-s.gif "${ARGO_DIR}/p${line}s/img/p${line}${i}t-s.gif"
+        mv t-t.gif "${ARGO_DIR}/p${line}s/img/p${line}${i}t-t.gif"
 
     fi
 
@@ -265,60 +272,60 @@ elif [[ $line -eq 50 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x494! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x247! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x49!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
 elif [[ $line -eq 05 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1500x750! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x250! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
 elif [[ $line -eq 08 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x502! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x250! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
 elif [[ $line -eq 09 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x502! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x251! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
 elif [[ $line -eq 13 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x502! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x251! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/px09/img/p${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/px09/img/p${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/px09/img/p${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/px09/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px09/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px09/img/p${line}${i}t-t.gif"
 
 elif [[ $line -eq 38 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x503! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x251! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
 elif [[ $line -eq 81 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x502! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x251! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-b.gif"
-    mv t-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-s.gif"
-    mv t-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
 else
-    mv p{$line}{$i}t.gif "/argo-project/pub/html/www-hrx/px${line}/p${line}${i}t.gif"
+    mv p{$line}{$i}t.gif "${ARGO_DIR}/px${line}/p${line}${i}t.gif"
 
 fi
 
@@ -344,36 +351,36 @@ if [[ $line == 28 ]]; then
     convert -density 600 -trim +repage -geometry 90x155! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -geometry 58x100!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv s-b.gif "/argo-project/pub/html/www-hrx/ix${line}/img/i${line}${i}s-b.gif"
-    mv s-s.gif "/argo-project/pub/html/www-hrx/ix${line}/img/i${line}${i}s-s.gif"
-    mv s-t.gif "/argo-project/pub/html/www-hrx/ix${line}/img/i${line}${i}s-t.gif"
+    mv s-b.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-b.gif"
+    mv s-s.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-s.gif"
+    mv s-t.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-t.gif"
 
 elif [[ $line == 05 ]]; then
     convert -density 600 -trim +repage -geometry 538x1045! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -geometry 78x152! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -geometry 52x100!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-    mv s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-    mv s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+    mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+    mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+    mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
 elif [[ $line == 08 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 650x335! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 240x124! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x41!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-    mv s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-    mv s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+    mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+    mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+    mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
 elif [[ $line == 15 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x507! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 300x152! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x51!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv  s-b.gif "/argo-project/pub/html/www-hrx/ix${line}/img/i${line}${i}s-b.gif"
-    mv  s-s.gif "/argo-project/pub/html/www-hrx/ix${line}/img/i${line}${i}s-s.gif"
-    mv  s-t.gif "/argo-project/pub/html/www-hrx/ix${line}/img/i${line}${i}s-t.gif"
+    mv  s-b.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-b.gif"
+    mv  s-s.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-s.gif"
+    mv  s-t.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-t.gif"
     echo 'finish stn move'
 
 elif [[ $line == 21 ]]; then
@@ -381,9 +388,9 @@ elif [[ $line == 21 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 200x113! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x57!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv  s-b.gif "/argo-project/pub/html/www-hrx/ix15/img/i${line}${i}s-b.gif"
-    mv  s-s.gif "/argo-project/pub/html/www-hrx/ix15/img/i${line}${i}s-s.gif"
-    mv  s-t.gif "/argo-project/pub/html/www-hrx/ix15/img/i${line}${i}s-t.gif"
+    mv  s-b.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-b.gif"
+    mv  s-s.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-s.gif"
+    mv  s-t.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-t.gif"
     echo 'finish stn move'
 
 elif [[ $line == 22 ]]; then
@@ -391,45 +398,45 @@ elif [[ $line == 22 ]]; then
     convert -density 600 -trim +repage -geometry 155x152! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -geometry 90x88!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv  s-b.gif "/argo-project/pub/html/www-hrx/ax${line}/img/a${line}${i}s-b.gif"
-    mv  s-s.gif "/argo-project/pub/html/www-hrx/ax${line}/img/a${line}${i}s-s.gif"
-    mv  s-t.gif "/argo-project/pub/html/www-hrx/ax${line}/img/a${line}${i}s-t.gif"
+    mv  s-b.gif "${ARGO_DIR}/ax${line}/img/a${line}${i}s-b.gif"
+    mv  s-s.gif "${ARGO_DIR}/ax${line}/img/a${line}${i}s-s.gif"
+    mv  s-t.gif "${ARGO_DIR}/ax${line}/img/a${line}${i}s-t.gif"
 
 elif [[ $line == 31 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x456! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 225x103! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x46!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv  s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-    mv  s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-    mv  s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+    mv  s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+    mv  s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+    mv  s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
 elif [[ $line == 34 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x362! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 240x87! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 115x42!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-    mv s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-    mv s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+    mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+    mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+    mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
 elif [[ $line == 40 ]]; then
     convert -density 600 -trim +repage  -geometry 1000x436! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage  -geometry 325x142! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage  -geometry 115x50!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-    mv s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-    mv s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+    mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+    mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+    mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
 elif [[ $line == 44 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x565! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 225x127! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x56!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-    mv s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-    mv s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+    mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+    mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+    mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
 elif [[ $line == 37 ]]; then
     echo  "ch line: ${ch} ${line}"
@@ -442,9 +449,9 @@ elif [[ $line == 37 ]]; then
         convert -density 600 -trim +repage -rotate -90 -geometry 187x115! -flatten fer.pdf s-s.gif
         convert -density 600 -trim +repage -rotate -90 -geometry 100x62!  -flatten fer.pdf s-t.gif
         echo 'finish stn convert'
-        mv s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-        mv s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-        mv s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+        mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+        mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+        mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
         #dunno why this check for s does not work:
         # elseif ( $ch == s ) then
     else
@@ -453,9 +460,9 @@ elif [[ $line == 37 ]]; then
         convert -density 600 -trim +repage -rotate -90 -geometry 325x114! -flatten fer.pdf s-s.gif
         convert -density 600 -trim +repage -rotate -90 -geometry 100x35!  -flatten fer.pdf s-t.gif
         echo 'finish stn convert'
-        mv s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-        mv s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-        mv s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+        mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+        mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+        mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
     fi
 
 elif [[ $line == 38 ]]; then
@@ -463,45 +470,45 @@ elif [[ $line == 38 ]]; then
     convert -density 600 -trim +repage -geometry 84x155! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -geometry 54x100!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-    mv s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-    mv s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+    mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+    mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+    mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
 elif [[ $line == 50 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 850x348! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 260x106! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x41!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-    mv s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-    mv s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+    mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+    mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+    mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
 elif [[ $line == 09 ]]; then
     convert -density 600 -trim +repage -geometry 650x1045! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -geometry 95x152! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -geometry 63x100!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-    mv s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-    mv s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+    mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+    mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+    mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
 elif [[ $line == 13 ]]; then
     convert -density 600 -trim +repage -geometry 650x1045! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -geometry 95x152! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -geometry 63x100!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-    mv s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-    mv s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+    mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+    mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+    mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
 elif [[ $line == 81 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x667! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 227x152! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x67!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv s-b.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-b.gif"
-    mv s-s.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-s.gif"
-    mv s-t.gif "/argo-project/pub/html/www-hrx/px${line}/img/p${line}${i}s-t.gif"
+    mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
+    mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
+    mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 else
     echo "Nothing happened in the convert step!?!"
     #LL \mv p{$line}{$i}s.gif /argo-project/pub/html/www-hrx/px{$line}/p{$line}{$i}s.gif
@@ -540,22 +547,22 @@ echo "cruisehtml ${ch}${line}${i}"
 
 chmod a+x *html
 if [[ $line == 22 ]]; then
-    mv *html "/argo-project/pub/html/www-hrx/ax${line}/."
+    mv *html "${ARGO_DIR}/ax${line}/."
 elif [[ $line == 15 ]]; then
-    mv *html "/argo-project/pub/html/www-hrx/ix${line}/."
+    mv *html "${ARGO_DIR}/ix${line}/."
     echo "moving line 15"
 elif [[ $line == 28 ]]; then
-    mv *html "/argo-project/pub/html/www-hrx/ix${line}/."
+    mv *html "${ARGO_DIR}/ix${line}/."
 elif [[ $line == 37 ]]; then
     if [[ $ch == p ]]; then
-        mv *html "/argo-project/pub/html/www-hrx/px${line}/."
+        mv *html "${ARGO_DIR}/px${line}/."
     else
-        mv *html "/argo-project/pub/html/www-hrx/p${line}s/."
+        mv *html "${ARGO_DIR}/p${line}s/."
     fi
 elif [[ $line == 21 ]]; then
     echo "No move html"
 else
-    mv *html "/argo-project/pub/html/www-hrx/px${line}/."
+    mv *html "${ARGO_DIR}/px${line}/."
 fi
 
 echo "All done!"

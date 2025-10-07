@@ -56,7 +56,7 @@ program mkcruisebath
   ofil(1:8)    = cr(1:8)
   cruise(1:7)  = cr(1:7)
 ! Set bathname based on cruise assuming for now pxNN
-  bathname(2:3) = cruise(2:3)
+  bathname(3:4) = cruise(2:3)
 
 ! This one is 'ps'
   if(cruise(1:3).eq.'s37') then

@@ -34,6 +34,8 @@
 #   - check_renav.sh
 #   - tenm3_chgcoef.x
 #####################################################################
+# Set general name for output log
+OUTPUT_LOG="analysis.log"
 
 cwd=$(pwd)
 if [[ ! "$cwd" =~ /raw$ ]]; then
@@ -44,58 +46,78 @@ if [[ ! "$cwd" =~ /raw$ ]]; then
     echo ""
     exit 1
 fi
+
+# Decide what prefixes we start with, could be 'p' or 's' or other?
+echo "Detecting file prefix (p or s) ..."
+
+# Detect whether files start with 'p' or 's'
+if ls p*q.* &>/dev/null; then
+    PREFIX="p"
+elif ls s*q.* &>/dev/null; then
+    PREFIX="s"
+else
+    echo "Error: No files found starting with 'p' or 's'."
+    exit 1
+fi
+echo "Detected prefix: $PREFIX"
+echo ""
+
 #################################
 # Move the raw data files
 #################################
 # Run mvraw.sh
 echo ""
 echo "Running mvraw.sh"
-mvraw.sh > analysis.log 2>&1
+mvraw.sh 2>&1 | tee -a $OUTPUT_LOG
 echo ""
 
 #################################
 # Run analyze_stations.sh
 #################################
 echo "Running analyze_stations.sh"
-analyze_stations.sh 2>&1 | tee -a analysis.log
+analyze_stations.sh 2>&1 | tee -a $OUTPUT_LOG
 
 #################################
 # Run gpsposnew.x, using options 1,4,and 0
 #################################
-echo "Running gpsposnew.x"
-echo -e "1\n4\n0\n" | gpsposnew.x >> analysis.log 2>&1
+echo "Running gpsposnew.x with choices 1,4,0"
+echo -e "1\n4\n0\n" | gpsposnew.x 2>&1 | tee -a $OUTPUT_LOG
 echo ""
 
 #################################
 # Check the renav.dat for entries and see if user wants a stop
 #################################
 echo "Checking renav.dat for entries..."
-check_renav.sh 2>&1 | tee -a analysis.log
+check_renav.sh 2>&1 | tee -a $OUTPUT_LOG
+
 # Because we piped the output, we check the status of the last command
 # in PIPESTATUS.
 status=${PIPESTATUS[0]}
 if [[ $status -ne 0 ]]; then
-    echo "Exiting main script because user chose to quit."
+    echo "Exiting main script because user chose to quit in check_renav.sh."
     exit 1
 fi
 
-#################################
+#####################################################################
 # Move specific files up one directory (edit the pattern as needed)
-#################################
+#####################################################################
 echo "Moving processed files up one directory"
-mv p*e.* ..
+mv ${PREFIX}*e.* ..
 
-echo "Moving control.dat and p*.dat"
+echo "Moving control.dat and ${PREFIX}*.dat"
 cp control.dat ..
-cp p*.dat ..
+cp ${PREFIX}*.dat ..
+
 # making a backup because some of the FORTRAN scripts
 # are very aggresive in clobbering files!!
-pdatfile=$(ls p*.dat 2>/dev/null | head -n 1)
-if [[ -n "$pdatfile" ]]; then
-    cp "$pdatfile" "old_${pdatfile}"
-    echo "Copied $pdatfile -> old_${pdatfile}"
+# Find one matching file
+psdatfile=$(ls ${PREFIX}[0-9][0-9][0-9][0-9][0-9][0-9]*.dat 2>/dev/null | head -n 1)
+
+if [[ -n "$psdatfile" ]]; then
+    cp "$psdatfile" "old_${psdatfile}"
+    echo "Copied $psdatfile -> old_${psdatfile} as a backup."
 else
-    echo "No .dat files found"
+    echo "No .dat files found with correct pattern."
 fi
 
 echo "Analysis complete and files moved."
@@ -109,19 +131,23 @@ echo ""
 #################################
 pushd .
 cd ..
-# This gets the first file matching p*e.*
-file=$(ls p*e.* 2>/dev/null | head -n 1)
+
+# This gets the first file matching p*e.* or s*e.*
+file=$(ls ${PREFIX}*e.* 2>/dev/null | head -n 1)
+
 # Display the base name without extension, thats what we will use 
 # for the next few commands
 if [[ -n "$file" ]]; then
     base="${file%e.*}"   # remove 'e.NNN' to get pXXXXXXX
-    echo "First pXXXXXXX: $base"
+    echo "First ${PREFIX}XXXXXXX: $base"
 else
-    echo "No files matching p*e.* found"
+    echo "No files matching ${PREFIX}*e.* found"
 fi
+
 # Add the a to the ending
 dat_file="${base}.dat"
 new_name="${base}a"
+
 # Finding the min and max drops from stations
 mindrop=$(awk 'NR==1 {print $1}' $dat_file )
 maxdrop=$(awk 'NR==FNR{lines[NR]=$0} END{split(lines[NR],a); print a[1]}' $dat_file )
@@ -137,7 +163,7 @@ echo "Running tenm3_chgcoef.x"
 echo "Changing coefficients for ${base}, min drop: ${mindrop}, max drop: ${maxdrop}"
 # Those values are passed to tenm3_chgcoef.x
 # The 'n' at the end is to not change the dat file name:
-echo -e "${new_name}\n${mindrop} ${maxdrop}\nn" | tenm3_chgcoef.x 2>&1 | tee -a analysis.log
+echo -e "${new_name}\n${mindrop} ${maxdrop}\nn" | tenm3_chgcoef.x 2>&1 | tee -a $OUTPUT_LOG
 
 
 
@@ -147,4 +173,4 @@ echo -e "${new_name}\n${mindrop} ${maxdrop}\nn" | tenm3_chgcoef.x 2>&1 | tee -a 
 popd
 # And run this one more time, so we dont have to scroll
 echo "Running analyze_stations.sh"
-analyze_stations.sh 2>&1 | tee -a analysis.log
+analyze_stations.sh 2>&1 | tee -a $OUTPUT_LOG

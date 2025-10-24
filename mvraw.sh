@@ -22,6 +22,7 @@ if [ -d "Sio" ]; then
 else
     echo "Sio folder does not exist!!"
     echo "This needs to be run from the raw directory"
+    echo "OR files were already moved."
     echo ""
 fi
 

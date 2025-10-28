@@ -31,6 +31,6 @@ cp "$datfile" "${datfile}.bak"
 
 # Run sed to replace all quoted paths with just filenames
 #sed -i 's|".*/\([^/]*\)"|"\1"|g' "$datfile"
-sed -i 's|"/data/xbt/p[0-9][0-9]/[0-9]\{4\}/\([^"]*\)"|"\1"|g' "$datfile"
+sed -i 's|"/data/xbt/[ps][0-9][0-9]/[0-9]\{4\}/\([^"]*\)"|"\1"|g' "$datfile"
 
 echo "✅ Updated $datfile (backup saved as ${datfile}.bak)"

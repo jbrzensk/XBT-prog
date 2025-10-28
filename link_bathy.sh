@@ -13,6 +13,9 @@ if [ -z "$PREFIX" ]; then
     exit 1
 fi
 
+echo "Linking bathy file for prefix: $PREFIX"
+echo ""
+
 if [[ $PREFIX == 's37' ]]; then
     bathname='ps37-sns-bath.cgi'
 elif [[ $PREFIX == 'p40' || $PREFIX == 'p44' || $PREFIX == 'p37' ]]; then
@@ -32,7 +35,7 @@ elif [[ $PREFIX == 'p34' ]]; then
 elif [[ $PREFIX == 'p50' ]]; then
      bathname='p50-sns-bath.cgi'
 else
-     echo "Error: Unsupported line number '$PREFIX'. Supported prefixes are p05, p06, p09, p31, p34, p37, p40, p44, p13, p50."
+     echo "Error: Unsupported line number '$PREFIX'. Supported prefixes are s37, p05, p06, p09, p31, p34, p37, p40, p44, p13, p50."
      echo "Please add the appropriate files into link_bathy.sh"
      exit 1
 fi

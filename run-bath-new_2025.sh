@@ -24,6 +24,7 @@ echo "Line number: $line_number"
 echo "we are currently in $PWD"
 echo ""
 
+
 # get *a.10 filename for input to programs:
 # Is there ever more than 1? ( BRZENSKI ) 
 for filename in *a.10; do
@@ -34,9 +35,44 @@ for filename in *a.10; do
     ls -l "$filename"
     head -5 "$filename"
 
-    ## mkgridlat.x
-    echo "Running mkgridlat.x"
-    echo "$filename" | mkgridlat.x
+    echo -e "\033[1m **Running mapxbt_helper.sh again to get complicated inputs** \033[0m"
+    . mapxbt_helper.sh $line_number
+    echo "line = $long_line"
+    echo "Choice = $choice"
+    echo "start = $start"
+    echo "end = $end"
+
+
+    ## mkgridlat.x OR mkgridlon.x
+    echo "Running mkgridlat.x or mkgridlon.x"
+
+    if [[ "$line_number" =~ ^(p34|p37|p40|p44|p50|s37|a07|a18)$ ]]; then
+
+        echo "Running mkgridlat.x"
+        echo "$filename" | mkgridlat.x
+
+    elif [[ "$line_number" =~ ^(p05|p38|a08|a10|p09|p13)$ ]]; then
+        
+        if [[ "$long_line" == "PX06" ]]; then
+                echo "Line p06 detected, using mkgridlon.x"
+                echo "Also detected A line, using short track."
+                echo "Moving px06-cgi"
+                link_bathy.sh p06
+        fi
+        
+        echo "Running mkgridlon.x"
+        echo "$filename" | mkgridlon.x
+
+        mkgridlon.x << EOF
+$filename
+1
+EOF
+
+    else
+        echo "Unknown line for grid generation: $line_number"
+        echo "Skipping mkgridlat.x or mkgridlon.x"
+
+    fi
 
     ## mktrackvel.x
     echo "Running mktrackvel.x"
@@ -64,3 +100,5 @@ EOF7
     echo "$filename" | mkgridbath.x
 
 done
+
+

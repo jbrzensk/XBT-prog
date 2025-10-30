@@ -25,6 +25,7 @@
 # Behavior:
 #   - Exits immediately if any command fails (set -e).
 #   - Verifies that it is executed in the correct 'raw' directory.
+#   - Checks for existence of "e" files ( i.e. this hasnt been run )
 #   - Generates helpful error messages if something doesn't work.
 #
 # Requires:
@@ -42,6 +43,19 @@ if [[ ! "$cwd" =~ /raw$ ]]; then
     echo ""
     echo "********************************************************"
     echo "Error: This script must be run from the 'raw' directory."
+    echo "********************************************************"
+    echo ""
+    exit 1
+fi
+
+# Check if there are 'e' files
+count=$(compgen -G "p??????e.???" | wc -l)
+
+if (( count <= 20 )); then
+    echo ""
+    echo "********************************************************"
+    echo "Error: Expected more than 20 files matching pXXXXXXe.XXX"
+    echo "This suggests that the analysis has already been run."
     echo "********************************************************"
     echo ""
     exit 1

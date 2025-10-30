@@ -166,7 +166,7 @@ fix_paths.sh ferret.tem.a
 fix_paths.sh fertem.web
 
 #################################################
-# run-bath-new_2025.sh
+# run-bath-new_2025.sh BRZENSKI -- GETS HERE
 #################################################
 echo -e "\033[1m **Running run-bath-new_2025.sh** \033[0m"
 run-bath-new_2025.sh

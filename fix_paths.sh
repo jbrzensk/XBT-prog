@@ -33,4 +33,8 @@ cp "$datfile" "${datfile}.bak"
 #sed -i 's|".*/\([^/]*\)"|"\1"|g' "$datfile"
 sed -i 's|"/data/xbt/[ps][0-9][0-9]/[0-9]\{4\}/\([^"]*\)"|"\1"|g' "$datfile"
 
+# Special case for p09/p06
+sed -i 's|"/data/xbt/p09/bathas\.grd"|"\.\./bathas.grd"|g' "$datfile"
+sed -i 's|"/data/xbt/p06/bathas\.grd"|"\.\./bathas.grd"|g' "$datfile"
+
 echo "✅ Updated $datfile (backup saved as ${datfile}.bak)"

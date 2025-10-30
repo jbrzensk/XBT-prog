@@ -1,0 +1,10 @@
+Additional palletes can be visualized
+at this website:
+https://iprc.soest.hawaii.edu/users/furue/ferret/palette-gallery/
+
+To show all available Ferret pallets,
+with the ferret environment activated,
+run the command:
+
+Fpalette '*'
+

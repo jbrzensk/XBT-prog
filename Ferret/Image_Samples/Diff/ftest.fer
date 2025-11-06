@@ -1,0 +1,36 @@
+PPL DFLTFNT SW
+PALETTE rainbow
+ppl conpre @P0@SW
+ppl axlsze 0.17,0.33
+ppl axset 0,1,1,1
+ppl pen 0,0        ! white background
+ppl pen 1,1        ! black text
+ppl labset .17,.17,.17
+
+define axis/z=0:800:10/units=m/depth depth
+define axis/x=202.25E:241.65E:.1/units=degrees lon
+define grid/x=lon/z=depth tem1
+file/var=s37/col= 395/skip=1/grid=tem1 "s372410a.tem"
+set win/siz=2.0/asp=0.6
+! Contour plot
+ppl origin 1.0,1.2
+shade/set_up/nolab/hlim=202.00E:242.00E/vlim=-20:800/levels="(3.8,6.,.1) (6.,20.,1.) (20.,30.5,.5)" s37 
+ppl shakey 1,1,.10,0,,4,11.25,11.55,1.2,5.7
+ppl shade
+! Contour lines
+contour/set_up/overlay/nolab/color=7/pen=1/level="(4,30,2,-3) DARK(10,30,10,-3)" s37
+ppl conset .13,0,0.5,,,,,8.,1.,1
+ppl contour/overlay
+
+! Tick marks
+file/var="lat,depth" "station.tics"
+plot/over/nolab/line=1/vs lat,depth
+
+define axis/x=202.25E:241.65E:.1/units=degrees ybot
+define grid/x=ybot/z=depth topo
+file/var=bath/skip=1/col= 395/grid=topo "bath1.grd"
+shade/nolab/nokey/over/palette=black/lev=(9,10000,10000) bath
+label 203,-40,0,0,.2,Hawaii
+label 241,-40,0,0,.20 Long Beach
+label 222,980,0,0,.18, "Marjorie C,  9 Oct 2024-14 Oct 2024, Good drops=106"
+

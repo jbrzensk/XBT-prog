@@ -3,9 +3,6 @@
 /*.mod
 /*.x
 
-# Skip Ferrret Subdir which has pictures
-!/Ferret/*
-!/Ferret/Image_Samples/*.png
 
 # Ignore backup files
 *~
@@ -48,3 +45,6 @@ Thumbs.db
 __pycache__/
 *.pyc
 
+# Skip Ferrret Subdir which has pictures
+!/Ferret/*
+!/Ferret/Image_Samples/*.png

@@ -5,7 +5,7 @@
 
 # Skip Ferrret Subdir which has pictures
 !/Ferret/*
-!/Ferret/Image_Samples/*
+!/Ferret/Image_Samples/*.png
 
 # Ignore backup files
 *~

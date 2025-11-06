@@ -3,6 +3,8 @@
 /*.mod
 /*.x
 
+# Skip Ferrret Subdir which has pictures
+!/Ferret/*
 # Ignore backup files
 *~
 

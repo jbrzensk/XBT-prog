@@ -48,18 +48,15 @@ if [[ ! "$cwd" =~ /raw$ ]]; then
     exit 1
 fi
 
-# Check if there are 'e' files
-count=$(compgen -G "p??????e.???" | wc -l)
+#################################
+# Move the raw data files
+#################################
+# Run mvraw.sh
+echo ""
+echo "Running mvraw.sh"
+mvraw.sh 2>&1 | tee -a $OUTPUT_LOG
+echo ""
 
-if (( count <= 20 )); then
-    echo ""
-    echo "********************************************************"
-    echo "Error: Expected more than 20 files matching pXXXXXXe.XXX"
-    echo "This suggests that the analysis has already been run."
-    echo "********************************************************"
-    echo ""
-    exit 1
-fi
 
 # Decide what prefixes we start with, could be 'p' or 's' or other?
 echo "Detecting file prefix (p or s) ..."
@@ -76,14 +73,19 @@ fi
 echo "Detected prefix: $PREFIX"
 echo ""
 
-#################################
-# Move the raw data files
-#################################
-# Run mvraw.sh
-echo ""
-echo "Running mvraw.sh"
-mvraw.sh 2>&1 | tee -a $OUTPUT_LOG
-echo ""
+
+# Check if there are 'e' files
+count=$(compgen -G "${PREFIX}??????e.???" | wc -l)
+
+if (( count <= 20 )); then
+    echo ""
+    echo "********************************************************"
+    echo "Error: Expected more than 20 files matching ${PREFIX}XXXXXXe.XXX"
+    echo "This suggests that the analysis has already been run."
+    echo "********************************************************"
+    echo ""
+    exit 1
+fi
 
 #################################
 # Run analyze_stations.sh

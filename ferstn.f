@@ -5,6 +5,15 @@
 ! 16sep2005 - start mods for www-hrx stn map (new 2005 look)
 ! ACK - call crsland needs to be updated!!!  28dec00 LL
 ! writes a ferret control file for stations only
+! 13nov2025 - BRZENSKI - modified to use pyFerret
+! added some new lines to the ferret files:
+! PALETTE rainbow
+! ppl pen 0,0        ! white background
+! ppl pen 1,1        ! black text
+! contour/set_up/overlay/nolab/color=7/pen=1/level="(4,30,2,-3) DARK(10,30,10,-3)"
+! ppl conset .13,0,0.5,,,,,8.,1.,1
+
+
       character path_1*47, path_2*31, plot_xbt*45, fxctd*16
       character*7 acruise, fdat*11, path_3*37, plot_ctd*44
       character*51 path_4
@@ -161,9 +170,10 @@
 ! p08 new I think
        if(acruise(1:3).eq.'p08') then
            write(55,'(a)') 'PPL DFLTFNT DR'
+           write(55,'(a)') 'PALETTE rainbow'
            write(55,'(a)') 'ppl axlsze 0.15,.15'
-           write(55,'(a)') 'ppl pen 0,13'
-           write(55,'(a)') 'ppl pen 1,13'
+           write(55,'(a)') 'ppl pen 0,0      ! white background'
+           write(55,'(a)') 'ppl pen 1,1      ! black text'
            write(55,'(a)') 'ppl labset .18,.18,.18,.18'
            write(55,'(a)') 'set win/asp=0.65'
            write(55,'(a)') 'set region/x=165E:285E/y=50S:10N'
@@ -200,9 +210,10 @@
 !20mar2019       elseif(acruise(1:3).eq.'p09') then
        elseif(xbtinfo(9:11).eq.'p09') then
            write(55,'(a)') 'PPL DFLTFNT DR'
+           write(55,'(a)') 'PALETTE rainbow'
            write(55,'(a)') 'ppl axlsze 0.18,.18'
-           write(55,'(a)') 'ppl pen 0,13'
-           write(55,'(a)') 'ppl pen 1,13'
+           write(55,'(a)') 'ppl pen 0,0      ! white background'
+           write(55,'(a)') 'ppl pen 1,1      ! black text'
            write(55,'(a)') 'ppl labset .20,.20,.20,.20'
            write(55,'(a)') 'set win/asp=1.70'
            write(55,'(a)') 'set region/x=170E:245E/y=40S:50N'
@@ -465,9 +476,10 @@
 ! p28
        elseif(acruise(1:3).eq.'p28') then
            write(55,'(a)') 'PPL DFLTFNT DR'
+           write(55,'(a)') 'PALETTE rainbow'
            write(55,'(a)') 'ppl axlsze 0.18,.18'
-           write(55,'(a)') 'ppl pen 0,13'
-           write(55,'(a)') 'ppl pen 1,13'
+           write(55,'(a)') 'ppl pen 0,0      ! white background'
+           write(55,'(a)') 'ppl pen 1,1      ! black text'
            write(55,'(a)') 'ppl labset .18,.18,.18,.18'
            write(55,'(a)') 'set win/asp=1.80'
            write(55,'(a)') 'set region/x=136E:152E/y=42S:68S'
@@ -504,9 +516,10 @@
 ! p06:
         elseif(acruise(1:3).eq.'p06') then
            write(55,'(a)') 'PPL DFLTFNT DR'
+           write(55,'(a)') 'PALETTE rainbow'
            write(55,'(a)') 'ppl axlsze 0.18,.18'
-           write(55,'(a)') 'ppl pen 0,13'
-           write(55,'(a)') 'ppl pen 1,13'
+           write(55,'(a)') 'ppl pen 0,0      ! white background'
+           write(55,'(a)') 'ppl pen 1,1      ! black text'
            write(55,'(a)') 'ppl labset .20,.20,.20,.20'
            write(55,'(a)') 'set win/asp=1.30'
            write(55,'(a)') 'set region/x=162E:182E/y=42S:14S'
@@ -548,9 +561,10 @@
 ! p30/31
        elseif(acruise(1:3).eq.'p31') then
            write(55,'(a)') 'PPL DFLTFNT DR'
+           write(55,'(a)') 'PALETTE rainbow'
            write(55,'(a)') 'ppl axlsze 0.18,.18'
-           write(55,'(a)') 'ppl pen 0,13'
-           write(55,'(a)') 'ppl pen 1,13'
+           write(55,'(a)') 'ppl pen 0,0      ! white background'
+           write(55,'(a)') 'ppl pen 1,1      ! black text'
            write(55,'(a)') 'ppl labset .20,.20,.20,.20'
            write(55,'(a)') 'set win/asp=0.60'
            write(55,'(a)') 'set region/x=152E:179E/y=28S:16S'
@@ -592,9 +606,10 @@
 ! p34
        elseif(acruise(1:3).eq.'p34') then
            write(55,'(a)') 'PPL DFLTFNT DR'
+           write(55,'(a)') 'PALETTE rainbow'
            write(55,'(a)') 'ppl axlsze 0.18,.18'
-           write(55,'(a)') 'ppl pen 0,13'
-           write(55,'(a)') 'ppl pen 1,13'
+           write(55,'(a)') 'ppl pen 0,0      ! white background'
+           write(55,'(a)') 'ppl pen 1,1      ! black text'
            write(55,'(a)') 'ppl labset .20,.20,.20,.20'
            write(55,'(a)') 'set win/asp=0.50'
            write(55,'(a)') 'set region/x=150E:175E/y=42S:32S'
@@ -629,9 +644,10 @@
 
        elseif(acruise(1:3).eq.'s37') then
            write(55,'(a)') 'PPL DFLTFNT DR'
+           write(55,'(a)') 'PALETTE rainbow'
            write(55,'(a)') 'ppl axlsze 0.18,.18'
-           write(55,'(a)') 'ppl pen 0,13'
-           write(55,'(a)') 'ppl pen 1,13'
+           write(55,'(a)') 'ppl pen 0,0      ! white background'
+           write(55,'(a)') 'ppl pen 1,1      ! black text'
            write(55,'(a)') 'ppl labset .20,.20,.20,.20'
            write(55,'(a)') 'set win/asp=0.48'
            write(55,'(a)') 'set region/x=200E:245E/y=20N:35N'
@@ -664,9 +680,10 @@
 
        elseif(acruise(1:3).eq.'p37') then
            write(55,'(a)') 'PPL DFLTFNT DR'
+           write(55,'(a)') 'PALETTE rainbow'
            write(55,'(a)') 'ppl axlsze 0.18,.18'
-           write(55,'(a)') 'ppl pen 0,13'
-           write(55,'(a)') 'ppl pen 1,13'
+           write(55,'(a)') 'ppl pen 0,0      ! white background'
+           write(55,'(a)') 'ppl pen 1,1      ! black text'
            write(55,'(a)') 'ppl labset .20,.20,.20,.20'
            write(55,'(a)') 'set win/asp=0.40'
            write(55,'(a)') 'set region/x=110E:240E/y=10N:40N'
@@ -732,9 +749,10 @@ c write correct line names on top of stn map:
 c p38 29nov2005 new www-hrx:
        elseif(acruise(1:3).eq.'p38') then
            write(55,'(a)') 'PPL DFLTFNT DR'
+           write(55,'(a)') 'PALETTE rainbow'
            write(55,'(a)') 'ppl axlsze 0.20,.20'
-           write(55,'(a)') 'ppl pen 0,13'
-           write(55,'(a)') 'ppl pen 1,13'
+           write(55,'(a)') 'ppl pen 0,0      ! white background'
+           write(55,'(a)') 'ppl pen 1,1      ! black text'
            write(55,'(a)') 'ppl labset .22,.22,.22,.22'
            write(55,'(a)') 'set win/asp=1.90'
            write(55,'(a)') 'set region/x=165W:140W/y=20N:62N'
@@ -777,9 +795,10 @@ c write linename:
 ! add p40 12dec2012 LL
        elseif(acruise(1:3).eq.'p40') then
            write(55,'(a)') 'PPL DFLTFNT DR'
+           write(55,'(a)') 'PALETTE rainbow'
            write(55,'(a)') 'ppl axlsze 0.18,.18'
-           write(55,'(a)') 'ppl pen 0,13'
-           write(55,'(a)') 'ppl pen 1,13'
+           write(55,'(a)') 'ppl pen 0,0      ! white background'
+           write(55,'(a)') 'ppl pen 1,1      ! black text'
            write(55,'(a)') 'ppl labset .20,.20,.20,.20'
            write(55,'(a)') 'set win/asp=0.57'
            write(55,'(a)') 'set region/x=135E:205E/y=16N:40N'
@@ -813,9 +832,10 @@ c write linename:
 c p50 start working on 25oct2005
        elseif(acruise(1:3).eq.'p50') then
            write(55,'(a)') 'PPL DFLTFNT DR'
+           write(55,'(a)') 'PALETTE rainbow'
            write(55,'(a)') 'ppl axlsze 0.18,.18'
-           write(55,'(a)') 'ppl pen 0,13'
-           write(55,'(a)') 'ppl pen 1,13'
+           write(55,'(a)') 'ppl pen 0,0      ! white background'
+           write(55,'(a)') 'ppl pen 1,1      ! black text'
            write(55,'(a)') 'ppl labset .20,.20,.20,.20'
            write(55,'(a)') 'set win/asp=0.55'
            write(55,'(a)') 'set region/x=170E:290E/y=55S:10S'
@@ -847,9 +867,10 @@ c p50 start working on 25oct2005
 c p81 (& px25) 6jan2006 - working on new format:
        elseif(acruise(1:3).eq.'p81') then
            write(55,'(a)') 'PPL DFLTFNT DR'
+           write(55,'(a)') 'PALETTE rainbow'
            write(55,'(a)') 'ppl axlsze 0.18,.18'
-           write(55,'(a)') 'ppl pen 0,13'
-           write(55,'(a)') 'ppl pen 1,13'
+           write(55,'(a)') 'ppl pen 0,0      ! white background'
+           write(55,'(a)') 'ppl pen 1,1      ! black text'
            write(55,'(a)') 'ppl labset .20,.20,.20,.20'
            write(55,'(a)') 'set win/asp=0.80'
            write(55,'(a)') 'set region/x=130E:290E/y=45S:45N'

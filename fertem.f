@@ -5,6 +5,8 @@
 ! 65 = fer.web - must create metafile.plt - then ps file, then
 !       use /usr/local/bin/fatps it, then crop and gif it for website.
 !
+! 13Nov2025 - BRZENSKI - modified to use pyFerret
+!
        subroutine fertem(fnam,typ,irow,icol,xleft,xright,ixbt1,ixbt2,
      $                    shipname,iendpoint,istartpoint,ship2,orient,
      $                    l1,l2,nsta)
@@ -64,14 +66,15 @@ c               123456789012345678901234567890123456789012345678901234
        data tcp28
      $  /'file/var="lat,depth" "/data/xbt/p28/9502b/station.tics"'/
 !         1234567890123456789012345678901234567890123456789012345
-       data tc1/'plot/over/nolab/line=7/vs lat,depth'/
+!      data tc1/'plot/over/nolab/line=7/vs lat,depth'/ !BRZENSKI
+       data tc1/'plot/over/nolab/line=1/vs lat,depth'/
        data topo1/'define grid/y=ybot/z=depth topo'/
        data topo2/'define grid/y=ybot2/z=depth topo2'/
 c                   1234567890123456789012345678901234567890
-       data shakey/'ppl shakey 1,1,.12,0,,4,11.25,11.55,1.2,5.7'/
+       data shakey/'ppl shakey 1,1,.10,0,,4,11.25,11.55,1.2,5.7'/ ! BRZENSKI .12->.10
        data ps/'ppl shade'/
        data pcn/'ppl contour/overlay'/
-       data conset/'ppl conset .13,0,,,,,,8.,1.,1'/
+       data conset/'ppl conset .13,0,0.5,,,,,8.,1.,1'/ ! BRZENSKI added 0.5 as 3rd arg
        data origin/'ppl origin 1.0,1.2'/
        data chileblank1/'set region/y=37.00S:35.00S'/
        data chileblank2/'shade/over/nolab/palette=white p81[d=1]'/
@@ -97,6 +100,8 @@ c next 3 lines temporary for redoing p22!!!
 c next lines common to all cruise lines
        write(55,'(a14)')'PPL DFLTFNT DR'
        write(65,'(a14)')'PPL DFLTFNT DR'
+       write(55,'(a15)')'PALETTE rainbow' ! BRZENSKI
+       write(65,'(a15)')'PALETTE rainbow' ! BRZENSKI
        write(55,'(a17)')'ppl conpre @P1@DR'
        write(65,'(a17)')'ppl conpre @P1@DR'
        write(55,'(a19)')'ppl axlsze 0.17,.17'
@@ -104,10 +109,10 @@ c next lines common to all cruise lines
        write(55,'(a17)')'ppl axset 0,1,1,1'
        write(65,'(a17)')'ppl axset 0,1,1,1'
 c  pen 0=axis&labels
-       write(55,'(a12)')'ppl pen 0,13'
-       write(65,'(a12)')'ppl pen 0,13'
-       write(55,'(a12)')'ppl pen 1,13'
-       write(65,'(a12)')'ppl pen 1,13'
+       write(55,'(a12)')'ppl pen 0,0        ! white background' ! BRZENSKI
+       write(65,'(a12)')'ppl pen 0,0        ! white background' ! BRZENSKI
+       write(55,'(a12)')'ppl pen 1,1        ! black text' ! BRZENSKI
+       write(65,'(a12)')'ppl pen 1,1        ! black text' ! BRZENSKI
        write(55,'(a22)')'ppl labset .17,.17,.17,.17'
        write(65,'(a22)')'ppl labset .17,.17,.17,.17'
        write(55,*)

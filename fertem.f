@@ -417,16 +417,17 @@ c plot labels
              write(65,'(a)')'label 32,-30,0,0,.2,San Francisco'
           endif
 
-          ship(1:23) = 'label   ,980,0,0,.19, "'
+!         BRZENSKI edit so can hold negatvies
+          ship(1:24) = 'label    ,980,0,0,.19, "'
           if(icenter.ge.0.and.icenter.le.9)
-     $          write(ship(8:8),'(i1)') icenter
-          if(icenter.ge.10) write(ship(7:8),'(i2)') icenter
-          if(icenter.lt.0) write(ship(7:8),'(i2)') icenter
+     $          write(ship(9:9),'(i1)') icenter
+          if(icenter.ge.10) write(ship(8:9),'(i2)') icenter
+          if(icenter.lt.0) write(ship(7:9),'(i2)') icenter
           write(*,*)'icenter=',icenter,' ship=',ship
-          write(55,'(a,a,a,a,a,a,a)') ship(1:23), ship2(1:l1), 
+          write(55,'(a,a,a,a,a,a,a)') ship(1:24), ship2(1:l1), 
      $              shipname(1:l2), adate(1:23),', ',
      $              ngoodsta(1:14),q
-          write(65,'(a,a,a,a,a,a,a)') ship(1:23), ship2(1:l1), 
+          write(65,'(a,a,a,a,a,a,a)') ship(1:24), ship2(1:l1), 
      $              shipname(1:l2), adate(1:23),', ',
      $              ngoodsta(1:14),q
 c i21

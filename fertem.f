@@ -360,7 +360,8 @@ c bottom topography
            write(55,'(a)') topo2(1:33)
            write(65,'(a)') topo2(1:33)
            b1(1:41) = 'file/var=bathah/skip=1/col=572/grid=topo2'
-           b2(1:27) = ' "/data/xbt/p09/bathah.grd"'
+           b2(1:27) = '                           '
+           b2(1:23) = ' "../../p09/bathah.grd"'
            write(55,'(a,a)')b1, b2
            write(65,'(a,a)')b1, b2
            write(55,'(a)')

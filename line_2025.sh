@@ -131,7 +131,7 @@ fi
 # run mapxbt3.x for p81 only!
 # Currently inactive as of 2025 BRZENSKI
 echo "Running mapxbt3.x for line $ch$line,  using input.ferret, putting to web.out"
-if [[ $line -eq 81 ]]; then
+if [[ "$line" -eq "81" ]]; then
     mapxbt3.x << EOF6
 $ch$line$i
 tem
@@ -155,7 +155,7 @@ echo "The NOTE below is legacy,the local ferret.tem.X and stn.fer files"
 echo "have been updated with FRAME/FILE=\"fer.pdf\"/FORMAT=PDF to "
 echo "reflect the updated QT format and newer Ferret and pyFerret standards."
 echo ""
-if [[ $line -eq 28 ]]; then
+if [[ "$line" -eq "28" ]]; then
     if [[ -e ferret.tem.a ]]; then
         append_if_missing 'FRAME/FILE="fer.pdf"/FORMAT=PDF' ferret.tem.a
         ferret < "input.ferret" > web.out

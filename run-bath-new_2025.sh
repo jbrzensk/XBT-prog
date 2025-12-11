@@ -53,13 +53,32 @@ for filename in *a.10; do
 
     elif [[ "$line_number" =~ ^(p05|p38|a08|a10|p09|p13)$ ]]; then
         
-        if [[ "$long_line" == "PX06" ]]; then
-                echo "Line p06 detected, using mkgridlon.x"
-                echo "Also detected A line, using short track."
-                echo "Moving px06-cgi"
-                link_bathy.sh p06
-        fi
+        echo "Line detected with multiple possible bathy files."
+        echo "Running link_bathy.sh to link P05, P06, P09 bathy files."
+        link_bathy.sh p05
+        link_bathy.sh p06
+        link_bathy.sh p09
+
+        # if [[ "$long_line" == "PX06" ]]; then
+        #         echo "Line p06 detected, using mkgridlon.x"
+        #         echo "Also detected A line, using short track."
+        #         echo "Moving px06-cgi"
+        #         link_bathy.sh p06
         
+        # elif [[ "$long_line" == "PX09" ]]; then
+        #         echo "Line p09 detected, using mkgridlon.x"
+        #         echo "Also detected A line, using short track."
+        #         echo "Moving px09-cgi"
+        #         link_bathy.sh p09
+        
+        # elif [[ "$long_line" == "P06/PX09" ]]; then
+        #         echo "Line p06/p09 detected, using mkgridlon.x"
+        #         echo "Also detected A line, using short track."
+        #         echo "Moving px06-cgi and px09-cgi"
+        #         link_bathy.sh p06
+        #         link_bathy.sh p09
+        # fi
+
         echo "Running mkgridlon.x"
         echo "$filename" | mkgridlon.x
 

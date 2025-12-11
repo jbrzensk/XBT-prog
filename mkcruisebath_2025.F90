@@ -68,7 +68,7 @@ program mkcruisebath
   endif
 
   if(cruise(1:3).eq.'p13') then
-      bathname = 'p09-sns-bath.cgi'
+      bathname = 'px09-sns-bath.cgi'
   endif
 
   ! Modify filenames based on cruise

@@ -57,7 +57,7 @@
         tsfilen(4:6) = filen(1:3)
 ! 23may2012 LL:
         if(filen(1:3).eq.'p06'.or.filen(1:3).eq.'p13') then
-           tsfilen(1:20) = '/data/xbt/p09/p09.ts'
+           tsfilen(1:20) = '../../p09/p09.ts'
         endif
       
         open(22,file=filen,form='formatted',status='old')

@@ -291,7 +291,7 @@ c p09
 c write plot bounds 
           if(iendpoint.eq.1) then
              write(level1(25:39),'(a15)') ' 36.00S: 18.00S'
-             icenter = 27
+             icenter = -27
           elseif(iendpoint.eq.2.or.iendpoint.eq.3) then
              write(level1(25:39),'(a15)') ' 36.00S: 21.35N'
              icenter = -7

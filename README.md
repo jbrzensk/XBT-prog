@@ -35,7 +35,7 @@ This code has been tested on the following lines
 - [ ] PX05
 - [x] PX06
 - [x] PX09
-- [ ] PX13
+- [x] PX13
 - [ ] PX31
 - [ ] PX39
 - [ ] PX30

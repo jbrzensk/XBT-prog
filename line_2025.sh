@@ -138,7 +138,6 @@ tem
 EOF6
 fi
 
-#echo before-tem
 # run ferret to create temperature plot (metafile.plt)
 # p28 - 4 different ferret input files because of naming with a, b, c, d
 # Append the ferret.tem.a file to output to PDF.
@@ -265,9 +264,9 @@ elif [[ "$line" == 08 ]]; then
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
 elif [[ "$line" == 09 ]]; then
-    convert -density 600 -trim +repage -rotate -90 -geometry 1000x502! -flatten fer.pdf t-b.gif
-    convert -density 600 -trim +repage -rotate -90 -geometry 500x251! -flatten fer.pdf t-s.gif
-    convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
+    convert -density 600 -trim +repage -geometry 1000x502! -flatten fer.pdf t-b.gif
+    convert -density 600 -trim +repage -geometry 500x251! -flatten fer.pdf t-s.gif
+    convert -density 600 -trim +repage -geometry 100x50!  -flatten fer.pdf t-t.gif
     mv t-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-b.gif"
     mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
@@ -383,7 +382,7 @@ echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 echo ""
 
 # append file writing script
-append_if_missing 'FRAME/FILE="fer.pdf"/FORMAT=PDF' input.stn_ferret
+append_if_missing 'FRAME/FILE="fer.pdf"/FORMAT=PDF' stn.fer
 
 ferret  < input.stn_ferret >& web.out
 

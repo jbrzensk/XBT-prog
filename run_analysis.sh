@@ -77,11 +77,18 @@ echo ""
 # Check if there are 'e' files
 count=$(compgen -G "${PREFIX}??????e.???" | wc -l)
 
+echo "Found $count files matching ${PREFIX}XXXXXXe.XXX"
+echo ""
+
 if (( count <= 20 )); then
     echo ""
     echo "********************************************************"
     echo "Error: Expected more than 20 files matching ${PREFIX}XXXXXXe.XXX"
     echo "This suggests that the analysis has already been run."
+    files_above=$(ls ../${PREFIX}*e.* 2>/dev/null | wc -l)
+    echo "Found $files_above files matching ../${PREFIX}*e.*in the parent dir."
+    echo "If you wish to re-run the analysis, please cp the "
+    echo "files back into this 'raw' directory and try again."
     echo "********************************************************"
     echo ""
     exit 1

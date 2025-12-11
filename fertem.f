@@ -422,7 +422,7 @@ c plot labels
           if(icenter.ge.0.and.icenter.le.9)
      $          write(ship(9:9),'(i1)') icenter
           if(icenter.ge.10) write(ship(8:9),'(i2)') icenter
-          if(icenter.lt.0) write(ship(7:9),'(i2)') icenter
+          if(icenter.lt.0) write(ship(7:9),'(i3)') icenter
           write(*,*)'icenter=',icenter,' ship=',ship
           write(55,'(a,a,a,a,a,a,a)') ship(1:24), ship2(1:l1), 
      $              shipname(1:l2), adate(1:23),', ',

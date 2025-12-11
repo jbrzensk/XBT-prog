@@ -131,7 +131,7 @@ fi
 # run mapxbt3.x for p81 only!
 # Currently inactive as of 2025 BRZENSKI
 echo "Running mapxbt3.x for line $ch$line,  using input.ferret, putting to web.out"
-if [[ "$line" -eq "81" ]]; then
+if [[ "$line" == 81 ]]; then
     mapxbt3.x << EOF6
 $ch$line$i
 tem
@@ -155,7 +155,7 @@ echo "The NOTE below is legacy,the local ferret.tem.X and stn.fer files"
 echo "have been updated with FRAME/FILE=\"fer.pdf\"/FORMAT=PDF to "
 echo "reflect the updated QT format and newer Ferret and pyFerret standards."
 echo ""
-if [[ "$line" -eq "28" ]]; then
+if [[ "$line" == 28 ]]; then
     if [[ -e ferret.tem.a ]]; then
         append_if_missing 'FRAME/FILE="fer.pdf"/FORMAT=PDF' ferret.tem.a
         ferret < "input.ferret" > web.out
@@ -209,7 +209,7 @@ echo ""
 #####################################
 #   IX Lines (15,21,28)
 #####################################
-if [[ $line -eq 15 ]]; then
+if [[ "$line" == 15 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 3022x1510! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x250! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -217,7 +217,7 @@ if [[ $line -eq 15 ]]; then
     mv t-s.gif "${ARGO_DIR}/ix15/img/i${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/ix15/img/i${line}${i}t-t.gif"
 
-elif [[ $line -eq 21 ]]; then
+elif [[ "$line" == 21 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x500! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x250! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -225,7 +225,7 @@ elif [[ $line -eq 21 ]]; then
     mv t-s.gif "${ARGO_DIR}/ix21/img/i${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/ix21/img/i${line}${i}t-t.gif"
 
-elif [[ $line -eq 28 ]]; then
+elif [[ "$line" == 28 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x494! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x250! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -236,7 +236,7 @@ elif [[ $line -eq 28 ]]; then
 #####################################
 #   AX Lines (22)
 #####################################
-elif [[ $line -eq 22 ]]; then
+elif [[ "$line" == 22 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x487! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x244! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -248,7 +248,7 @@ elif [[ $line -eq 22 ]]; then
 #   PX Lines (05, 06, 08, 09, 31, 34, 38, 40, 44, 50, 81)
 #####################################
 
-elif [[ $line -eq 05 ]]; then
+elif [[ "$line" == 05 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1500x750! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x250! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -256,7 +256,7 @@ elif [[ $line -eq 05 ]]; then
     mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
-elif [[ $line -eq 08 ]]; then
+elif [[ "$line" == 08 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x502! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x250! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -264,7 +264,7 @@ elif [[ $line -eq 08 ]]; then
     mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
-elif [[ $line -eq 09 ]]; then
+elif [[ "$line" == 09 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x502! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x251! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -272,7 +272,7 @@ elif [[ $line -eq 09 ]]; then
     mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
-elif [[ $line -eq 13 ]]; then
+elif [[ "$line" == 13 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x502! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x251! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -280,7 +280,7 @@ elif [[ $line -eq 13 ]]; then
     mv t-s.gif "${ARGO_DIR}/px09/img/p${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/px09/img/p${line}${i}t-t.gif"
 
-elif [[ $line -eq 31 ]]; then
+elif [[ "$line" == 31 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x505! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x252! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -288,7 +288,7 @@ elif [[ $line -eq 31 ]]; then
     mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
-elif [[ $line -eq 34 ]]; then
+elif [[ "$line" == 34 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x505! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x252! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -296,7 +296,7 @@ elif [[ $line -eq 34 ]]; then
     mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
-elif [[ $line -eq 38 ]]; then
+elif [[ "$line" == 38 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x503! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x251! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -304,7 +304,7 @@ elif [[ $line -eq 38 ]]; then
     mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
-elif [[ $line -eq 40 ]]; then
+elif [[ "$line" == 40 ]]; then
     convert -density 600 -trim +repage -geometry 1000x504! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -geometry 500x252! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -312,7 +312,7 @@ elif [[ $line -eq 40 ]]; then
     mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
-elif [[ $line -eq 44 ]]; then
+elif [[ "$line" == 44 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x505! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x252! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x51!  -flatten fer.pdf t-t.gif
@@ -320,7 +320,7 @@ elif [[ $line -eq 44 ]]; then
     mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
-elif [[ $line -eq 50 ]]; then
+elif [[ "$line" == 50 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x494! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x247! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x49!  -flatten fer.pdf t-t.gif
@@ -328,7 +328,7 @@ elif [[ $line -eq 50 ]]; then
     mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
-elif [[ $line -eq 81 ]]; then
+elif [[ "$line" == 81 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x502! -flatten fer.pdf t-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 500x251! -flatten fer.pdf t-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
@@ -339,7 +339,7 @@ elif [[ $line -eq 81 ]]; then
 #####################################
 #   PX(s) Line 37
 #####################################
-elif [[ $line -eq 37 ]]; then
+elif [[ "$line" == 37 ]]; then
     if [[ $ch == p ]]; then
         # old largeconvert -density 600 -trim +repage -rotate -90 -geometry 1000x501! fer.pdf t-b.gif
         # old largeconvert -density 600 -trim +repage -rotate -90 -geometry 500x251! fer.pdf t-s.gif
@@ -397,7 +397,7 @@ echo ""
 #####################################
 #   IX Lines (15,21,28) stn_fer
 #####################################
-if [[ $line == 15 ]]; then
+if [[ "$line" == 15 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x507! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 300x152! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x51!  -flatten fer.pdf s-t.gif
@@ -407,7 +407,7 @@ if [[ $line == 15 ]]; then
     mv  s-t.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-t.gif"
     echo 'finish stn move'
 
-elif [[ $line == 21 ]]; then
+elif [[ "$line" == 21 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 500x283! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 200x113! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x57!  -flatten fer.pdf s-t.gif
@@ -417,7 +417,7 @@ elif [[ $line == 21 ]]; then
     mv  s-t.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-t.gif"
     echo 'finish stn move'
 
-elif [[ $line == 28 ]]; then
+elif [[ "$line" == 28 ]]; then
     convert -density 600 -trim +repage -geometry 464x800! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -geometry 90x155! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -geometry 58x100!  -flatten fer.pdf s-t.gif
@@ -430,7 +430,7 @@ elif [[ $line == 28 ]]; then
 #####################################
 #   AX Lines (22)
 #####################################
-elif [[ $line == 22 ]]; then
+elif [[ "$line" == 22 ]]; then
     convert -density 600 -trim +repage -geometry 525x515! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -geometry 155x152! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -geometry 90x88!  -flatten fer.pdf s-t.gif
@@ -443,7 +443,7 @@ elif [[ $line == 22 ]]; then
 #   PX Lines (05, 06, 08, 09, 31, 34, 38, 40, 44, 50, 81)
 #####################################
 
-elif [[ $line == 05 ]]; then
+elif [[ "$line" == 05 ]]; then
     convert -density 600 -trim +repage -geometry 538x1045! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -geometry 78x152! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -geometry 52x100!  -flatten fer.pdf s-t.gif
@@ -452,7 +452,7 @@ elif [[ $line == 05 ]]; then
     mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
     mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
-elif [[ $line == 08 ]]; then
+elif [[ "$line" == 08 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 650x335! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 240x124! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x41!  -flatten fer.pdf s-t.gif
@@ -461,7 +461,7 @@ elif [[ $line == 08 ]]; then
     mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
     mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
-elif [[ $line == 09 ]]; then
+elif [[ "$line" == 09 ]]; then
     convert -density 600 -trim +repage -geometry 650x1045! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -geometry 95x152! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -geometry 63x100!  -flatten fer.pdf s-t.gif
@@ -470,7 +470,7 @@ elif [[ $line == 09 ]]; then
     mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
     mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
-elif [[ $line == 13 ]]; then
+elif [[ "$line" == 13 ]]; then
     convert -density 600 -trim +repage -geometry 650x1045! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -geometry 95x152! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -geometry 63x100!  -flatten fer.pdf s-t.gif
@@ -479,7 +479,7 @@ elif [[ $line == 13 ]]; then
     mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
     mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
-elif [[ $line == 31 ]]; then
+elif [[ "$line" == 31 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x456! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 225x103! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x46!  -flatten fer.pdf s-t.gif
@@ -488,7 +488,7 @@ elif [[ $line == 31 ]]; then
     mv  s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
     mv  s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
-elif [[ $line == 34 ]]; then
+elif [[ "$line" == 34 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x362! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 240x87! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 115x42!  -flatten fer.pdf s-t.gif
@@ -497,7 +497,7 @@ elif [[ $line == 34 ]]; then
     mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
     mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
-elif [[ $line == 38 ]]; then
+elif [[ "$line" == 38 ]]; then
     convert -density 600 -trim +repage -geometry 486x900! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -geometry 84x155! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -geometry 54x100!  -flatten fer.pdf s-t.gif
@@ -506,7 +506,7 @@ elif [[ $line == 38 ]]; then
     mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
     mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
-elif [[ $line == 40 ]]; then
+elif [[ "$line" == 40 ]]; then
     convert -density 600 -trim +repage  -geometry 1000x436! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage  -geometry 325x142! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage  -geometry 115x50!  -flatten fer.pdf s-t.gif
@@ -515,7 +515,7 @@ elif [[ $line == 40 ]]; then
     mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
     mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
-elif [[ $line == 44 ]]; then
+elif [[ "$line" == 44 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x565! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 225x127! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x56!  -flatten fer.pdf s-t.gif
@@ -524,7 +524,7 @@ elif [[ $line == 44 ]]; then
     mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
     mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
-elif [[ $line == 50 ]]; then
+elif [[ "$line" == 50 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 850x348! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 260x106! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x41!  -flatten fer.pdf s-t.gif
@@ -533,7 +533,7 @@ elif [[ $line == 50 ]]; then
     mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
     mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
 
-elif [[ $line == 81 ]]; then
+elif [[ "$line" == 81 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x667! -flatten fer.pdf s-b.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 227x152! -flatten fer.pdf s-s.gif
     convert -density 600 -trim +repage -rotate -90 -geometry 100x67!  -flatten fer.pdf s-t.gif
@@ -545,7 +545,7 @@ elif [[ $line == 81 ]]; then
 #####################################
 #   PX(s) Line 37 stn_fer
 #####################################
-elif [[ $line == 37 ]]; then
+elif [[ "$line" == 37 ]]; then
     echo  "ch line: ${ch} ${line}"
     if [[ $ch == p ]]; then
         echo "Line p37 detected, using custom grid conversions"
@@ -587,14 +587,14 @@ rm t-f.gif
 rm s-f.gif
 
 # html file:
-if [[ $line == 28 ]]; then
+if [[ "$line" == 28 ]]; then
     echo "Running cruisehtml for P28."
     cruisehtml.x << EOF5
 p$line$i
 p$line$i
 EOF5
 
-elif [[ $line == 21 ]]; then
+elif [[ "$line" == 21 ]]; then
     echo "Skip creating html for i21 - you must edit it, mv previous cruise then modify"
 else
     echo "Running cruisehtml.x for ${prefix}."
@@ -608,20 +608,20 @@ fi
 echo "cruisehtml ${ch}${line}${i}"
 
 chmod a+x *html
-if [[ $line == 22 ]]; then
+if [[ "$line" == 22 ]]; then
     mv *html "${ARGO_DIR}/ax${line}/."
-elif [[ $line == 15 ]]; then
+elif [[ "$line" == 15 ]]; then
     mv *html "${ARGO_DIR}/ix${line}/."
     echo "moving line 15"
-elif [[ $line == 28 ]]; then
+elif [[ "$line" == 28 ]]; then
     mv *html "${ARGO_DIR}/ix${line}/."
-elif [[ $line == 37 ]]; then
+elif [[ "$line" == 37 ]]; then
     if [[ $ch == p ]]; then
         mv *html "${ARGO_DIR}/px${line}/."
     else
         mv *html "${ARGO_DIR}/p${line}s/."
     fi
-elif [[ $line == 21 ]]; then
+elif [[ "$line" == 21 ]]; then
     echo "No move html"
 else
     mv *html "${ARGO_DIR}/px${line}/."

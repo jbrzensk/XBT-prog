@@ -15,10 +15,10 @@ penultimate=($(awk '{line[NR]=$0} END {split(line[NR-1],a); for(i in a) print a[
 # Find Julian date of first drop
 epoch="1985-12-31"
 epoch_secs=$(date -d "$epoch" +%s)
-yy=${first[${colname[date]}]:0:2}
-yyyy="20$yy"
+dd=${first[${colname[date]}]:0:2}
 mm=${first[${colname[date]}]:3:2}
-dd=${first[${colname[date]}]:6:2}
+yy=${first[${colname[date]}]:6:2}
+yyyy="20$yy"
 date_secs=$(date -d "$yyyy-$mm-$dd" +%s)
 seconds_diff=$((date_secs - epoch_secs))
 days_since=$(( ((seconds_diff + (86400/2)) / 86400) ))

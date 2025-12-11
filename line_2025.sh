@@ -272,12 +272,12 @@ elif [[ "$line" == 09 ]]; then
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
 elif [[ "$line" == 13 ]]; then
-    convert -density 600 -trim +repage -rotate -90 -geometry 1000x502! -flatten fer.pdf t-b.gif
-    convert -density 600 -trim +repage -rotate -90 -geometry 500x251! -flatten fer.pdf t-s.gif
-    convert -density 600 -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "${ARGO_DIR}/px09/img/p${line}${i}t-b.gif"
-    mv t-s.gif "${ARGO_DIR}/px09/img/p${line}${i}t-s.gif"
-    mv t-t.gif "${ARGO_DIR}/px09/img/p${line}${i}t-t.gif"
+    convert -density 600 -trim +repage -geometry 1000x502! -flatten fer.pdf t-b.gif
+    convert -density 600 -trim +repage -geometry 500x251! -flatten fer.pdf t-s.gif
+    convert -density 600 -trim +repage -geometry 100x50!  -flatten fer.pdf t-t.gif
+    mv t-b.gif "${ARGO_DIR}/px13/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px13/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px13/img/p${line}${i}t-t.gif"
 
 elif [[ "$line" == 31 ]]; then
     convert -density 600 -trim +repage -rotate -90 -geometry 1000x505! -flatten fer.pdf t-b.gif

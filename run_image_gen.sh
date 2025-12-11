@@ -71,7 +71,23 @@ else
     echo "Linking xbtinfo file here now..."
     ln -s "$xbtinfo_file" .
     echo "XBT line info linked here"
+    echo ""
 fi
+# Special case, P13 links with P09!
+if [[ $line_number == 'p13' ]]; then
+    echo ""
+    xbtinfo_file="../../xbtinfo.p09"
+    if [[ -L "xbtinfo.p09" || -e "xbtinfo.p09" ]]; then
+        echo "Link or file xbtinfo.p09 already exists — skipping link."
+    else
+        echo "Linking xbtinfo.p09 file here now..."
+        ln -s "$xbtinfo_file" .
+        echo "XBT line info p09 linked here for p13"
+        echo ""
+    fi
+fi
+
+
 
 # Link bathymetry here as well
 echo -e "\033[1m **Linking bathymetry file with link_bathy.sh for $line_number** \033[0m"

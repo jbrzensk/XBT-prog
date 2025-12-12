@@ -37,7 +37,7 @@ This code has been tested on the following lines
 - [x] PX09
 - [x] PX13
 - [ ] PX30??
-- [ ] PX31
+- [ ] PX31 - data?
 - [ ] PX34
 - [ ] PX37
 - [x] PX37s

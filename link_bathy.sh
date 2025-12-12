@@ -29,9 +29,9 @@ elif [[ $PREFIX == 'p06' ]]; then
 elif [[ $PREFIX == 'p09' ]]; then
      bathname='px09-sns-bath.cgi'
 elif [[ $PREFIX == 'p31' ]]; then
-     bathname='p31-sns-bath.cgi'
+     bathname='px31-sns-bath.cgi'
 elif [[ $PREFIX == 'p34' ]]; then
-     bathname='p34-sns-bath.cgi'
+     bathname='px34-sns-bath.cgi'
 elif [[ $PREFIX == 'p50' ]]; then
      bathname='p50-sns-bath.cgi'
 else

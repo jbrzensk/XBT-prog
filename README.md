@@ -36,9 +36,8 @@ This code has been tested on the following lines
 - [x] PX06
 - [x] PX09
 - [x] PX13
+- [ ] PX30??
 - [ ] PX31
-- [ ] PX39
-- [ ] PX30
 - [ ] PX34
 - [ ] PX37
 - [x] PX37s
@@ -47,3 +46,4 @@ This code has been tested on the following lines
 
 ### Not Supported
 - [x] PX15
+- [ ] PX39

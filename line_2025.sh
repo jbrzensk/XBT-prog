@@ -60,7 +60,16 @@ echo " Log: $LOGFILE"
 echo "===================================================="
 
 # Set standard directory for outputting argo
-ARGO_DIR="/home/jbrzensk/argo-project/pub/html/www-hrx"
+# Use different paths based on hostname
+
+if [[ "$(hostname)" == "jbrzensk-HP-Z840-Workstation" ]]; then
+    # BRZENSKI SIO server
+    ARGO_DIR="/home/jbrzensk/argo-project/pub/html/www-hrx"
+else
+    # Savu / kakopo argo server
+    ARGO_DIR="/argo-project/pub/html/www-hrx"
+fi
+
 echo "Argo directory is set to $ARGO_DIR"
 echo ""
 

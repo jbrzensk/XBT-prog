@@ -193,7 +193,20 @@ echo -e "${new_name}\n${mindrop} ${maxdrop}\nn" | tenm3_chgcoef.x 2>&1 | tee -a 
 #################################
 # End the program
 #################################
+# Return to raw directory
 popd
+
 # And run this one more time, so we dont have to scroll
 echo "Running analyze_stations.sh"
+echo ""
+echo ""
+
 analyze_stations.sh 2>&1 | tee -a $OUTPUT_LOG
+
+# Add note to edit the xbtinfo.XX file
+echo ""
+echo "********************************************************"
+echo "Note: Please remember to manually edit the xbtinfo.XX file"
+echo "to reflect any changes made during this analysis."
+echo "********************************************************"
+echo ""

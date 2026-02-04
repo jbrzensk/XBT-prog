@@ -38,7 +38,7 @@ This code has been tested on the following lines
 - [x] PX13
 - [ ] PX30??
 - [ ] PX31 - data?
-- [ ] PX34
+- [x] PX34 - need plotting input
 - [ ] PX37
 - [x] PX37s
 - [ ] PX38

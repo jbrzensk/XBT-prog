@@ -957,7 +957,7 @@ c p28
 c p34
        elseif(fnam(1:3).eq.'p34') then
 ! 05sep2013 151.35E:173.85E current tem file bounds, only reren 1305&08
-          write(level1(25:39),'(a15)') '151.35E:173.85E'
+          write(level1(25:39),'(a15)') '151.35E:170.25E' ! BRZENSKI 2026
           write(55,'(a,a)') level1(1:59), levp34(1:45)
           write(65,'(a,a)') level1(1:59), levp34(1:45)
            write(55,'(a)')shakey
@@ -1002,8 +1002,8 @@ c p34
           write(65,*)
           write(55,'(a28)')'label 150,-30,-1,0,.2,Sydney'
           write(65,'(a28)')'label 150,-30,-1,0,.2,Sydney'
-          write(55,'(a31)')'label 173,-30,1,0,.2,Wellington'
-          write(65,'(a31)')'label 173,-30,1,0,.2,Wellington'
+          write(55,'(a31)')'label 172,-30,1,0,.2,Wellington' ! BRZENSKI was 173
+          write(65,'(a31)')'label 172,-30,1,0,.2,Wellington'
           ship(1:24) = 'label 152,980,-1,0,.2, "'
           write(55,'(a,a,a,a,a,a,a)') ship, ship2(1:l1), 
      $              shipname(1:l2), adate(1:23),', ',

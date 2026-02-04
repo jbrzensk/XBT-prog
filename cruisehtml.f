@@ -24,6 +24,7 @@
         character mid4_15*54, mid4_50*49, alinename*20, mid4_38*49
         character mid4_21*49
         character mid4_05*49
+        character mid4_13*49
         character mid4s37*55
         character mid4a*27, mid4b*12, shipname*3, mid4_30*52
         character outhtml28*13, mid4_28*50, mid7_28*63, mid8_28*58
@@ -86,6 +87,8 @@ c                  1234567890123456789012345678901234567890123456789012345
      $'<font size="4" color="red"> PX50 0506</font></td>'/
         data mid4_05/
      $'<font size="4" color="red"> PX05 0908</font></td>'/
+        data mid4_13/
+     $'<font size="4" color="red"> PX13 0506</font></td>'/
         data mid4_28/
      $'<font size="4" color="red"> IX28 0506a</font></td>'/
         data mid4_38/
@@ -156,9 +159,11 @@ c                   1234567890123456789012345678901234567890123456789012345
         write(*,*)'cruise=',cruise(1:7)
         write(xbtinfo(9:11),'(a3)') cruise(1:3)
         write(*,*)'xbtinfo=',xbtinfo
+        
         call rdxbtinfo1(xbtinfo,cruise,prev,next,iport,linename,
      $                  shipname,cruise8)
         write(*,*)'after rdxbtinfo1 linename=',linename
+
         write(outhtml(1:7),'(a7)') cruise(1:7)
         if(cruise(1:1).eq.'s') outhtml(1:1) = 'p'
         if(cruise(1:3).eq.'i21') outhtml(1:3) = 'i15'
@@ -317,6 +322,15 @@ c width and height of tem map:
            write(end3b(31:33),'(a3)') '500'
            write(end3c(9:11),'(a3)') '251'
 
+        elseif(cruise(2:3).eq.'13') then
+c width and height of stn map:
+           write(end2b(26:28),'(a3)') '200'
+           write(end2b(39:41),'(a3)') '113'
+c width and height of tem map:
+           write(end3b(31:33),'(a3)') '500'
+           write(end3c(9:11),'(a3)') '251'
+           write(mid4_13(34:37),'(a4)') outhtml(4:7)
+
         elseif(cruise(2:3).eq.'81') then
 c width and height of stn map:
            write(end2b(26:28),'(a3)') '227'
@@ -449,6 +463,8 @@ c WATCH WHICH ONE HERE _ FIX IN FUTURE!
          write(31,505) sp,sp,sp,sp,mid4_50
         elseif(cruise(2:3).eq.'09') then
          write(31,507) sp,sp,sp,sp,mid4a,alinename(1:ip),mid4b
+        elseif(cruise(2:3).eq.'13') then
+         write(31,505) sp,sp,sp,sp,mid4_13
         elseif(cruise(2:3).eq.'81') then
          write(31,507) sp,sp,sp,sp,mid4a,alinename(1:ip),mid4b
 507        format(a,a,a,a,a,a,a)
@@ -624,6 +640,11 @@ c write correct line names:
            endif
         elseif(cruise(1:3).eq.'p22') then
            write(*,*)'in nameit p22ip=',ip
+        elseif(cruise(1:3).eq.'p13') then
+c write correct line name:
+           ip = 1
+           alinename(ip:ip+3) = 'PX13'
+           ip = ip + 4
         elseif(cruise(1:3).eq.'p81') then
 c write correct line names:
            ip = 1

@@ -342,6 +342,26 @@ c iport(2) = Y = Yokohama
            if(tr(1:2).eq.'SI'.or.tr(4:5).eq.'SI') iport(5) = 1
            linename(1) = 1
 
+c PX13
+        elseif(xbtinfo(9:11).eq.'p13') then
+c iport(1) = L  Los Angeles
+           if(tr(1:1).eq.'L'.or.tr(2:2).eq.'L'.or.
+     $        tr(3:3).eq.'L'.or.tr(4:4).eq.'L') iport(1) = 1
+c iport(2) = A  Auckland
+           if(tr(1:1).eq.'A'.or.tr(2:2).eq.'A'.or.
+     $        tr(3:3).eq.'A'.or.tr(4:4).eq.'A') iport(2) = 1
+c iport(3) = U  Tauranga
+           if(tr(1:1).eq.'U'.or.tr(2:2).eq.'U'.or.
+     $        tr(3:3).eq.'U'.or.tr(4:4).eq.'U') iport(3) = 1
+c iport(4) = M
+           if(tr(1:1).eq.'M'.or.tr(2:2).eq.'M'.or.
+     $        tr(3:3).eq.'M'.or.tr(4:4).eq.'M') iport(4) = 1
+c iport(5) = N  Noumea
+           if(tr(1:1).eq.'N'.or.tr(2:2).eq.'N'.or.
+     $        tr(3:3).eq.'N'.or.tr(4:4).eq.'N') iport(5) = 1
+c Single line - always PX13
+           linename(1) = 1
+
         elseif(xbtinfo(9:11).eq.'p81') then
            if(tr(1:2).eq.'H '.or.tr(4:5).eq.'H ') iport(1) = 1
            if(tr(1:2).eq.'Hw'.or.tr(4:5).eq.'Hw') iport(2) = 1

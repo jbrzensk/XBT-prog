@@ -327,12 +327,14 @@ c iport(5) = O  Oahu
      $        tr(3:3).eq.'O'.or.tr(4:4).eq.'O') iport(4) = 1
            linename(1) = 1
         elseif(xbtinfo(9:11).eq.'p40') then
-c iport(1) = H  Hawaii         
+c iport(1) = H  Hawaii
            if(tr(1:1).eq.'H'.or.tr(2:2).eq.'H'.or.
      $        tr(3:3).eq.'H'.or.tr(4:4).eq.'H') iport(1) = 1
 c iport(2) = Y = Yokohama
            if(tr(1:1).eq.'Y'.or.tr(2:2).eq.'Y'.or.
      $        tr(3:3).eq.'Y'.or.tr(4:4).eq.'Y') iport(2) = 1
+c Single line - always PX40
+           linename(1) = 1
 
         elseif(xbtinfo(9:11).eq.'p22') then
            if(tr(1:2).eq.'HI'.or.tr(4:5).eq.'HI') iport(1) = 1

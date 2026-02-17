@@ -4,11 +4,14 @@ use strict;
 # my $version = "Version 1.1 Nov 23, 2009";
 # my $version = "Version 1.2 May 20, 2011";
 # Version 1.2: Modifications to qcdoc section to clarify
-my $version = "Version 1.3 May 25, 2011";
+# my $version = "Version 1.3 May 25, 2011";
 # Version 1.3: Handles QC hexadecimals up to 8 hex digits
 # 27nov2017 LL chop up to write only data I want...
-#
-print "gtspp2txt.pl - Converts MEDS-ASCII to Text or CSV\n";
+my $version = "Version 1.31 Feb. 9, 2026";
+# Version 1.31 : Names match, small minor improvements.
+# Brzenski
+
+print "ma2txt.pl - Converts MEDS-ASCII to Text or CSV\n";
 print "$version\n";
 ######
 sub qcdoc {
@@ -95,7 +98,7 @@ exit;
 sub usage {
 print <<EOF1;
 ----------
-Usage: gtspp2txt.pl [options]
+Usage: ma2txt.pl [options]
  Options flags may be in any order, flags may be upper or lower case
  Space between flag and parameter is optional
  Input filename may be provided without the -i flag
@@ -108,13 +111,13 @@ Usage: gtspp2txt.pl [options]
   -doc        = prints description of QC group expansion
   -h          = Help (Prints this message)
 Examples:
-  gtspp2txt.pl -i input.meds -o output.txt -unw
+  ma2txt.pl -i input.meds -o output.txt -unw
     (writes output to file as text with QC interpretation)
-  gtspp2txt.pl -i input.meds -o output.txt -txt
+  ma2txt.pl -i input.meds -o output.txt -txt
     (writes output as text with no QC interpretation)
-  gtspp2txt.pl -i input.meds -o output.txt -csv
+  ma2txt.pl -i input.meds -o output.txt -csv
     (writes output as comma separated values)
-  gtspp2txt.pl input.meds.gz
+  ma2txt.pl input.meds.gz
     (reads gzipped file, writes text output to screen with QC interpretation)
 EOF1
 exit;

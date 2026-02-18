@@ -66,6 +66,8 @@ if ls p*q.* &>/dev/null; then
     PREFIX="p"
 elif ls s*q.* &>/dev/null; then
     PREFIX="s"
+elif ls i*q.* &>/dev/null; then
+    PREFIX="i"
 else
     echo "Error: No files found starting with 'p' or 's'."
     exit 1

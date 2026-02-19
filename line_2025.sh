@@ -230,9 +230,9 @@ if [[ "$line" == 15 ]]; then
     mv t-t.gif "${ARGO_DIR}/ix15/img/i${line}${i}t-t.gif"
 
 elif [[ "$line" == 21 ]]; then
-    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -rotate -90 -geometry 1000x500! -flatten fer.pdf t-b.gif
-    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -rotate -90 -geometry 500x250! -flatten fer.pdf t-s.gif
-    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -rotate -90 -geometry 100x50!  -flatten fer.pdf t-t.gif
+    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 1000x500! -flatten fer.pdf t-b.gif
+    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 500x250! -flatten fer.pdf t-s.gif
+    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 100x50!  -flatten fer.pdf t-t.gif
     mv t-b.gif "${ARGO_DIR}/ix21/img/i${line}${i}t-b.gif"
     mv t-s.gif "${ARGO_DIR}/ix21/img/i${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/ix21/img/i${line}${i}t-t.gif"
@@ -420,9 +420,9 @@ if [[ "$line" == 15 ]]; then
     echo 'finish stn move'
 
 elif [[ "$line" == 21 ]]; then
-    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -rotate -90 -geometry 500x283! -flatten fer.pdf s-b.gif
-    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -rotate -90 -geometry 200x113! -flatten fer.pdf s-s.gif
-    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -rotate -90 -geometry 100x57!  -flatten fer.pdf s-t.gif
+    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 500x283! -flatten fer.pdf s-b.gif
+    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 200x113! -flatten fer.pdf s-s.gif
+    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 100x57!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
     mv  s-b.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-b.gif"
     mv  s-s.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-s.gif"

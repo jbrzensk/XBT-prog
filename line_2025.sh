@@ -607,7 +607,9 @@ p$line$i
 EOF5
 
 elif [[ "$line" == 21 ]]; then
+    echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     echo "Skip creating html for i21 - you must edit it, mv previous cruise then modify"
+    echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 else
     echo "Running cruisehtml.x for ${prefix}."
     # this is backwards from the other files.

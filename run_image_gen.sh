@@ -119,7 +119,7 @@ sed -i.bak 's|^set data "/drua/etopo/etopo5\.nc"|set data "../../bathy/etopo5.nc
 #################################################################################################
 # Needs 8 chars for filename, then "tem", or "sal", or "del"
 # then ship name!@!
-# It also has different requirements based on the ship.
+# It also has different requirements based on the ship.i21
 
 # echo -e "\033[1m **Running ship_name_to_number.sh to get ship number** \033[0m"
 # source ship_name_to_number.sh  $Ship_Name
@@ -188,47 +188,54 @@ echo -e "\033[1m **Running run-bath-new_2025.sh** \033[0m"
 run-bath-new_2025.sh
 
 #################################################
-# interp_to_grid
+# interp_to_grid - doesn't work for i21/p15, so no sal or del for those lines!
 #################################################
-echo -e "\033[1m **Running interp_to_grid_2025.x for ${prefixa}** \033[0m"
-if [[ $line_number == 'p37' ]]; then
-    echo "Line 37 detected, using custom grid"
-    echo -e "$prefixa\n2\n" | interp_to_grid_2025.x
+if [[ $line_number == 'p15' || $line_number == 'i21' ]]; then
+    echo "Line $line_number detected, skipping interp_to_grid_2025.x for sal and del"
+
 else
-    echo "Using default grid file grid.txt"
-    echo "$prefixa" | interp_to_grid_2025.x 
-fi
-#################################################
-# Run mapxbt for sal, and del
-#################################################
-# Shipname does not matter here
-echo ""
-echo -e "\033[1m **Running mapxbt for sal for ${prefixa} and option 1** \033[0m"
+    echo -e "\033[1m **Running interp_to_grid_2025.x for ${prefixa}** \033[0m"
+    if [[ $line_number == 'p37' ]]; then
+        echo "Line 37 detected, using custom grid"
+        echo -e "$prefixa\n2\n" | interp_to_grid_2025.x
+    else
+        echo "Using default grid file grid.txt"
+        echo "$prefixa" | interp_to_grid_2025.x 
+    fi
+
+    #################################################
+    # Run mapxbt for sal, and del
+    #################################################
+    # Shipname does not matter here
+    echo ""
+    echo -e "\033[1m **Running mapxbt for sal for ${prefixa} and option 1** \033[0m"
 mapxbt3.x << EOF2
 $prefixa
 sal
 1
 EOF2
 
-echo ""
-echo -e "\033[1m **Running mapxbt for del for ${prefixa} and option 1** \033[0m"
+    echo ""
+    echo -e "\033[1m **Running mapxbt for del for ${prefixa} and option 1** \033[0m"
 mapxbt3.x << EOF2
 $prefixa
 del
 1
 EOF2
 
-#################################################
-# Run gvdel98.x, whatever that does!!
-# ASK what does the custom level mean?!? Bottom bathymetry
-#################################################
-echo -e "\033[1m **Running gvdel98.x for ${prefixa} with option 1 then 2** \033[0m"
+    #################################################
+    # Run gvdel98.x, whatever that does!!
+    # ASK what does the custom level mean?!? Bottom bathymetry
+    #################################################
+    echo -e "\033[1m **Running gvdel98.x for ${prefixa} with option 1 then 2** \033[0m"
 gvdel98.x << EOF3
 $prefixa
 1
 2
 
 EOF3
+
+fi # end of sal and del processing loop
 
 echo ""
 echo "===================================================="

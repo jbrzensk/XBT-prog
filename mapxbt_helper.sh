@@ -79,7 +79,7 @@ case "$prefix_short" in
     esac
     ;;
 
-  p15)
+  p15|i21)
     echo "Choose which track fits this cruise:"
     echo " 1) IX21/IX15: Cape of Good Hope - Mauritius - Fremantle"
     echo " 2) IX02: Cape of Good Hope - Fremantle"

@@ -46,7 +46,7 @@ for filename in *a.10; do
     ## mkgridlat.x OR mkgridlon.x
     echo "Running mkgridlat.x or mkgridlon.x"
 
-    if [[ "$line_number" =~ ^(p34|p37|p40|p44|p50|s37|a07|a18)$ ]]; then
+    if [[ "$line_number" =~ ^(p34|p37|p40|p44|p50|s37|a07|a18|i15|p15|i21|p21)$ ]]; then
 
         echo "Running mkgridlat.x"
         echo "$filename" | mkgridlat.x

@@ -53,6 +53,7 @@
        else
           temfile(1:8) = cruise(1:8)
        endif
+! This sets the bath file to batha.dat,
        if(cruise(2:3).eq.'06'.or.cruise(2:3).eq.'09'.or.
      $    cruise(2:3).eq.'15'.or.cruise(1:3).eq.'i21'.or.
      $    cruise(2:3).eq.'13') then

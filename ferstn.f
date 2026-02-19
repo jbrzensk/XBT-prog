@@ -322,9 +322,10 @@
 ! p15   16sep2005 -set up for new www-hrx:
        elseif(acruise(2:3).eq.'15') then
           write(55,'(a)') 'PPL DFLTFNT DR'
+          write(55,'(a)') 'PALETTE rainbow'
           write(55,'(a)') 'ppl axlsze 0.18,.18'
-          write(55,'(a)') 'ppl pen 0,13'
-          write(55,'(a)') 'ppl pen 1,13'
+          write(55,'(a)') 'ppl pen 0,0      ! white background'
+          write(55,'(a)') 'ppl pen 1,1      ! black text'
           write(55,'(a)') 'ppl labset .20,.20,.20,.20'
           write(55,'(a)') 'set win/asp=0.45'
           if(iport(3).eq.1) then
@@ -402,9 +403,10 @@
 
        elseif(acruise(2:3).eq.'21') then
           write(55,'(a)') 'PPL DFLTFNT DR'
+          write(55,'(a)') 'PALETTE rainbow'
           write(55,'(a)') 'ppl axlsze 0.18,.18'
-          write(55,'(a)') 'ppl pen 0,13'
-          write(55,'(a)') 'ppl pen 1,13'
+          write(55,'(a)') 'ppl pen 0,0      ! white background'
+          write(55,'(a)') 'ppl pen 1,1      ! black text'
           write(55,'(a)') 'ppl labset .20,.20,.20,.20'
           write(55,'(a)') 'set win/asp=0.70'
 ! generic i21:
@@ -436,10 +438,11 @@
 ! 04dec2012 LL match p221106
        elseif(acruise(1:3).eq.'p22') then
           write(55,'(a)') 'PPL DFLTFNT DR'
+          write(55,'(a)') 'PALETTE rainbow'
           write(55,'(a)') 'ppl axlsze 0.20,.20'
           write(55,'(a)') 'ppl axset 1,1,1,1'
-          write(55,'(a)') 'ppl pen 0,13'
-          write(55,'(a)') 'ppl pen 1,13'
+          write(55,'(a)') 'ppl pen 0,0      ! white background'
+          write(55,'(a)') 'ppl pen 1,1      ! black text'
           write(55,'(a)') 'ppl labset .20,.20,.20,.20'
           write(55,'(a)') 'set win/asp=1.1'
           write(55,'(a)') 'set region/x=294E:305E/y=53S:66S'

@@ -424,9 +424,9 @@ elif [[ "$line" == 21 ]]; then
     convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 200x113! -flatten fer.pdf s-s.gif
     convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 100x57!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv  s-b.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-b.gif"
-    mv  s-s.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-s.gif"
-    mv  s-t.gif "${ARGO_DIR}/ix${line}/img/i${line}${i}s-t.gif"
+    mv  s-b.gif "${ARGO_DIR}/ix15/img/i${line}${i}s-b.gif"
+    mv  s-s.gif "${ARGO_DIR}/ix15/img/i${line}${i}s-s.gif"
+    mv  s-t.gif "${ARGO_DIR}/ix15/img/i${line}${i}s-t.gif"
     echo 'finish stn move'
 
 elif [[ "$line" == 28 ]]; then

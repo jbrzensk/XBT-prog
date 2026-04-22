@@ -1,4 +1,5 @@
-# Startup instructions for the **NEW** XBT programs
+# Startup instructions for the **NEW** XBT program
+### If you see (ferret) in front of your command prompt, skip all of this! This is for setting up a computer the FIRST time you want to do analysis.
 
 The ferret environment needs to be setup once, and then invoked each time you login.
 This can be simplified with some .bashrc edits later.

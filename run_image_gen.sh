@@ -43,6 +43,14 @@ echo " Starting image generation at $(date)"
 echo " Log: $LOGFILE"
 echo "===================================================="
 
+# Verify we are one directory above raw/, not inside it
+if [[ ! -d "raw" ]]; then
+    echo "ERROR: 'raw' subdirectory not found in ${PWD}."
+    echo "This script must be run from the directory *above* raw/."
+    echo "It looks like you may be inside raw/ or in the wrong location."
+    exit 1
+fi
+
 # Find what the prefix and line number is in our folder
 echo -e "\033[1m **Extracting prefix with extract_prefix.sh** \033[0m"
 read line_number prefix < <(extract_prefix.sh)

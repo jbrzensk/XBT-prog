@@ -296,9 +296,9 @@ elif [[ "$line" == 13 ]]; then
     convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 1000x502! -flatten fer.pdf t-b.gif
     convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 500x251! -flatten fer.pdf t-s.gif
     convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 100x50!  -flatten fer.pdf t-t.gif
-    mv t-b.gif "${ARGO_DIR}/px13/img/p${line}${i}t-b.gif"
-    mv t-s.gif "${ARGO_DIR}/px13/img/p${line}${i}t-s.gif"
-    mv t-t.gif "${ARGO_DIR}/px13/img/p${line}${i}t-t.gif"
+    mv t-b.gif "${ARGO_DIR}/px09/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px09/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px09/img/p${line}${i}t-t.gif"
 
 elif [[ "$line" == 31 ]]; then
     convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -rotate -90 -geometry 1000x505! -flatten fer.pdf t-b.gif
@@ -495,9 +495,9 @@ elif [[ "$line" == 13 ]]; then
     convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 95x152! -flatten fer.pdf s-s.gif
     convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 63x100!  -flatten fer.pdf s-t.gif
     echo 'finish stn convert'
-    mv s-b.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-b.gif"
-    mv s-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-s.gif"
-    mv s-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}s-t.gif"
+    mv s-b.gif "${ARGO_DIR}/px09/img/p${line}${i}s-b.gif"
+    mv s-s.gif "${ARGO_DIR}/px09/img/p${line}${i}s-s.gif"
+    mv s-t.gif "${ARGO_DIR}/px09/img/p${line}${i}s-t.gif"
 
 elif [[ "$line" == 31 ]]; then
     convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -rotate -90 -geometry 1000x456! -flatten fer.pdf s-b.gif

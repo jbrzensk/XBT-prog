@@ -51,6 +51,14 @@ append_if_missing() {
 set -e  # Exit on first error
 set -o pipefail  # Propagate errors through pipes
 
+# Verify ferret is available before doing any work
+if ! command -v ferret &>/dev/null; then
+    echo "ERROR: 'ferret' command not found."
+    echo "Activate the ferret environment first:"
+    echo "  conda activate ferret"
+    exit 1
+fi
+
 LOGFILE="line.log"
 exec > >(tee -a "$LOGFILE") 2>&1
 
@@ -639,6 +647,56 @@ elif [[ "$line" == 21 ]]; then
     echo "No move html"
 else
     mv *html "${ARGO_DIR}/px${line}/."
+fi
+
+#=============================================================================#
+## Zip and copy a.10 data file to HTML directory
+# Keeps original and .gz in current directory; copies .gz to destination.
+#=============================================================================#
+echo ""
+echo "Zipping and copying ${prefix}a.10 to HTML directory..."
+
+A10_FILE="${prefix}a.10"
+if [[ ! -f "$A10_FILE" ]]; then
+    echo "WARNING: ${A10_FILE} not found — skipping zip and copy."
+else
+    gzip -k "$A10_FILE"
+    A10_GZ="${A10_FILE}.gz"
+
+    if [[ "$line" == 22 ]]; then
+        A10_DEST="${ARGO_DIR}/ax${line}"
+    elif [[ "$line" == 15 ]]; then
+        A10_DEST="${ARGO_DIR}/ix${line}"
+    elif [[ "$line" == 21 ]]; then
+        A10_DEST="${ARGO_DIR}/ix15"
+    elif [[ "$line" == 28 ]]; then
+        A10_DEST="${ARGO_DIR}/ix${line}"
+    elif [[ "$line" == 37 ]]; then
+        if [[ $ch == p ]]; then
+            A10_DEST="${ARGO_DIR}/px${line}"
+        else
+            A10_DEST="${ARGO_DIR}/p${line}s"
+        fi
+    else
+        A10_DEST="${ARGO_DIR}/px${line}"
+    fi
+
+    if cp "$A10_GZ" "${A10_DEST}/"; then
+        echo "===================================================="
+        echo " a.10 copy status:"
+        echo "   Original : ${PWD}/${A10_FILE}"
+        echo "   Zipped   : ${PWD}/${A10_GZ}"
+        echo "   Copied to: ${A10_DEST}/${A10_GZ##*/}"
+        echo "   Status   : SUCCESS"
+        echo "===================================================="
+    else
+        echo "===================================================="
+        echo " a.10 copy status:"
+        echo "   Source   : ${PWD}/${A10_FILE}"
+        echo "   Dest     : ${A10_DEST}/"
+        echo "   Status   : FAILED — check path and permissions"
+        echo "===================================================="
+    fi
 fi
 
 echo "All done!"

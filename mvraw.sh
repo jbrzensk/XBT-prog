@@ -26,15 +26,22 @@ else
     echo ""
 fi
 
-# Check to see if Cals folder is in shiprider
-if [ -d "Reports_Shiprider/Cals" ]; then
-    echo "Moving Cals folder contents to raw directory"
-    mv Reports_Shiprider/Cals Cals/.
+# Check for Cals folder — may be in Sio/Data (moved to current dir) or in Reports_Shiprider.
+# Move it to the directory above raw either way.
+if [ -d "Cals" ]; then
+    echo "Cals folder found in raw (from Sio/Data) — moving to directory above raw."
+    mv Cals ..
+elif [ -d "Reports_Shiprider/Cals" ]; then
+    echo "Cals folder found in Reports_Shiprider — moving to directory above raw."
+    mv Reports_Shiprider/Cals ..
+else
+    echo "WARNING: Cals folder not found in either expected location:"
+    echo "  ./Cals                (from Sio/Data/Cals)"
+    echo "  ./Reports_Shiprider/Cals"
 fi
 
 # Create symbolic links for nav files in folder above raw
 echo "Creating symbolic links for nav files in folder above us"
-
 for f in *.nav; do
     # skip if no .nav files exist
     [ -e "$f" ] || continue
@@ -51,10 +58,21 @@ for f in *.nav; do
     popd
 done
 
-# mv p*e.* ..
-# cp control.dat ..
-# cp p*.dat ..
+# Move the README.txt file to the directory above raw, if it exists
+if [ -e "README.txt" ]; then
+    echo "Moving README.txt to directory above raw"
+    mv README.txt ..
+else
+    echo "README.txt not found in raw directory — skipping move."
+fi
 
+# Move the MetObs.XXXX file to the directory above raw, if it exists
+if ls *MetObs.* &>/dev/null; then
+    echo "Moving MetObs file to directory above raw"
+    mv *MetObs.* ..
+else
+    echo "MetObs file not found in raw directory — skipping move."
+fi
 
 echo "Added symbolic links to directory above"
 echo ""

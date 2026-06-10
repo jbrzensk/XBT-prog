@@ -95,7 +95,10 @@ if [[ $line_number == 'p13' ]]; then
     fi
 fi
 
-
+# Check to see that the xbtinfo file has been updated with the latest information.
+# check_xbtinfo_updated.sh returns 0 if xbtinfo has the line number entry,
+# and returns 1 if there is an error.
+check_xbtinfo_updated.sh
 
 # Link bathymetry here as well
 echo -e "\033[1m **Linking bathymetry file with link_bathy.sh for $line_number** \033[0m"

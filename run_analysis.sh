@@ -91,6 +91,9 @@ count_parent=$(ls ../${PREFIX}*e.* 2>/dev/null | wc -l)
 echo "Found $count e-files in raw/, $count_parent in parent."
 echo ""
 
+# If there are efiles, this must be the first run.
+# If there are no efiles, but they arein the above dir, then this is a rerun.
+# If neither of those are true, something else is wrong. Stop and figure it out.
 RESUME=false
 if (( count > 20 )); then
     echo "Starting full pipeline."
@@ -124,6 +127,7 @@ if [[ "$RESUME" == false ]]; then
     echo "Running analyze_stations.sh"
     analyze_stations.sh 2>&1 | tee -a $OUTPUT_LOG
 
+    # Need the stations.dat file for future steps, so make sure it is generated.
     if [[ ! -s "stations.dat" ]]; then
         echo "Error: stations.dat missing or empty after analyze_stations.sh."
         exit 1
@@ -136,6 +140,8 @@ if [[ "$RESUME" == false ]]; then
     echo -e "1\n4\n0\n" | gpsposnew.x 2>&1 | tee -a $OUTPUT_LOG
     echo ""
 
+    # Check to make sure renav.dat was generated. The script generates
+    # a blank file even if there are no renav files.
     if [[ ! -f "renav.dat" ]]; then
         echo "Error: renav.dat not found after gpsposnew.x."
         exit 1
@@ -250,8 +256,6 @@ else
     fi
     echo "Confirmed tenm3 output: $(ls ${new_name}* | head -1)"
 fi
-
-
 
 #################################
 # End the program

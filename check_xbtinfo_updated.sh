@@ -74,7 +74,7 @@ file_cruise="${data_file:3:4}"
 found=$(awk -v cruise="$file_cruise" '
     /^-+$/                            { in_data=1; next }
     in_data && /^$/                   { exit }
-    in_data && /^[0-9]{4}[[:space:]]/ { if ($1 == cruise) { print $1; exit } }
+    in_data && /^[0-9]{4}/            { if (substr($1,1,length(cruise)) == cruise) { print $1; exit } }
 ' "$XBTINFO")
 
 # ---- Compare and report ---------------------------------------------

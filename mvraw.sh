@@ -26,16 +26,21 @@ else
     echo ""
 fi
 
-# Check for Cals folder — may be in Sio/Data (moved to current dir) or in Reports_Shiprider.
-# Move it to the directory above raw either way.
-if [ -d "Cals" ]; then
-    echo "Cals folder found in raw (from Sio/Data) — moving to directory above raw."
-    mv Cals ..
-elif [ -d "Reports_Shiprider/Cals" ]; then
-    echo "Cals folder found in Reports_Shiprider — moving to directory above raw."
-    mv Reports_Shiprider/Cals ..
+# Check for Cals folder — may appear in both locations, but only one will have
+# actual content. Loop through candidates and pick the first non-empty one.
+cals_found=""
+for cals_path in "Cals" "Reports_Shiprider/Cals"; do
+    if [[ -d "$cals_path" ]] && [[ -n "$(ls -A "$cals_path" 2>/dev/null)" ]]; then
+        cals_found="$cals_path"
+        break
+    fi
+done
+
+if [[ -n "$cals_found" ]]; then
+    echo "Cals folder with content found at '${cals_found}' — moving to directory above raw."
+    mv "$cals_found" ..
 else
-    echo "WARNING: Cals folder not found in either expected location:"
+    echo "WARNING: Cals folder not found or is empty in expected locations:"
     echo "  ./Cals                (from Sio/Data/Cals)"
     echo "  ./Reports_Shiprider/Cals"
 fi

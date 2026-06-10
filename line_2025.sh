@@ -650,13 +650,15 @@ else
 fi
 
 #=============================================================================#
-## Zip and copy a.10 data file to HTML directory
+## Zip and copy a.10 data file to pub/www-hrx subdirectory
 # Keeps original and .gz in current directory; copies .gz to destination.
 #=============================================================================#
 echo ""
-echo "Zipping and copying ${prefix}a.10 to HTML directory..."
+echo "Zipping and copying ${prefix}a.10 pub/www-hrx directory..."
 
 A10_FILE="${prefix}a.10"
+A10_DIR="${ARGO_DIR}/pub/www-hrx"
+
 if [[ ! -f "$A10_FILE" ]]; then
     echo "WARNING: ${A10_FILE} not found — skipping zip and copy."
 else
@@ -664,21 +666,21 @@ else
     A10_GZ="${A10_FILE}.gz"
 
     if [[ "$line" == 22 ]]; then
-        A10_DEST="${ARGO_DIR}/ax${line}"
+        A10_DEST="${A10_DIR}/ax${line}"
     elif [[ "$line" == 15 ]]; then
-        A10_DEST="${ARGO_DIR}/ix${line}"
+        A10_DEST="${A10_DIR}/ix${line}"
     elif [[ "$line" == 21 ]]; then
-        A10_DEST="${ARGO_DIR}/ix15"
+        A10_DEST="${A10_DIR}/ix15"
     elif [[ "$line" == 28 ]]; then
-        A10_DEST="${ARGO_DIR}/ix${line}"
+        A10_DEST="${A10_DIR}/ix${line}"
     elif [[ "$line" == 37 ]]; then
         if [[ $ch == p ]]; then
-            A10_DEST="${ARGO_DIR}/px${line}"
+            A10_DEST="${A10_DIR}/px${line}"
         else
-            A10_DEST="${ARGO_DIR}/p${line}s"
+            A10_DEST="${A10_DIR}/p${line}s"
         fi
     else
-        A10_DEST="${ARGO_DIR}/px${line}"
+        A10_DEST="${A10_DIR}/px${line}"
     fi
 
     if cp "$A10_GZ" "${A10_DEST}/"; then

@@ -159,25 +159,25 @@ for cruise in "${CRUISES[@]}"; do
             echo "  Copied cals from ${cals_src}"
 
             # Remove known garbage files (keep stations.dat)
-            (
-                cd "${pkg_dir}/cals" || exit 1
-                rm -f -- */*.log          *.log                     \
-                          */*.log.txt     *.log.txt                  \
-                          */chkprof*      chkprof*                   \
-                          */control.dat                              \
-                          */sst.dat                                  \
-                          */navtrk.dat                               \
-                          */*.bmp         *.bmp                      \
-                          desk*           */desk*                    \
-                          *.png           *.PNG                      \
-                          */*.png         */*.PNG                    \
-                          */*.jpg         */*.JPG                    \
-                          */CallSequence.txt                         \
-                          */stationsExtension.dat                    \
-                          */*.nav                                    \
-                          */*.zip                                    \
-                          */p*s.*         2>/dev/null || true
-            )
+            # (
+            #     cd "${pkg_dir}/cals" || exit 1
+            #     rm -f -- */*.log          *.log                     \
+            #               */*.log.txt     *.log.txt                  \
+            #               */chkprof*      chkprof*                   \
+            #               */control.dat                              \
+            #               */sst.dat                                  \
+            #               */navtrk.dat                               \
+            #               */*.bmp         *.bmp                      \
+            #               desk*           */desk*                    \
+            #               *.png           *.PNG                      \
+            #               */*.png         */*.PNG                    \
+            #               */*.jpg         */*.JPG                    \
+            #               */CallSequence.txt                         \
+            #               */stationsExtension.dat                    \
+            #               */*.nav                                    \
+            #               */*.zip                                    \
+            #               */p*s.*         2>/dev/null || true
+            # )
         else
             echo "  Warning: no cals directory found in ${src}/ — cals/ will be empty."
         fi
@@ -215,7 +215,7 @@ for cruise in "${CRUISES[@]}"; do
     # Callsign from callsign.txt
     callsign=""
     if [[ -f "$CALLSIGN_FILE" && -n "$Ship_Name" ]]; then
-        callsign=$(grep -i "$Ship_Name" "$CALLSIGN_FILE" 2>/dev/null | awk '{print $NF}' | head -1)
+        callsign=$(grep -i "$Ship_Name" "$CALLSIGN_FILE" 2>/dev/null | awk '{print $2}' | head -1)
     fi
     if [[ -z "$callsign" ]]; then
         read -rp "  Callsign for '${Ship_Name}' not found. Enter callsign: " callsign

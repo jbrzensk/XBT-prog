@@ -32,8 +32,8 @@ SUBMITTED_DIR="submitted"   # relative to nodc/ working directory
 CALLSIGN_FILE="/kakapo/data/xbt/callsign.txt"
 
 # BRZENSKI Testing
-DATA_ROOT="/home/jbrzensk/XBT"
-CALLSIGN_FILE="/home/jbrzensk/XBT/callsign.txt"
+#DATA_ROOT="/home/jbrzensk/XBT"
+#CALLSIGN_FILE="/home/jbrzensk/XBT/callsign.txt"
 
 # ---- Argument check -------------------------------------------------
 

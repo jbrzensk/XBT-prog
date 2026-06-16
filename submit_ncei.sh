@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #####################################################################
-# submit_nodc.sh - Package and submit XBT cruise data to NODC
+# submit_ncei.sh - Package and submit XBT cruise data to NODC
 #
 # Description:
 #   Replaces the manual cpq.sh workflow. For each cruise, builds
@@ -8,13 +8,13 @@
 #   template, tars/gzips, and deploys to the SFTP staging area.
 #
 # Usage:
-#   submit_nodc.sh <line> <cruise_id> [cruise_id2 ...]
+#   submit_ncei.sh <line> <cruise_id> [cruise_id2 ...]
 #
 # Examples:
-#   submit_nodc.sh p40 2508
-#   submit_nodc.sh p40 2202 2206 2211
+#   submit_ncei.sh p40 2508
+#   submit_ncei.sh p40 2202 2206 2211
 #
-# Run from: /kakapo/data/xbt/nodc/
+# Run from: /kakapo/data/xbt/ncei/
 #
 # Requires:
 #   README_SIO_<line>.txt   template in current directory
@@ -27,8 +27,8 @@
 set -o pipefail
 
 DATA_ROOT="/kakapo/data/xbt"
-SFTP_DIR="/argo-project/pub/sftp_hrx/for_nodc"
-SUBMITTED_DIR="submitted"   # relative to nodc/ working directory
+SFTP_DIR="/argo-project/pub/sftp_hrx/for_nodc" # argo can't change nodc to ncei
+SUBMITTED_DIR="submitted"   # relative to ncei/ working directory
 CALLSIGN_FILE="/kakapo/data/xbt/callsign.txt"
 
 # BRZENSKI Testing
@@ -53,7 +53,7 @@ LINE_NUM="${LINE:1}"   # p40 → 40
 
 if [[ ! -w "." ]]; then
     echo "Error: current directory is not writable."
-    echo "Run from /kakapo/data/xbt/nodc/"
+    echo "Run from /kakapo/data/xbt/ncei/"
     exit 1
 fi
 

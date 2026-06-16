@@ -2,7 +2,7 @@
 # xbt_meta_edit.sh - Interactive XBT SIO/SRP metadata editor
 #
 # Usage: xbt_meta_edit.sh [DATA_DIR]
-#   DATA_DIR - directory containing p*e.* SIO profile files and *.SRP files
+#   DATA_DIR - directory containing p*e.* / p*q.* SIO profile files and *.SRP files
 #
 # "Metadata" = any field whose value is identical across every file in its set.
 # The script discovers consistent fields automatically; only those appear in the menu.
@@ -23,7 +23,7 @@ set -euo pipefail
 DATA_DIR="${1:-.}"
 
 # --- Locate pe and SRP files ---
-mapfile -t SIO_FILES < <(find "$DATA_DIR" -maxdepth 1 -name "p*e.*" -type f | sort)
+mapfile -t SIO_FILES < <(find "$DATA_DIR" -maxdepth 1 \( -name "p*e.*" -o -name "p*q.*" \) -type f | sort)
 mapfile -t SRP_FILES < <(find "$DATA_DIR" -maxdepth 1 -name "*.SRP"  -type f | sort)
 SIO_COUNT=${#SIO_FILES[@]}
 SRP_COUNT=${#SRP_FILES[@]}
@@ -43,7 +43,7 @@ sed_escape() { printf '%s' "$1" | sed 's/[\/&]/\\&/g'; }
 # Patterns anchor to start of line and capture the prefix in \1
 # so original whitespace layout is preserved.
 # ============================================================
-SIO_NAMES=("Total Probes?"   "Probe type?"                       "Ship Code")
+SIO_NAMES=("Probe Code"     "Recorder Code"                     "Callsign")
 SIO_LINES=(1                 1                                   1                  )
 SIO_COLS=( 2                 3                                   4                  )
 SIO_SEDS=(
@@ -64,7 +64,7 @@ SRP_NAMES=(
     "Recorder Code"           "Dry Bulb Temp"          "Wind Instr Type"
     "Wind Speed"              "Wind Dir"               "Current Method"
     "Current Speed"           "Current Dir"            "SOOP Line"
-    "XBT Launcher Type"       "XBT Recorder Serial No" "XBT Recorder Mfg Date"
+    "XBT Launcher Type"       "Launch Height"          "XBT Recorder Serial No" "XBT Recorder Mfg Date"
     "Agency"                  "Ship Rider"             "Ship Rider Institution"
     "Ship Rider Email"        "Ship Rider Phone"
 )
@@ -75,7 +75,7 @@ SRP_KEYS=(
     "Recorder Code:"                  "Dry Bulb Temp:"               "Wind Instr Type:"
     "Wind Speed:"                     "Wind Dir:"                    "Current Measurement Method:"
     "Current Speed:"                  "Current Dir:"                 "SOOP Line:"
-    "XBT Launcher Type:"              "XBT Recorder Serial Number:"  "XBT Recorder Manufacture Date:"
+    "XBT Launcher Type:"              "Launch Height (Meters):"      "XBT Recorder Serial Number:"  "XBT Recorder Manufacture Date:"
     "Agency in charge of Operation:"  "Ship Rider:"                  "Ship Rider Institution:"
     "Ship Rider Email:"               "Ship Rider Telephone Number:"
 )
@@ -100,6 +100,7 @@ SRP_SEDS=(
     's/^( *Current Dir: *)[^\r]*/\1__NEW__/'
     's/^( *SOOP Line: *)[^\r]*/\1__NEW__/'
     's/^( *XBT Launcher Type: *)[^\r]*/\1__NEW__/'
+    's/^( *Launch Height \(Meters\): *)[^\r]*/\1__NEW__/'
     's/^( *XBT Recorder Serial Number: *)[^\r]*/\1__NEW__/'
     's/^( *XBT Recorder Manufacture Date: *)[^\r]*/\1__NEW__/'
     's/^( *Agency in charge of Operation: *)[^\r]*/\1__NEW__/'
@@ -150,9 +151,10 @@ if [[ $SRP_COUNT -gt 0 ]]; then
         total=$(printf '%s\n' "$lines" | wc -l | tr -d ' ')
         vals=$(printf '%s\n' "$lines" | sort -u)
         n=$(printf '%s\n' "$vals" | grep -c .)
-        if [[ $n -eq 1 && $total -eq $SRP_COUNT ]]; then
+        if [[ $total -eq $SRP_COUNT ]]; then
+            [[ $n -eq 1 ]] && display_val="$vals" || display_val="(${n} different values)"
             META_NAMES+=("${SRP_NAMES[$i]}")
-            META_VALS+=("$vals")
+            META_VALS+=("$display_val")
             META_TYPES+=("SRP")
             META_SEDS+=("${SRP_SEDS[$i]}")
             META_KEYS+=("$key")
@@ -167,6 +169,12 @@ echo ""
 echo "XBT Metadata Editor"
 echo "Directory : $DATA_DIR"
 printf "SIO files : %d   SRP files : %d\n" "$SIO_COUNT" "$SRP_COUNT"
+echo ""
+echo "To edit multiple fields, run this code multiple times."
+echo ""
+echo "Fields:"
+echo "[1-3] are ONLY for q and e files."
+echo "[4-27] are ONLY for SRP files."
 echo ""
 
 if [[ ${#META_NAMES[@]} -eq 0 ]]; then

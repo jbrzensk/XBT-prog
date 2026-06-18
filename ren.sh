@@ -16,9 +16,9 @@
 ############################################################################
 # Edit these variables for each run:
 ############################################################################
-cruise1="P132504"   # starting name
-cruise2="p132504"   # what to change to
-dir="/kakapo/data/xbt/p13/2504/raw/" # need the trailing slash!
+cruise1="p062601"   # starting name
+cruise2="p062602"   # what to change to
+dir="/kakapo/data/xbt/p06/2602/raw/Sio/Data/" # need the trailing slash!
 ############################################################################
 
 echo ""

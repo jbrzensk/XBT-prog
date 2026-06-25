@@ -95,6 +95,20 @@ if [[ $line_number == 'p13' ]]; then
     fi
 fi
 
+# Special Case, i21 links with p15!
+if [[ $line_number == 'i21' ]]; then
+    echo ""
+    xbtinfo_file="../../xbtinfo.p15"
+    if [[ -L "xbtinfo.p15" || -e "xbtinfo.p15" ]]; then
+        echo "Link or file xbtinfo.p15 already exists — skipping link."
+    else
+        echo "Linking xbtinfo.p15 file here now..."
+        ln -s "$xbtinfo_file" .
+        echo "XBT line info p15 linked here for i21"
+        echo ""
+    fi
+fi
+
 # Check to see that the xbtinfo file has been updated with the latest information.
 # check_xbtinfo_updated.sh returns 0 if xbtinfo has the line number entry,
 # and returns 1 if there is an error.

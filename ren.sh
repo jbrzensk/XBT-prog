@@ -10,15 +10,16 @@
 #      - cruise1: the original cruise prefix (e.g., "p372309")
 #      - cruise2: the new cruise prefix to copy to (e.g., "s372309")
 #      - dir: the destination directory where the new files should be copied
+#	ex: /kakapo/data/xbt/p06/2602/raw/Sio/Data/
 #   2. Run the script from the directory containing the source files:
 #      ./ren.sh
 #
 ############################################################################
 # Edit these variables for each run:
 ############################################################################
-cruise1="p062601"   # starting name
-cruise2="p062602"   # what to change to
-dir="/kakapo/data/xbt/p06/2602/raw/Sio/Data/" # need the trailing slash!
+cruise1="A100925"   # starting name
+cruise2="i212509"   # what to change to
+dir="/kakapo/data/xbt/i21/2509/raw/Sio/Data/" # need the trailing slash!
 ############################################################################
 
 echo ""

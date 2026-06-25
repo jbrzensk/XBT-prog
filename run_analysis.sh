@@ -230,8 +230,8 @@ if [[ ! -f "$dat_file" ]]; then
 fi
 
 # Run tenm3_chgcoef.x, unless the 'a' output already exists
-if ls "${new_name}"* &>/dev/null; then
-    echo "tenm3 output '${new_name}*' already exists — skipping tenm3_chgcoef.x."
+if ls "${new_name}".10 &>/dev/null; then
+    echo "tenm3 output '${new_name}'.10 already exists — skipping tenm3_chgcoef.x."
 else
     # Finding the min and max drops from stations
     mindrop=$(awk 'NR==1 {print $1}' $dat_file )
@@ -269,6 +269,13 @@ echo ""
 echo ""
 
 analyze_stations.sh 2>&1 | tee -a $OUTPUT_LOG
+
+# Print summary from tenm3.log
+echo ""
+echo "***************** TENM3 SUMMARY ************************"
+tail -4 ../tenm3.log
+echo "********************************************************"
+echo ""
 
 # Add note to edit the xbtinfo.XX file
 echo ""

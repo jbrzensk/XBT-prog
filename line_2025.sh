@@ -606,6 +606,12 @@ rm fer.pdf
 rm t-f.gif
 rm s-f.gif
 
+read -rp "Continue with HTML creation? [y/Y/yes to continue]: " _html_confirm
+if [[ ! "$_html_confirm" =~ ^[Yy](es)?$ ]]; then
+    echo "Exiting before HTML creation."
+    exit 0
+fi
+
 # html file:
 if [[ "$line" == 28 ]]; then
     echo "Running cruisehtml for P28."
@@ -629,7 +635,8 @@ fi
 
 echo "cruisehtml ${ch}${line}${i}"
 
-chmod a+x *html
+#chmod a+x *html
+
 if [[ "$line" == 22 ]]; then
     mv *html "${ARGO_DIR}/ax${line}/."
 elif [[ "$line" == 15 ]]; then
@@ -645,6 +652,11 @@ elif [[ "$line" == 37 ]]; then
     fi
 elif [[ "$line" == 21 ]]; then
     echo "No move html"
+elif [[ "$line" == 09 ]]; then
+    mv *html "${ARGO_DIR}/px${line}/."
+# Move p13 to px09 directory
+elif [[ "$line" == 13 ]]; then
+    mv *html "${ARGO_DIR}/px09/."
 else
     mv *html "${ARGO_DIR}/px${line}/."
 fi

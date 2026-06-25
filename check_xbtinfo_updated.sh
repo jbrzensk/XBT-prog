@@ -39,6 +39,25 @@ else
 
     # Extract line prefix (first 3 chars of filename) to determine xbtinfo name
     line_prefix="${data_file:0:3}"   # e.g. p40
+    if [[ ! "$line_prefix" =~ ^[psi][0-9][0-9]$ ]]; then
+        echo "Error: Unexpected data file format: $data_file"
+        echo "Expected format: <prefix><line><cruise>e.<NNN>"
+        exit 1
+    fi
+
+    # Special cases for line prefixes that don't match the xbtinfo file naming
+    if [[ $line_number == 'p13' ]]; then
+        line_prefix='p09'
+        echo "Special case: line p13 uses xbtinfo.p09"
+        echo ""
+    fi
+
+    if [[ $line_number == 'i21' ]]; then
+        line_prefix='p15'
+        echo "Special case: line i21 uses xbtinfo.p15"
+        echo ""
+    fi
+
     xbtinfo_name="xbtinfo.${line_prefix}"
 
     # Look for xbtinfo file in current directory, then ../../

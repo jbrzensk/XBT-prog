@@ -19,7 +19,7 @@ elif ls s*e.* &>/dev/null; then
 elif ls i*e.* &>/dev/null; then
     PREFIX="i"
 else
-    echo "Error: No files found starting with 'p' or 's'."
+    echo "Error: No files found starting with 'p' or 's' or 'i'."
     exit 1
 fi
 

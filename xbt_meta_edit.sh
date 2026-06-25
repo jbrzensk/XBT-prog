@@ -2,7 +2,7 @@
 # xbt_meta_edit.sh - Interactive XBT SIO/SRP metadata editor
 #
 # Usage: xbt_meta_edit.sh [DATA_DIR]
-#   DATA_DIR - directory containing p*e.* / p*q.* SIO profile files and *.SRP files
+#   DATA_DIR - directory containing [pi]*e.* / [pi]*q.* SIO profile files and *.SRP files
 #
 # "Metadata" = any field whose value is identical across every file in its set.
 # The script discovers consistent fields automatically; only those appear in the menu.
@@ -23,7 +23,7 @@ set -euo pipefail
 DATA_DIR="${1:-.}"
 
 # --- Locate pe and SRP files ---
-mapfile -t SIO_FILES < <(find "$DATA_DIR" -maxdepth 1 \( -name "p*e.*" -o -name "p*q.*" \) -type f | sort)
+mapfile -t SIO_FILES < <(find "$DATA_DIR" -maxdepth 1 \( -name "p*e.*" -o -name "p*q.*" -o -name "i*e.*" -o -name "i*q.*" \) -type f | sort)
 mapfile -t SRP_FILES < <(find "$DATA_DIR" -maxdepth 1 -name "*.SRP"  -type f | sort)
 SIO_COUNT=${#SIO_FILES[@]}
 SRP_COUNT=${#SRP_FILES[@]}
@@ -162,6 +162,13 @@ if [[ $SRP_COUNT -gt 0 ]]; then
     done
 fi
 
+# Offset so SRP-only runs start at [4] (matching SIO field slots 1-3)
+if [[ $SIO_COUNT -eq 0 ]]; then
+    MENU_OFFSET=3
+else
+    MENU_OFFSET=0
+fi
+
 # ============================================================
 # Show user what the options are
 # ============================================================
@@ -190,7 +197,7 @@ for i in "${!META_NAMES[@]}"; do
         printf "  --- %s ---\n" "${META_TYPES[$i]}"
         prev_type="${META_TYPES[$i]}"
     fi
-    printf "  [%2d]  %-28s  %s\n" "$((i+1))" "${META_NAMES[$i]}" "${META_VALS[$i]}"
+    printf "  [%2d]  %-28s  %s\n" "$((i + 1 + MENU_OFFSET))" "${META_NAMES[$i]}" "${META_VALS[$i]}"
 done
 
 echo ""
@@ -205,16 +212,18 @@ fi
 # Choice for user
 # ============================================================
 TOTAL=${#META_NAMES[@]}
+MENU_MIN=$((1 + MENU_OFFSET))
+MENU_MAX=$((TOTAL + MENU_OFFSET))
 while true; do
-    read -rp "Field to edit [1-${TOTAL}], or q to quit: " choice
+    read -rp "Field to edit [${MENU_MIN}-${MENU_MAX}], or q to quit: " choice
     [[ "$choice" =~ ^[qQ] ]] && { echo "Quitting."; exit 0; }
-    if [[ "$choice" =~ ^[1-9][0-9]*$ ]] && (( choice >= 1 && choice <= TOTAL )); then
+    if [[ "$choice" =~ ^[1-9][0-9]*$ ]] && (( choice >= MENU_MIN && choice <= MENU_MAX )); then
         break
     fi
-    echo "  Please enter 1-${TOTAL} or q."
+    echo "  Please enter ${MENU_MIN}-${MENU_MAX} or q."
 done
 
-idx=$((choice - 1))
+idx=$((choice - 1 - MENU_OFFSET))
 FILE_TYPE="${META_TYPES[$idx]}"
 if [[ "$FILE_TYPE" == "SIO" ]]; then
     TARGET_FILES=("${SIO_FILES[@]}")

@@ -336,8 +336,8 @@ c width and height of tem map:
 
         elseif(cruise(2:3).eq.'13') then
 c width and height of stn map:
-           write(end2b(26:28),'(a3)') '200'
-           write(end2b(39:41),'(a3)') '113'
+           write(end2b(26:28),'(a3)') '95'
+           write(end2b(39:41),'(a3)') '152'
 c width and height of tem map:
            write(end3b(31:33),'(a3)') '500'
            write(end3c(9:11),'(a3)') '251'

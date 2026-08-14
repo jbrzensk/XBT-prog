@@ -1,46 +1,53 @@
 # addnew.sh
 # For adding new lines for the BUDDIES script.
 # 
-# THIS IS NOT MEANT TO BE RUN BY ITSELF. It is called by add_to_buddies.sh.
+# Try the new simpler, automated add_to_buddies.sh.
 # 
-# Jared Brzenski : June 2026
+# UPDATED: To work using the /kakopo folder structure on savu
+# Jared Brzenski : August 2026
 #
-#CHANGE:
+# CHANGE:
+# Replace with the line number
 set line="s37"
 
-#CHANGE:
+# CHANGE:
+# Replace the list with the cruises you want. Can do a single cruise 
+# or multiple cruises.
 foreach i(2410 2502)
 
+#################################################################
+## DO NOT CHANGE BELOW THIS LINE                               ##
+#################################################################
 echo {$line}{$i}
 
-cd /data/xbt/$line
+cd /kakopo/data/xbt/$line
 
-mkdir /data1/xbt-archive/{$line}/{$i}
+mkdir /kakopo/data1/xbt-archive/{$line}/{$i}
 
 cd $i
 
-\cp -a {$line}{$i}e.* /data1/xbt-archive/{$line}/{$i}/.
+\cp -a {$line}{$i}e.* /kakopo/data1/xbt-archive/{$line}/{$i}/.
 
 # custom for a lines only:
-# skip s files for atlantic: \cp -a {$line}{$i}s.* /data1/xbt-archive/{$line}/{$i}/.
+# skip s files for atlantic: \cp -a {$line}{$i}s.* /kakopo/data1/xbt-archive/{$line}/{$i}/.
 #---------------
-# normal: cp stations.dat /data1/xbt-archive/{$line}/{$i}/stations.dat
+# normal: cp stations.dat /kakopo/data1/xbt-archive/{$line}/{$i}/stations.dat
 # p09 no stations.dat:
 # try this for p38 too:
 
-\cp -a {$line}{$i}.dat /data1/xbt-archive/{$line}/{$i}/stations.dat
+\cp -a {$line}{$i}.dat /kakopo/data1/xbt-archive/{$line}/{$i}/stations.dat
 
 # make a fake control.dat:
-/data1/xbt-archive/fakecontrol.x << EOF
+/kakopo/data1/xbt-archive/fakecontrol.x << EOF
 $line$i
 EOF
 # if a real one exists this will overwrite the fake one:
-\cp -a control.dat /data1/xbt-archive/{$line}/{$i}/control.dat
+\cp -a control.dat /kakopo/data1/xbt-archive/{$line}/{$i}/control.dat
 
 
-cd /data1/xbt-archive/$line
+cd /kakopo/data1/xbt-archive/$line
 cd $i
-/data1/xbt-archive/mklinedat.x << EOF
+/kakopo/data1/xbt-archive/mklinedat.x << EOF
 $line$i
 EOF
 
@@ -55,11 +62,11 @@ EOF
 set i21="i21"
 
 if( $line == $i21 ) then
- cat /data1/xbt-archive/p15.dat >> /data1/xbt-archive/line.dat
- \cp /data1/xbt-archive/line.dat /data1/xbt-archive/p15.dat
+ cat /kakopo/data1/xbt-archive/p15.dat >> /kakopo/data1/xbt-archive/line.dat
+ \cp /kakopo/data1/xbt-archive/line.dat /kakopo/data1/xbt-archive/p15.dat
 else
- cat /data1/xbt-archive/{$line}.dat >> /data1/xbt-archive/line.dat
- \cp /data1/xbt-archive/line.dat /data1/xbt-archive/{$line}.dat
+ cat /kakopo/data1/xbt-archive/{$line}.dat >> /kakopo/data1/xbt-archive/line.dat
+ \cp /kakopo/data1/xbt-archive/line.dat /kakopo/data1/xbt-archive/{$line}.dat
 endif
 
 

@@ -29,7 +29,7 @@
         character mid4a*27, mid4b*12, shipname*3, mid4_30*52
         character outhtml28*13, mid4_28*50, mid7_28*63, mid8_28*58
         character end2a_28*60, end3a_28*79
-        dimension iport(9), linename(6)
+        dimension iport(9), linename(7)
 
         data outhtml/'a220506.html'/
         data outhtml28/'i280506a.html'/
@@ -559,7 +559,7 @@ c               linename integer array 0 or 1  - output of rdxbtinfo1
 c        OUTPUT: alinename - character line of appropriate name 'PX06/PX31 0508'
         character*7 cruise
         character*20 alinename
-        dimension linename(6)
+        dimension linename(7)
 
         write(*,*)'linename=',linename
         ip = 1

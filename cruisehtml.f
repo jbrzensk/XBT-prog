@@ -355,6 +355,7 @@ c width and height of tem map:
 c these must be after above if stmt ^
         write(top10(20:22),'(a3)') outhtml(1:3)
         write(end5(20:22),'(a3)') outhtml(1:3)
+        ! Next three lines never run due to line 171!
         if(outhtml(1:3).eq.'s37') then
            write(top10(20:22),'(a3)') 'p37'
            write(end5(20:22),'(a3)') 'p37'
@@ -466,6 +467,7 @@ c WATCH WHICH ONE HERE _ FIX IN FUTURE!
         elseif(cruise(2:3).eq.'34') then
          write(31,505) sp,sp,sp,sp,mid4_50
         elseif(cruise(2:3).eq.'37') then
+         ! Redundant, same write statements.
          if(cruise(2:3).eq.'p') then
             write(31,507) sp,sp,sp,sp,mid4a,alinename(1:ip),mid4b
          else

@@ -639,7 +639,7 @@ c write correct line names:
                  alinename(ip:ip) = '/'
                  ip = ip + 1
               endif
-              alinename(ip:ip+3) = 'PX37'
+              alinename(ip:ip+3) = 'PX44'
               ip = ip + 4
            endif
         elseif(cruise(1:3).eq.'p22') then

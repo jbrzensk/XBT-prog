@@ -462,12 +462,7 @@ c WATCH WHICH ONE HERE _ FIX IN FUTURE!
         elseif(cruise(2:3).eq.'34') then
          write(31,505) sp,sp,sp,sp,mid4_50
         elseif(cruise(2:3).eq.'37') then
-         ! Redundant, same write statements.
-         if(cruise(2:3).eq.'p') then
-            write(31,507) sp,sp,sp,sp,mid4a,alinename(1:ip),mid4b
-         else
-            write(31,507) sp,sp,sp,sp,mid4a,alinename(1:ip),mid4b
-         endif
+         write(31,507) sp,sp,sp,sp,mid4a,alinename(1:ip),mid4b
         elseif(cruise(2:3).eq.'38') then
          write(31,505) sp,sp,sp,sp,mid4_38
         elseif(cruise(2:3).eq.'40') then

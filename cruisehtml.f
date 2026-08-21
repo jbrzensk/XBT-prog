@@ -620,6 +620,14 @@ c write correct line names:
               alinename(ip:ip+3) = 'PX18'
               ip = ip + 4
            endif
+           if(linename(7).eq.1) then
+              if(ip.ne.1) then
+                 alinename(ip:ip) = '/'
+                 ip = ip + 1
+              endif
+              alinename(ip:ip+3) = 'PX13'
+              ip = ip + 4
+           endif
 
         elseif(cruise(1:3).eq.'s37') then
            ip = 1

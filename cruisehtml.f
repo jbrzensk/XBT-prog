@@ -355,11 +355,6 @@ c width and height of tem map:
 c these must be after above if stmt ^
         write(top10(20:22),'(a3)') outhtml(1:3)
         write(end5(20:22),'(a3)') outhtml(1:3)
-        ! Next three lines never run due to line 171!
-        if(outhtml(1:3).eq.'s37') then
-           write(top10(20:22),'(a3)') 'p37'
-           write(end5(20:22),'(a3)') 'p37'
-        endif
 c this for ax22 maybe for others?:
 !        data middown1/'<a href="ftp://kakapo.ucsd.edu/pub/www-hrx/ax22/a220311a.10.gz">'/
 !                       1234567890123456789012345678901234567890123456789012345678901234

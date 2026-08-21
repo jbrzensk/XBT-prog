@@ -363,6 +363,11 @@ c this for ax22 maybe for others?:
            write(middown1(23:24),'(a2)') outhtml(2:3)
            write(middown1(26:32),'(a7)') outhtml(1:7)
         endif
+c IX21's data file on disk is named i21, even though the html page/outhtml
+c stays i15 above - fix just the download filename, not the folder:
+        if(cruise(1:3).eq.'i21') then
+           write(middown1(26:28),'(a3)') 'i21'
+        endif
 c hmm mid 4 will change with each line (AX22 vs IX15/IX21 etc)
 c get prev and next cruise names from xbtinfo?
 c mid7 is previous

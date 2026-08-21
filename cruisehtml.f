@@ -26,11 +26,10 @@
         character mid4_05*49
         character mid4_13*49
         character mid4_40*49
-        character mid4s37*55
         character mid4a*27, mid4b*12, shipname*3, mid4_30*52
         character outhtml28*13, mid4_28*50, mid7_28*63, mid8_28*58
         character end2a_28*60, end3a_28*79
-        dimension iport(9), linename(6)
+        dimension iport(9), linename(7)
 
         data outhtml/'a220506.html'/
         data outhtml28/'i280506a.html'/
@@ -98,8 +97,6 @@ c                  1234567890123456789012345678901234567890123456789012345
      $'<font size="4" color="red"> PX38 0505</font></td>'/
         data mid4_30/
      $'<font size="4" color="red"> PX30/31 0505</font></td>'/
-        data mid4s37/
-     $'<font size="4" color="red"> PX37 South 0505</font></td>'/
 !      1234567890123456789012345678901234567890123456789012345
 ! ok p09 gets complicated...
         data mid4a/'<font size="4" color="red">'/
@@ -280,7 +277,6 @@ c width and height of stn map:
 c width and height of tem map:
            write(end3b(31:33),'(a3)') '500'
            write(end3c(9:11),'(a3)') '250'
-           write(mid4s37(40:43),'(a4)') outhtml(4:7)
 ! watch out for other cruises after this change (5jan2011 LL)
 !        data middown1/'<a href="ftp://kakapo.ucsd.edu/pub/www-hrx/ax22/a220311a.10.gz">'/
 !                       1234567890123456789012345678901234567890123456789012345678901234
@@ -355,11 +351,6 @@ c width and height of tem map:
 c these must be after above if stmt ^
         write(top10(20:22),'(a3)') outhtml(1:3)
         write(end5(20:22),'(a3)') outhtml(1:3)
-        ! Next three lines never run due to line 171!
-        if(outhtml(1:3).eq.'s37') then
-           write(top10(20:22),'(a3)') 'p37'
-           write(end5(20:22),'(a3)') 'p37'
-        endif
 c this for ax22 maybe for others?:
 !        data middown1/'<a href="ftp://kakapo.ucsd.edu/pub/www-hrx/ax22/a220311a.10.gz">'/
 !                       1234567890123456789012345678901234567890123456789012345678901234
@@ -371,6 +362,11 @@ c this for ax22 maybe for others?:
            write(middown1(21:21),'(a1)') outhtml(1:1)
            write(middown1(23:24),'(a2)') outhtml(2:3)
            write(middown1(26:32),'(a7)') outhtml(1:7)
+        endif
+c IX21's data file on disk is named i21, even though the html page/outhtml
+c stays i15 above - fix just the download filename, not the folder:
+        if(cruise(1:3).eq.'i21') then
+           write(middown1(26:28),'(a3)') 'i21'
         endif
 c hmm mid 4 will change with each line (AX22 vs IX15/IX21 etc)
 c get prev and next cruise names from xbtinfo?
@@ -467,12 +463,7 @@ c WATCH WHICH ONE HERE _ FIX IN FUTURE!
         elseif(cruise(2:3).eq.'34') then
          write(31,505) sp,sp,sp,sp,mid4_50
         elseif(cruise(2:3).eq.'37') then
-         ! Redundant, same write statements.
-         if(cruise(2:3).eq.'p') then
-            write(31,507) sp,sp,sp,sp,mid4a,alinename(1:ip),mid4b
-         else
-            write(31,507) sp,sp,sp,sp,mid4a,alinename(1:ip),mid4b
-         endif
+         write(31,507) sp,sp,sp,sp,mid4a,alinename(1:ip),mid4b
         elseif(cruise(2:3).eq.'38') then
          write(31,505) sp,sp,sp,sp,mid4_38
         elseif(cruise(2:3).eq.'40') then
@@ -573,7 +564,7 @@ c               linename integer array 0 or 1  - output of rdxbtinfo1
 c        OUTPUT: alinename - character line of appropriate name 'PX06/PX31 0508'
         character*7 cruise
         character*20 alinename
-        dimension linename(6)
+        dimension linename(7)
 
         write(*,*)'linename=',linename
         ip = 1
@@ -629,6 +620,14 @@ c write correct line names:
               alinename(ip:ip+3) = 'PX18'
               ip = ip + 4
            endif
+           if(linename(7).eq.1) then
+              if(ip.ne.1) then
+                 alinename(ip:ip) = '/'
+                 ip = ip + 1
+              endif
+              alinename(ip:ip+3) = 'PX13'
+              ip = ip + 4
+           endif
 
         elseif(cruise(1:3).eq.'s37') then
            ip = 1
@@ -653,7 +652,7 @@ c write correct line names:
                  alinename(ip:ip) = '/'
                  ip = ip + 1
               endif
-              alinename(ip:ip+3) = 'PX37'
+              alinename(ip:ip+3) = 'PX44'
               ip = ip + 4
            endif
         elseif(cruise(1:3).eq.'p22') then

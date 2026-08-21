@@ -26,7 +26,6 @@
         character mid4_05*49
         character mid4_13*49
         character mid4_40*49
-        character mid4s37*55
         character mid4a*27, mid4b*12, shipname*3, mid4_30*52
         character outhtml28*13, mid4_28*50, mid7_28*63, mid8_28*58
         character end2a_28*60, end3a_28*79
@@ -98,8 +97,6 @@ c                  1234567890123456789012345678901234567890123456789012345
      $'<font size="4" color="red"> PX38 0505</font></td>'/
         data mid4_30/
      $'<font size="4" color="red"> PX30/31 0505</font></td>'/
-        data mid4s37/
-     $'<font size="4" color="red"> PX37 South 0505</font></td>'/
 !      1234567890123456789012345678901234567890123456789012345
 ! ok p09 gets complicated...
         data mid4a/'<font size="4" color="red">'/
@@ -280,7 +277,6 @@ c width and height of stn map:
 c width and height of tem map:
            write(end3b(31:33),'(a3)') '500'
            write(end3c(9:11),'(a3)') '250'
-           write(mid4s37(40:43),'(a4)') outhtml(4:7)
 ! watch out for other cruises after this change (5jan2011 LL)
 !        data middown1/'<a href="ftp://kakapo.ucsd.edu/pub/www-hrx/ax22/a220311a.10.gz">'/
 !                       1234567890123456789012345678901234567890123456789012345678901234

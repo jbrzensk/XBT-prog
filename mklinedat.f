@@ -10,7 +10,7 @@
        character*3 drpn
        character*7 cruise
 !
-       open(10,file='/data1/xbt-archive/line.dat',status='unknown',
+       open(10,file='/kakapo/data1/xbt-archive/line.dat',status='unknown',
      $       form='formatted')
        open(20,file='stations.dat',status='unknown',form='formatted')
 

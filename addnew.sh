@@ -57,9 +57,10 @@ for cruise in "${cruises[@]}"; do
     cp -a "${line_cruise}.dat" "${archive_dir}/stations.dat"
 
     # Create a fake control.dat.
-    "fakecontrol.x" <<EOF
-${line_cruise}
-EOF
+    # This always creates a fake file and uses it!! Bad!!
+#     "fakecontrol.x" <<EOF
+# ${line_cruise}
+# EOF
 
     # If a real control.dat exists, it replaces the fake one.
     if [[ -f control.dat ]]; then

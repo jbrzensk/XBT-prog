@@ -20,8 +20,8 @@ line="s37"
 cruises=(2410 2502)
 
 
-source_root="/kakopo/data/xbt"
-archive_root="/kakopo/data1/xbt-archive"
+source_root="/kakapo/data/xbt"
+archive_root="/kakapo/data1/xbt-archive"
 
 #################################################################
 ## DO NOT CHANGE BELOW THIS LINE                               ##
@@ -34,6 +34,11 @@ for cruise in "${cruises[@]}"; do
     archive_dir="${archive_root}/${line}/${cruise}"
 
     echo "Processing {$line_cruise}..."
+    echo ""
+    echo "line_cruise = ${line_cruise}"
+    echo "source_dir = ${source_dir}"
+    echo "archive_dir = ${archive_dir}"
+
 
     mkdir -p "${archive_dir}"
     cd "${source_dir}"
@@ -52,7 +57,7 @@ for cruise in "${cruises[@]}"; do
     cp -a "${line_cruise}.dat" "${archive_dir}/stations.dat"
 
     # Create a fake control.dat.
-    "${archive_root}/fakecontrol.x" <<EOF
+    "fakecontrol.x" <<EOF
 ${line_cruise}
 EOF
 
@@ -64,7 +69,7 @@ EOF
     cd "${archive_dir}"
 
     # Run mklinedat.x to generate line.dat.
-    "${archive_root}/mklinedat.x" <<EOF
+    "mklinedat.x" <<EOF
 ${line_cruise}
 EOF
 

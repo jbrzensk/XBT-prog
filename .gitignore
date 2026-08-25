@@ -49,3 +49,6 @@ __pycache__/
 !/Ferret/*
 !/Ferret/Image_Samples/*.png
 !/Ferret/Image_Samples/Diff/*.png
+
+# Ignore subagent-driven-development scratch workspace
+.superpowers/

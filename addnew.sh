@@ -1,3 +1,4 @@
+#!/bin/bash
 # addnew.sh
 # For adding new lines for the BUDDIES script.
 # 
@@ -6,69 +7,77 @@
 # UPDATED: To work using the /kakopo folder structure on savu
 # Jared Brzenski : August 2026
 #
+
+set -euo pipefail
+
 # CHANGE:
 # Replace with the line number
-set line="s37"
+line="s37"
 
 # CHANGE:
 # Replace the list with the cruises you want. Can do a single cruise 
-# or multiple cruises.
-foreach i(2410 2502)
+# or multiple cruises. 
+cruises=(2410 2502)
+
+
+source_root="/kakopo/data/xbt"
+archive_root="/kakopo/data1/xbt-archive"
 
 #################################################################
 ## DO NOT CHANGE BELOW THIS LINE                               ##
 #################################################################
-echo {$line}{$i}
 
-cd /kakopo/data/xbt/$line
+for cruise in "${cruises[@]}"; do
+    # Set some values based on cruise and line
+    line_cruise="${line}${cruise}"
+    source_dir="${source_root}/${line}/${cruise}"
+    archive_dir="${archive_root}/${line}/${cruise}"
 
-mkdir /kakopo/data1/xbt-archive/{$line}/{$i}
+    echo "Processing {$line_cruise}..."
 
-cd $i
+    mkdir -p "${archive_dir}"
+    cd "${source_dir}"
 
-\cp -a {$line}{$i}e.* /kakopo/data1/xbt-archive/{$line}/{$i}/.
+    # Copy the e files.
+    cp -a "${line_cruise}"e.* "${archive_dir}/"
 
-# custom for a lines only:
-# skip s files for atlantic: \cp -a {$line}{$i}s.* /kakopo/data1/xbt-archive/{$line}/{$i}/.
-#---------------
-# normal: cp stations.dat /kakopo/data1/xbt-archive/{$line}/{$i}/stations.dat
-# p09 no stations.dat:
-# try this for p38 too:
+    # Custom for a-lines only:
+    # Skip s files for Atlantic lines:
+    # cp -a "${line_cruise}"s.* "${archive_dir}/"
 
-\cp -a {$line}{$i}.dat /kakopo/data1/xbt-archive/{$line}/{$i}/stations.dat
+    # Normal:
+    # cp stations.dat "${archive_dir}/stations.dat"
+    #
+    # p09 and p38 do not have stations.dat:
+    cp -a "${line_cruise}.dat" "${archive_dir}/stations.dat"
 
-# make a fake control.dat:
-/kakopo/data1/xbt-archive/fakecontrol.x << EOF
-$line$i
-EOF
-# if a real one exists this will overwrite the fake one:
-\cp -a control.dat /kakopo/data1/xbt-archive/{$line}/{$i}/control.dat
-
-
-cd /kakopo/data1/xbt-archive/$line
-cd $i
-/kakopo/data1/xbt-archive/mklinedat.x << EOF
-$line$i
+    # Create a fake control.dat.
+    "${archive_root}/fakecontrol.x" <<EOF
+${line_cruise}
 EOF
 
-# the output of mklinedat.x is called "line.dat"
-# below here you are "catting" the existing pXX.dat to the end
-# of line.dat, then copying your new line.dat over pXX.dat
-# that way new data is at beginning of file.
+    # If a real control.dat exists, it replaces the fake one.
+    if [[ -f control.dat ]]; then
+        cp -a control.dat "${archive_dir}/control.dat"
+    fi
 
-#put recent cruise at top of pXX.dat:
-# note i21 cruises are going into p15.dat...
-#
-set i21="i21"
+    cd "${archive_dir}"
 
-if( $line == $i21 ) then
- cat /kakopo/data1/xbt-archive/p15.dat >> /kakopo/data1/xbt-archive/line.dat
- \cp /kakopo/data1/xbt-archive/line.dat /kakopo/data1/xbt-archive/p15.dat
-else
- cat /kakopo/data1/xbt-archive/{$line}.dat >> /kakopo/data1/xbt-archive/line.dat
- \cp /kakopo/data1/xbt-archive/line.dat /kakopo/data1/xbt-archive/{$line}.dat
-endif
+    # Run mklinedat.x to generate line.dat.
+    "${archive_root}/mklinedat.x" <<EOF
+${line_cruise}
+EOF
 
+    # Put the recent cruise at the beginning of the line file.
+    # Note: i21 cruises are added to p15.dat.
+    if [[ "${line}" == "i21" ]]; then
+        master_file="${archive_root}/p15.dat"
+    else
+        master_file="${archive_root}/${line}.dat"
+    fi
 
-end
+    cat "${master_file}" >> "${archive_root}/line.dat"
+    cp "${archive_root}/line.dat" "${master_file}"
 
+    echo "Finished ${line_cruise}"
+done

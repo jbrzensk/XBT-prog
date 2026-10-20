@@ -294,7 +294,11 @@ main() {
     fi
 
     local page="${PAGE_PREFIX}${ID}.html"
-    write_page "$page" "$label" "${prev:0:${#ID}}" "${next:0:${#ID}}"
+    if ! write_page "$page" "$label" "${prev:0:${#ID}}" "${next:0:${#ID}}"; then
+        rm -f "$page"
+        echo "Error: could not write $page in $PWD." >&2
+        return 1
+    fi
     echo "Wrote $page"
 }
 

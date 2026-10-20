@@ -82,5 +82,21 @@ check scan_line_303_found "0299 |0301 |SA   " "$(read_xbtinfo "$D" 0300)"
 check scan_line_304_absent 1                  "$(read_xbtinfo "$D" 0301 >/dev/null; echo $?)"
 check crlf_same_as_lf     "0102 |0103 |AS   " "$(read_xbtinfo "$E" 0103)"
 
+# ---- track_label (expected values from cruisehtml.x on live cruises) ----------
+check p09_06_09     "PX06/PX09 0106"      "$(track_label p09 'ASH  ' 0106)"
+check p09_06        "PX06 1407"           "$(track_label p09 'AS   ' 1407)"
+check p09_none      " 0709"               "$(track_label p09 'AF   ' 0709)"
+check p09_06_09_39  "PX06/PX09/PX39 9309" "$(track_label p09 'ASW  ' 9309)"
+check p09_09        "PX09 1412"           "$(track_label p09 'AH   ' 1412)"
+check p09_06_31     "PX06/PX31 0003"      "$(track_label p09 'LSA  ' 0003)"
+check p09_06_12_18  "PX06/PX12/PX18 9806" "$(track_label p09 'ASTL ' 9806)"
+check p09_06_09_31  "PX06/PX09/PX31 1409" "$(track_label p09 'ASHF ' 1409)"
+check p37_none      " 1012"               "$(track_label p37 'S GI@' 1012)"
+check p37_px44_flag "PX37 1109"           "$(track_label p37 'S GT@' 1109)"
+check p37_37_10     "PX37/PX10 0503"      "$(track_label p37 'SHG  ' 0503)"
+check p37_37_10_37  "PX37/PX10/PX37 0002" "$(track_label p37 'SHGK ' 0002)"
+check p37_hs        "PX37 2305"           "$(track_label p37 'HS   ' 2305)"
+check s37_fixed     "PX37 South 0811"     "$(track_label s37 'LH   ' 0811)"
+
 echo "$fails failed"
 (( fails == 0 ))

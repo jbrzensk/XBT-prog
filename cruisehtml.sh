@@ -104,6 +104,55 @@ set_line() {
     STN_W=$6 STN_H=$7 TEM_H=$8 SPACER=$9
 }
 
+# track_label CODE TRACK YYMM
+# Prints the page label for lines whose label depends on the ports of call in
+# the xbtinfo Track column (rdtrack in rdxbtinfo1.f, nameit in cruisehtml.f).
+# Only the first 4 track characters count. With no line names the label is
+# just " YYMM", as in the Fortran.
+#   p09 ports: A Auckland, E East Cape, H Honolulu, S Suva, W Seattle,
+#              F San Francisco, L Los Angeles, T Tahiti, U Tauranga
+#   p37 ports: S San Francisco, H Honolulu, G Guam, T Taiwan, K Hong Kong
+track_label() {
+    local code=$1 ports=${2:0:4} yymm=$3
+    local A=0 E=0 H=0 S=0 W=0 F=0 L=0 T=0 U=0 G=0 K=0
+    local i c
+    for (( i = 0; i < ${#ports}; i++ )); do
+        c=${ports:i:1}
+        case $c in
+            A|E|H|S|W|F|L|T|U|G|K) printf -v "$c" 1 ;;
+        esac
+    done
+
+    local names=()
+    case $code in
+        p09)
+            local px12=$(( S && T ))
+            (( (A || E || U) && S ))       && names+=(PX06)
+            (( (A || S) && H || W ))       && names+=(PX09)   # Seattle means PX09/PX39
+            (( W ))                        && names+=(PX39)
+            (( S && (F || L) && !px12 ))   && names+=(PX31)   # PX12 cancels PX31
+            (( px12 ))                     && names+=(PX12)
+            (( T && L ))                   && names+=(PX18)
+            ;;
+        p37)
+            (( S && H ))                   && names+=(PX37)
+            (( G && H ))                   && names+=(PX10)
+            (( (T || K) && G ))            && names+=(PX37)   # the PX44 flag, printed as PX37
+            ;;
+        s37)
+            echo "PX37 South $yymm"
+            return 0
+            ;;
+    esac
+
+    local IFS=/
+    if (( ${#names[@]} )); then
+        echo "${names[*]} $yymm"
+    else
+        echo " $yymm"
+    fi
+}
+
 # write_page FILE LABEL PREV_ID NEXT_ID
 # Writes the page from the template below, using the line_settings globals
 # plus ID and YYMM. Copied from cruisehtml.x output, trailing spaces included.
@@ -241,8 +290,7 @@ main() {
     if [[ -n "$FIXED_LABEL" ]]; then
         label=" $FIXED_LABEL $ID"
     else
-        echo "Error: track labels not implemented yet ($track)." >&2
-        return 1
+        label=$(track_label "$code" "$track" "$YYMM")
     fi
 
     local page="${PAGE_PREFIX}${ID}.html"

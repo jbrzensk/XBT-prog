@@ -70,6 +70,127 @@ read_xbtinfo() {
     ' "$1"
 }
 
+# line_settings CODE
+# Sets the per-line page settings as globals. Returns 1 for an unsupported code.
+#   PAGE_PREFIX   page file name, include files, previous/next links
+#   IMG_PREFIX    station map and temperature plot images
+#   DATA_FOLDER, DATA_PREFIX   the .10.gz download link
+#   FIXED_LABEL   page label; empty means it's built from the track letters
+#   STN_W, STN_H  station map size (exact strings, some padded with a space)
+#   TEM_H         temperature plot height
+#   SPACER        width of the first spacer cell
+line_settings() {
+    # set_line PAGE_PREFIX IMG_PREFIX DATA_FOLDER DATA_PREFIX FIXED_LABEL
+    #          STN_W STN_H TEM_H SPACER
+    case $1 in
+        p22)     set_line a22 a22 ax22 a22 "AX22"      "155" "152" 244 50 ;;
+        p15|i15) set_line i15 i15 ix15 i15 "IX21/IX15" "300" "152" 250 20 ;;
+        i21)     set_line i15 i21 ix15 i21 "IX21"      "200" "113" 250 20 ;;
+        p28)     set_line i28 i28 ix28 i28 "IX28"      " 90" "155" 250 50 ;;
+        p05)     set_line p05 p05 px05 p05 "PX05"      " 78" "152" 250 50 ;;
+        p09)     set_line p09 p09 px09 p09 ""          " 95" "152" 251 50 ;;
+        p13)     set_line p13 p13 px13 p13 "PX13"      " 95" "152" 251 50 ;;
+        p31)     set_line p31 p31 px31 p31 "PX30/31"   "225" "103" 250 50 ;;
+        p34)     set_line p34 p34 px34 p34 "PX34"      "240" " 87" 250 50 ;;
+        p37)     set_line p37 p37 px37 p37 ""          "187" "115" 252 20 ;;
+        s37)     set_line p37 p37 p37s s37 ""          "325" "114" 250 20 ;;
+        p40)     set_line p40 p40 px40 p40 "PX40"      "325" "142" 244 20 ;;
+        *)       return 1 ;;
+    esac
+}
+
+set_line() {
+    PAGE_PREFIX=$1 IMG_PREFIX=$2 DATA_FOLDER=$3 DATA_PREFIX=$4 FIXED_LABEL=$5
+    STN_W=$6 STN_H=$7 TEM_H=$8 SPACER=$9
+}
+
+# write_page FILE LABEL PREV_ID NEXT_ID
+# Writes the page from the template below, using the line_settings globals
+# plus ID and YYMM. Copied from cruisehtml.x output, trailing spaces included.
+# The temperature plot line is padded with 7 spaces, or 3 for IX28 (whose
+# 5-character IDs make that line 2 characters longer in the Fortran).
+write_page() {
+    local LABEL=$2 PREV_ID=$3 NEXT_ID=$4
+    local TEM_PAD="       "
+    (( ${#ID} == 5 )) && TEM_PAD="   "
+    cat > "$1" <<EOF
+<html>
+<head>
+  <title>Scripps High Resolution XBT/XCTD Network Site</title>
+  <link rel=stylesheet href="../style.css" TYPE="text/css" MEDIA=screen>
+</head>
+<BODY bgcolor="FFFFFF" topmargin="0" leftmargin="0">
+<TABLE width="780" border="0" cellpadding="0" cellspacing="0" align="left" valign="top">
+  <TR align="left" valign="top">
+    <TD align="left" colspan="4">
+    <!--#include file="${PAGE_PREFIX}head.html"-->
+    </TD>
+  </TR>
+  
+<tr>
+    <td valign="top" align="left" rowspan="2" width="3"><img src="../img/blank.gif"></td> 
+    <td valign="top" align="left" rowspan="2">
+    <!--#include virtual="../nav.html"-->
+    </TD>
+<td width="7" height="570" align="left" valign="top" rowspan="2">
+<img src="../img/linedrop2.jpg"></td>
+<!-- right side top of table with station map -->
+<td valign="top" align="center" width="660">
+  <table width="660" border="0" col="2"  valign="top" align="center"> 
+  <tr align="left">
+    <td width=300 valign="top" align="center">
+      <table width=300 align="center" valign="top" border="0">
+      <tr>
+        <td width="${SPACER}"> &nbsp;</td>
+        <td align="left">
+        <font size="4" color="red">${LABEL}</font></td>
+        <td width="40"> &nbsp;</td></tr>
+      <tr>
+        <td width="20"> &nbsp;</td>
+        <td align="left" colspan="2">
+        <a href="../www-hrx/${DATA_FOLDER}/${DATA_PREFIX}${YYMM}a.10.gz">
+        <font size="3">Download 10m average data</a>
+        </TD>
+      </TR>
+      <tr>
+      <td width="20"> &nbsp;</td>
+        <td align="left">
+        <a href="${PAGE_PREFIX}${PREV_ID}.html"><font size="3">Previous cruise</a></td>
+        <td width="40"> &nbsp;</td></tr>
+      <tr>
+        <td width="20"> &nbsp;</td>
+        <td align="left">
+        <a href="${PAGE_PREFIX}${NEXT_ID}.html"><font size="3">Next cruise</a></td>
+        <td width="40"> &nbsp;</td></tr>
+      <tr>
+        <td width="20"> &nbsp;</td>
+        <td align="center">
+        <font size="3" color="black"> &nbsp;</font></td>
+        <td width="40"> &nbsp;</td></tr>
+      </table>
+    </TD>
+<td width="350" valign="center" align="center">
+  <a href="img/${IMG_PREFIX}${ID}s-b.gif"><img src="img/${IMG_PREFIX}${ID}s-s.gif"
+  alt="station map" width="${STN_W}" height="${STN_H}"
+  border="0"></a> </td></tr>
+<tr align="center">
+  <td colspan="2"><a href="img/${IMG_PREFIX}${ID}t-b.gif"><img src="img/${IMG_PREFIX}${ID}t-s.gif"${TEM_PAD}
+  alt="temperature plot" width="500"
+  height="${TEM_H}" border="0"></a></td></tr>
+<tr>
+<td colspan="2">
+<!--#include file="${PAGE_PREFIX}table.html" -->
+</TD>
+</TR>
+</table>
+</TD>
+</TR>
+</table>
+</body>
+</html>
+EOF
+}
+
 main() {
     if [[ $# -ne 1 ]]; then
         usage
@@ -86,7 +207,7 @@ main() {
         usage
         return 1
     fi
-    if [[ " $SUPPORTED_CODES " != *" $code "* ]]; then
+    if ! line_settings "$code"; then
         echo "Error: unsupported cruise code $code. Supported: $SUPPORTED_CODES" >&2
         return 1
     fi
@@ -109,8 +230,24 @@ main() {
         return 1
     fi
 
-    echo "Error: page writing not implemented yet." >&2
-    return 1
+    local prev=${info%%|*}
+    local rest=${info#*|}
+    local next=${rest%%|*}
+    local track=${rest#*|}
+
+    ID=$id
+    YYMM=${cruise:3:4}
+    local label
+    if [[ -n "$FIXED_LABEL" ]]; then
+        label=" $FIXED_LABEL $ID"
+    else
+        echo "Error: track labels not implemented yet ($track)." >&2
+        return 1
+    fi
+
+    local page="${PAGE_PREFIX}${ID}.html"
+    write_page "$page" "$label" "${prev:0:${#ID}}" "${next:0:${#ID}}"
+    echo "Wrote $page"
 }
 
 if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then

@@ -620,10 +620,6 @@ p$line$i
 p$line$i
 EOF5
 
-elif [[ "$line" == 21 ]]; then
-    echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    echo "Skip creating html for i21 - you must edit it, mv previous cruise then modify"
-    echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 else
     echo "Running cruisehtml.x for ${prefix}."
     # this is backwards from the other files.
@@ -651,7 +647,8 @@ elif [[ "$line" == 37 ]]; then
         mv *html "${ARGO_DIR}/p${line}s/."
     fi
 elif [[ "$line" == 21 ]]; then
-    echo "No move html"
+    mv *html "${ARGO_DIR}/ix15/."
+    echo "moving line 21 to ix15"
 elif [[ "$line" == 09 ]]; then
     mv *html "${ARGO_DIR}/px${line}/."
 # Move p13 to px09 directory

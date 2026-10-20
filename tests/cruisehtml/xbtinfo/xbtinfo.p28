@@ -1,6 +1,6 @@
 
-Cr                      Track                                           hp
------                   -----                                           ---
+Cr
+-----
 9312a                   H - D                                           A
 9401b                   D - H                                           A
 9401a                   H - D                                           A
@@ -9,60 +9,60 @@ Cr                      Track                                           hp
 9402d                   D - H                                           A
 9402c                   H - D                                           A
 9403b                   D - H                                           A
------                   -----                                           ---
+-----
 9411b                   D - H                                           A
 9411a                   H - D                                           A
 9412a                   H - D                                           A
 9501b                   D - H                                           A
 9502a                   H - D                                           A
 9502b                   D - H                                           A
------                   -----                                           ---
+-----
 9511a                   H - D                                           A
 9511b                   D - H                                           A
 9512a                   H - D                                           A
 9601b                   D - H                                           A
 9602a                   H - D                                           A
 9603b                   D - H                                           A
------                   -----                                           ---
+-----
 9610a                   H - D                                           A
 9611b                   D - H                                           A
 9701a                   H - D                                           A
 9701b                   D - H                                           A
 9702a                   H - D                                           A
 9703b                   D - H                                           A
------                   -----                                           ---
+-----
 9710a                   H - D                                           A
 9710b                   D - H                                           A
 9801a                   H - D                                           A
 9801b                   D - H                                           A
 9802a                   H - D                                           A
 9803b                   D - H                                           A
------                   -----                                           ---
+-----
 9902a                   H - D                                           A
 9903b                   D - H                                           A
 9910a                   H - D                                           A
 9911b                   D - H                                           A
 9912a                   H - D                                           A
------                   -----                                           ---
+-----
 0001b                   D - H                                           A
 0002a                   H - D                                           A
 0003b                   D - H                                           A
 0010a                   H - D                                           A
 0011b                   D - H                                           A
 0012a                   H - D                                           A
------                   -----                                           ---
+-----
 0101b                   D - H                                           A
 0102a                   H - D                                           A
 0103b                   D - H                                           A
 0110a                   H - D                                           A
 0111b                   D - H                                           A
 0112a                   H - D                                           A
------                   -----                                           ---
+-----
 0201b                   D - H                                           A
 0202a                   H - D                                           A
 0203b                   D - H                                           A
 0212a                   H - D                                           A
------                   -----                                           ---
+-----
 0301b                   D - H                                           A
 0302a                   H - D                                           A
 0302b                   D - H                                           A
@@ -70,14 +70,14 @@ Cr                      Track                                           hp
 0311b                   D - H                                           A
 0312a                   H - D                                           A
 0312b                   D - H                                           A
------                   -----                                           ---
+-----
 0402a                   H - D                                           A
 0402b                   D - H                                           A
 0410a                   H - D                                           A
 0411b                   D - H                                           A
 0412a                   H - D                                           A
 0412b                   D - H                                           A
------                   -----                                           ---
+-----
 0501b                   D - H                                           A
 0502a                   H - D                                           A
 0502b                   D - H                                           A
@@ -85,13 +85,13 @@ Cr                      Track                                           hp
 0511b                   D - H                                           A
 0512a                   H - D                                           A
 0512b                   D - H                                           A
------                   -----                                           ---
+-----
 0602a                   H - D                                           A
 0602b                   D - H                                           A
 0610a                   H - D                                           A
 0611b                   D - H                                           A
 0612a                   H - D                                           A
------                   -----                                           ---
+-----
 0701b                   D - H                                           A
 0702a                   H - D                                           A
 0702b                   D - H                                           A
@@ -99,42 +99,42 @@ Cr                      Track                                           hp
 0711b                   D - H                                           A
 0712a                   H - D                                           A
 0712b                   D - H                                           A
------                   -----                                           ---
+-----
 0802a                   H - D                                           A
 0802b                   D - H                                           A
 0810a                   H - D                                           A
 0811b                   D - H                                           A
 0812a                   H - D                                           A
 0812b                   H - D                                           A
------                   -----                                           ---
+-----
 0902a                   H - D                                           A
 0902b                   D - H                                           A
 0910a                   H - D                                           A
 0911b                   D - H                                           A
 0912a                   H - D                                           A
 0912b                   D - H                                           A
------                   -----                                           ---
+-----
 1002a                   H - D                                           A
 1002b                   D - H                                           A
 1010a                   H - D                                           A
 1010b                   D - H                                           A
 1012a                   H - D                                           A
 1012b                   D - H                                           A
------                   -----                                           ---
+-----
 1102a                   H - D                                           A
 1103b                   D - H                                           A
 1110a                   H - D                                           A
 1112b                   D - H                                           A
 1112c                   H - D                                           A
 1112d                   D - H                                           A
------                   -----                                           ---
+-----
 1202a                   H - D                                           A
 1203b                   D - H                                           A
 1210a                   H - D                                           A
 1211b                   D - H                                           A
 1212a                   H - D                                           A
 1212b                   D - H                                           A
------                   -----                                           ---
+-----
 1312a                   H - D                                           A
 1312b                   D - H                                           A
 1403a                   H - D                                           A
@@ -197,30 +197,30 @@ Cr                      Track                                           hp
 2402a                   H - D                                           FA
 2402b                   D - H                                           FA
 
-^^kee                   w las
+^^kee
 ENDDA
 
 Track
   H
-  D                     tion,
+  D
 
-Obser                   #.EDT
+Obser
   AQ
 
 Ship:
-  A                     I)
-  FA                    place
-  AA                    NAA)
+  A
+  FA
+  AA
 
-Cof:                    nt
-                        of" i
-                        of" i
-                        oeffi
-                        oeffi
-	Note                    what
-	                       he .1
+Cof:
+
+
+
+
+	Note
+	
 
 recal
-p28	S                   hboun
-	mont                   nd in
+p28	S
+	mont
 

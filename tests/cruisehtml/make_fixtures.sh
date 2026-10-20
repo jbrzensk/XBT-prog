@@ -6,8 +6,9 @@
 # Fortran cruisehtml.x still built in the repo root.
 #
 #   1. Trims the live xbtinfo files into tests/cruisehtml/xbtinfo/, keeping
-#      only the columns cruisehtml reads (1-5 cruise, 25-29 track,
-#      73-75 ship). Observer names and other details are blanked.
+#      only the columns cruisehtml reads: on cruise lines 1-5 cruise,
+#      25-29 track, 73-75 ship; on all other lines just 1-5. Observer names
+#      and other details are blanked (checked by test_fixtures.sh).
 #   2. Runs cruisehtml.x for every case in cases.txt against the trimmed
 #      files and saves the page to tests/cruisehtml/expected/<case>/.
 #   3. Checks each page is byte-identical to the page made from the live
@@ -43,9 +44,16 @@ for code in p22 p15 p28 p05 p09 p13 p31 p34 p37 s37 p40; do
         echo "Error: $src not found." >&2
         exit 1
     fi
+    # Cruise lines (starting with YYMM) keep columns 1-5, 25-29 and 73-75.
+    # Every other line keeps only columns 1-5: the track is only ever read
+    # from the matched cruise line, so notes and observer lists lose nothing
+    # cruisehtml uses.
     LC_ALL=C awk '{
-        out = sprintf("%-5s%19s%-5s%43s%s", substr($0,1,5), "", \
-                      substr($0,25,5), "", substr($0,73,3))
+        if ($0 ~ /^[0-9][0-9][0-9][0-9]/)
+            out = sprintf("%-5s%19s%-5s%43s%s", substr($0,1,5), "", \
+                          substr($0,25,5), "", substr($0,73,3))
+        else
+            out = substr($0, 1, 5)
         sub(/ +$/, "", out)
         print out
     }' "$src" > "$FIX/xbtinfo.$code"

@@ -1,6 +1,6 @@
 
-Cr                      Track                                           hp
------                   -----                                           ---
+Cr
+-----
 1211                    HY                                              JC
 1301                    HY                                              JC
 1304                    HY                                              JC
@@ -49,10 +49,10 @@ Cr                      Track                                           hp
 2508                    YH                                              TA
 2588                    YH                                              TA
 
-^^kep                    last
+^^kep
 ENDDA
 
-T= nu                   XBT S
+T= nu
 
 #- Se
 %- am
@@ -71,21 +71,21 @@ Ships
 
 
 
-Obser                   #.EDT
+Obser
    CJ
    MP
    CS
    JD
-   JA                   u (Je
+   JA
    LO
-   BC                   sp?)
+   BC
    JH
-   JP                   Roger
+   JP
    AP
 
-NODC                    ion:
-cr                      er Da
-                           (d
+NODC
+cr
+
 1211                       21
 1301                       21
 1304                       21

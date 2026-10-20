@@ -1,61 +1,61 @@
 
-Cr                      Track                                           hp
------                   -----                                           ---
+Cr
+-----
 9409                    F M D                                           JB
 9412                    F M C                                           JB
------                   -----                                           ---
+-----
 9503                    F M D                                           JB
 9506                    F M D                                           JB
 9508                    F M D                                           JB
 9512                    F M D                                           JB
------                   -----                                           ---
+-----
 0312                    F C D                                           MF
------                   -----                                           ---
+-----
 0403                    F M D                                           MF
 0407                    F M D                                           MF
 0408                    F M D                                           MF
 0411                    F M D                                           MF
------                   -----                                           ---
+-----
 0502                    F M D                                           MF
 0510                    R M D                                           MD
------                   -----                                           ---
+-----
 0601                    R M S                                           MD
 0603                    D M E                                           MD&
 0607                    D M E                                           MD&
 0609                    D M E                                           MD&
------                   -----                                           ---
+-----
 0701                    D M E                                           MC&
 0704                    M D                                             SM
 0707                    D M E                                           SM&
 0710                    D M E                                           SM&
------                   -----                                           ---
+-----
 0801                    D M E                                           SM&
 0804                    D M E                                           SM&
 0806                    D M E                                           SM&
 0810                    D M E                                           SM&
------                   -----                                           ---
+-----
 0901                    DU/GF                                           SM&
 0904                                                                    SM&
 0909                    D M F                                           HD
 0911                    D M F                                           HK
------                   -----                                           ---
+-----
 1001                    D   F                                           HO
 1004                    D M F                                           HA
 1006                    D M F                                           HDB
 1010                    D M F                                           HB
------                   -----                                           ---
+-----
 1101                    D M F                                           HS
 1105                    D M F                                           HS
 1108                    D   F                                           HS
------                   -----                                           ---
+-----
 1204                    D M F                                           HS
 1207                    D M F                                           HE
 1210                    D   F                                           HE
------                   -----                                           ---
+-----
 1303                    D M F                                           HT
 1306                    D M F                                           HL
 1308                    D M F                                           HD
------                   -----                                           ---
+-----
 1403                    P M                                             MS
 1408                    M D                                             MS
 1410                    M D                                             MV
@@ -104,31 +104,31 @@ Cr                      Track                                           hp
 
 ENDDA
 
-# 060                    MSC
-# 060                    MSC
-# 060                    MSC
-# 070                    MSC
-# 070                   avend                                           x6-
-# 071                   avend                                           x6-
-# 080                   avend                                           x6-
-# 080                   avend                                           6-M
-# 080                   avend                                           x6-
-# 090                   avend
-@ 110                   , no
+# 060
+# 060
+# 060
+# 070
+# 070
+# 071
+# 080
+# 080
+# 080
+# 090
+@ 110
 
 Track
-                        ie, M
-	D -                    a
-	E -                    a
-	F -                    a
+
+	D -
+	E -
+	F -
 
 	M -
-                        th, S
+
 	R -
 	S -
 	U -
 
-Obser                   #.EDT
+Obser
    BS
    Sk
    DC
@@ -136,7 +136,7 @@ Obser                   #.EDT
    KH
    GP
    PJ
-   CR                   cobs
+   CR
    PR
    Je
 
@@ -149,7 +149,7 @@ Ships
    HL
    HO
    HE
-   HS                   rg
+   HS
    HK
    HT
    JB
@@ -158,13 +158,13 @@ Ships
    MA
    MF
    MV
-   MI                   V2005
+   MI
    MC
    MF
    MS
-   MT                   X2
+   MT
    MD
-   ND                    A8NY
+   ND
    RA
    S
    SC
@@ -173,17 +173,17 @@ Ships
    SB
    SB
 
-Cof:                    nt
-                        of" i
-                        of" i
-                        oeffi
-                        oeffi
-                        les a
-                        means                                           her
+Cof:
 
-NODC                    ion:
-cr                      er Da
-                           (d
+
+
+
+
+
+
+NODC
+cr
+
 
 1001                        1
 1004                        1
@@ -200,7 +200,7 @@ cr                      er Da
 
 1303                        0
 1306                        0
-(as o                    1306
+(as o
 
 1403                        0                                           al,
 1408                        0                                           al,
@@ -228,7 +228,7 @@ cr                      er Da
 1811                        0                                           al,
 
 
- 1994                    past
+ 1994
 
 TO DO
    20

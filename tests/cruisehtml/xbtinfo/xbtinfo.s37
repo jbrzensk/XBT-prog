@@ -1,6 +1,6 @@
 
-Cr                      Track                                           hp
------                   -----                                           ---
+Cr
+-----
 0811                    LH                                              HS
 0901                    LH                                              HS
 0904                    LH                                              HS
@@ -78,17 +78,17 @@ Cr                      Track                                           hp
 2407                    LH                                              MC
 2410                    LH                                              MC
 
-^^kee                   last
+^^kee
 ENDDA
 
 
-&= 10                   as2k
+&= 10
 %=amv
 ^=amv
 
 1412,                   de dr
 
-LDC=L                   Covid
+LDC=L
 
 Track
 	L Lo
@@ -99,27 +99,27 @@ Ships
 	HS H
 
 
-Obser                   #.EDT
+Obser
    CI
    CV
    GP
    Je
-   JA                   Shels
+   JA
    JD
-   KI                   (KIEP
+   KI
    JH
    JH
    AJ
    LL
    LO
-   JP                   Roger
-   NR                   antos
+   JP
+   NR
    VA
-   AP                   w)
+   AP
 
-NODC                    ion:
-cr                      er Da
-                           (d
+NODC
+cr
+
 0811                        2
 0901                        2
 0904                        2

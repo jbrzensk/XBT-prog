@@ -1,0 +1,210 @@
+
+Cr                      Track                                           hp
+-----                   -----
+9609                    KG-PA                                           PD
+9611                    PA-KG                                           PD
+-----                   -----                                           ---
+9701                    PA-PS                                           PD
+9702                    PA-SI                                           PD
+9704                    SI-PA                                           PD
+9705                    PA-SI                                           PD
+9709                    KG-PA                                           NBP
+9710                    KG-PA                                           NBP
+-----                   -----                                           ---
+9802                    PS-PA                                           LMG
+9804                    PA-PS                                           LMG
+9805                    PS-PA                                           LMG
+9809                    SI-PA                                           LMG
+9811                    PA-KG                                           LMG
+9812                    KG-PA                                           LMG
+-----                   -----                                           ---
+9902                    PA-PS                                           LMG
+9904                    PA-PS                                           LMG
+9907                    PA-PS                                           LMG
+9909                    PA-KG                                           LMG
+9910                    PA-KG                                           LMG
+9911                    PA-SI                                           LMG
+-----                   -----                                           ---
+0004                    PA-PS                                           LMG
+0005                    PA-PS                                           LMG
+0006                    KG-PA                                           LMG
+0007                    PA-PS                                           LMG
+0009                    SI-PA                                           LMG
+0011                    KG-PA                                           LMG
+0012                    SI-PA                                           LMG
+-----                   -----                                           ---
+0102                    PA-KG                                           LMG
+0104                    PA-KG                                           LMG
+0106                    PA-SI                                           LMG
+0109                    PA-SI                                           LMG
+0110                    PA-KG                                           LMG
+0111                    PA-SI                                           LMG
+0112                    PA-PS                                           LMG
+0112b                   PS-PA                                           LMG
+-----                   -----                                           ---
+0201                    PA-PS                                           LMG
+0202                    PA-SI                                           LMG
+0203                    SI-PA                                           LMG
+0207                    PA-SI                                           LMG
+0209                    PA-SI                                           LMG
+0211                    PA-SI                                           LMG
+0212                    PS-PA                                           LMG
+-----                   -----                                           ---
+0301                    PA-SI                                           LMG
+0303                    PA-KG                                           LMG
+0305                    PA-SI                                           LMG
+0306                    PA-SI                                           LMG
+0308                    PA-SI                                           LMG
+0309                    PA-SI                                           LMG
+0311                    PA-SI                                           LMG
+-----                   -----                                           ---
+0401                    PA-SI                                           LMG
+0402                    PA-SI                                           LMG
+0405                    PA-SI                                           LMG
+0406                    PA-SI                                           LMG
+0409                    PA-SI                                           LMG
+0411                    PA-SI                                           LMG
+0411a                   PA-KG                                           LMG
+0412                    SI-PA                                           LMG
+-----                   -----                                           ---
+0501                    PA-SI                                           LMG
+0503                    PA-SI                                           LMG
+0504                    PA-SI                                           LMG
+0506                    PA-KG                                           LMG
+0509                    PA-SI                                           LMG
+0510                    PA-KG                                           LMG
+-----                   -----                                           ---
+0601                    PA-SI                                           LMG
+0602                    PA-SI                                           LMG
+0603                    PS-PA                                           LMG
+0604                    PA-SI                                           LMG
+0604a                   PA-SI                                           LMG
+0605                    PA-SI                                           LMG
+0606                    SI-PA                                           LMG
+0607                    PA-KG                                           NBP
+0608                    PA-KG                                           LMG
+0610                    PA-KG                                           LMG
+0612                    PA-SI                                           LMG
+-----                   -----                                           ---
+0701                    PA-SI                                           LMG
+0703                    PA-SI                                           LMG
+0705                    PA-SI                                           LMG
+0709                    PA-SI                                           LMG
+0711                    PA-SI                                           LMG
+0712                    PA-SI                                           LMG
+-----                   -----                                           ---
+0803                    PA-SI                                           LMG
+0806                    PA-SI                                           LMG
+0808                    SI-PA                                           LMG
+0809                    PA-SI                                           LMG
+-----                   -----                                           ---
+0901                    PA-SI                                           LMG
+0903                    KG-PA                                           LMG
+0904                    PA-SI                                           LMG
+0906                    SI-PA                                           LMG
+0909                    PA-SI                                           LMG
+0910                    SI-PA                                           LMG
+-----                   -----                                           ---
+1002                    SI-PA                                           LMG
+1003                    SI-PA                                           LMG
+1005                    PA-SI                                           LMG
+1009                    PA-PS                                           LMG
+1010                    PA-KG                                           LMG
+1011                    PA-SI                                           LMG
+-----                   -----                                           ---
+1101                    PA-PS                                           LMG
+1102                    PA-SI                                           LMG
+1106                    SI-PA                                           LMG
+1108                                                                    LMG
+1110                                                                    LMG
+1111                                                                    LMG
+-----                   -----                                           ---
+1201                                                                    LMG
+1203                                                                    LMG
+1205                                                                    LMG
+1209                                                                    LMG
+1212                    PA-KG                                           LMG
+-----                   -----                                           ---
+1301                    PA-SI                                           LMG
+1303                    PA-SI                                           LMG
+1305                    PA-SI                                           LMG
+1309                    PA-PS                                           LMG
+1311                    PA-SI                                           LMG
+-----                   -----                                           ---
+1403                    SI-PA                                           LMG
+1404                    PA-SI                                           LMG
+1406                    PA-SI                                           LMG
+1409                    PA-SI                                           LMG
+1410                    PA-SI                                           LMG
+1411                    PA-SI                                           LMG
+1501                    PA-SI                                           LMG
+1502                    PA-SI                                           LMG
+1504                    PA-SI                                           LMG
+1506                    PA-SI                                           LMG
+1510                    PA-KG                                           LMG
+1511                    PA-SI                                           LMG
+1601                    PA-SI                                           LMG
+1603                    PA-SI                                           LMG
+1605                    PA-SI                                           LMG
+1606                    PA-SI                                           LMG
+1610                    PA-SI                                           LMG
+1612                    PA-SI                                           LMG
+1701                    PA-SI                                           LMG
+1703                    PA-SI                                           LMG
+1705                    SI-PA                                           LMG
+1707                    PA-SI                                           LMG
+1708                    SI-PA                                           LMG
+1710                    PA-SI                                           LMG
+1801                    PA-SI                                           LMG
+1802                    PA-SI                                           LMG
+1804                    PA-SI                                           LMG
+1805                    PA-SI                                           LMG
+1810                    PA-SI                                           LMG
+1811                    PA-SI                                           LMG
+1901                    PA-SI                                           LMG
+1902                    PA-SI                                           LMG
+1904                    PA-SI                                           LMG
+1910                    PA-SI                                           LMG
+1911                    PA-SI                                           LMG
+2001                    PA-SI                                           LMG
+2002                    PA-SI                                           LMG
+2006                    PS-PA                                           LMG
+2112                    PA-PS                                           LMG
+2203                    PA-PS                                           LMG
+2210                    PA-SI                                           LMG
+2211                    PA-SI                                           LMG
+2302                    PA-SI                                           LMG
+2304                    PA-SI                                           LMG
+2310                    PA-SI                                           LMG
+2311                    PA-SI                                           LMG
+2312                    PA-SI                                           LMG
+2404                    PA-SI                                           LMG
+
+^^kee                   w las
+ENDDA
+
+Track
+  HI                    rctic
+  KG                    d, An
+  PA                    le
+  PS                    ntarc
+  SI                    arcti
+
+Obser                   #.EDT
+  JS
+  RP
+  LH
+  TC
+  GP
+LTER                    Iannu
+  JA
+ YDL
+ SE
+ AT
+ *                      t of
+**                      , dro
+
+Ship:
+  PD
+ NBP
+ LMG

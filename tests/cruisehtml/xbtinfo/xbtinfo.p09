@@ -1,0 +1,348 @@
+
+Cr                      Track                                           hp
+-----                   -----                                           ---
+8603b                   SA                                              SS
+8605b                   SE                                              SS
+8608b                   SE                                              SS
+8608a                   AS                                              SS
+8611b                   SA                                              SS
+8703b                   SA                                              SS
+8706b                   SA                                              SS
+8709b                   SA                                              SS
+8709a                   ASH                                             SS
+8712b                   SA                                              SS
+8712a                   AH                                              SS
+8803b                   SA                                              SS
+8803a                   AH                                              SS
+8806a                   AH                                              SS
+8809b                   SA                                              SS
+8812b                   SA                                              SS
+8812a                   ASH                                             SS
+8903b                   SA                                              SS
+8903a                   AH                                              SS
+8906b                   SA                                              SS
+8906a                   AH                                              SS
+8909a                   ASH                                             SS
+9001a                   AH                                              SS
+9004a                   AH                                              SS
+9007a                   AH*                                             SS
+9010a                   ASH                                             SS
+9101a                   ASH                                             SS
+9105a                   ASH                                             SS
+9107a                   AH                                              SS
+9112a                   ASH                                             SS
+9201a                   ASH                                             SS
+9203a                   AH                                              SS
+9206a                   ASH                                             SS
+9209a                   AS                                              K
+9211a                   ASH                                             SS
+9303a                   ASH                                             SS
+9306a                   ASH                                             SS
+9308a                   ASH                                             SS
+9309a                   ASW                                             CS
+9311a                   ASHW                                            CS
+9402a                   ESHW                                            CS
+9406a                   ASHW                                            CS
+9409a                   ASHW                                            CS
+9503a                   ASHW                                            CS
+9504a                   ASHW                                            CS
+9508a                   ASHW                                            CS
+9509a                   ASHW                                            CS
+9601a                   ASHW                                            BS
+9604a                   ASHW                                            BS
+9608a                   ASHW                                            BS
+9612a                   LSA                                             BS
+9703a                   LSA                                             BS
+9706a                   ASL                                             BS
+9709a                   LSA                                             BS
+9801a                   ASL                                             AS
+9803a                   LSA                                             AS
+9806a                   ASTL                                            AS
+9808a                   LSA                                             AS
+9811a                   ASF                                             AS
+9903a                   LSA                                             AS
+9905a                   LSA                                             CC
+9909a                   LSA                                             CC
+9912a                   LSA                                             CC
+0003a                   LSA                                             CC
+0006a                   LSA                                             CC
+0009a                   LSA                                             CC
+0012a                   LSA                                             CC
+0106a                   ASH                                             FL
+0107a                   ASH                                             FL
+0111a                   ASH                                             FL
+0203a                   ASH                                             FL
+0205a                   ASH                                             FL
+0206a                   ASH                                             FL
+0210a                   ASH                                             FL
+0302a                   ASH                                             FL
+0305a                   ASH                                             FL
+0309a                   ASH                                             FL
+0311a                   ASH                                             FL
+0404a                   USL                                             DT
+0407a                   USL                                             DT
+0411a                   ASH                                             CF
+0502a                   USL                                             DC
+0505a                   USL                                             MA
+0508a                   USL                                             MA
+0510a                   USL                                             MA
+0601a                   USL                                             MA
+0604a                   USL                                             MA
+0607a                   USL                                             MA
+0609a                   USL                                             MA
+0702a                   USL                                             MA
+0706a                   USL                                             MA
+0709a                   AF                                              EW
+0711a                   USF                                             EW
+0802a                   USF                                             EW
+0805a                   USF                                             EW
+0808a                   USF                                             EW
+0811a                   UL                                              EW
+0901a                   UF                                              EW
+0903a                   USF                                             EW
+0906a                   USF                                             MP
+0907a                   UH                                              MP
+0910a                   USF                                             MP
+1001a                   UH                                              CR
+1004a                   USF                                             CR
+1007a                   USF                                             JS
+1010a                   USF                                             JS
+1101a                   USF                                             JS
+1104a                   USF                                             JS
+1108a                   USF                                             JS
+1111a                   USF                                             JS
+1202a                   USF                                             JS
+1205a                   USF                                             JS
+1208a                   USF                                             JS
+1212a                   USF                                             JS
+1301a                   USF                                             JS
+1303a                   USF                                             JS
+1306a                   ASH                                             IE
+1310a                   ASF                                             EW
+1311a                   ASH                                             EW
+1403a                   ASF                                             EW
+1405a                   ASH                                             EW
+1407a                   AS                                              EW
+1409a                   ASHF                                            EW
+1410a                   ASV                                             EW
+1412a                   AH                                              EW
+1503a                   AS                                              EW
+1505a                   ASH                                             EW
+1507a                   AV                                              EW
+1509a                   AS                                              EW
+1511a                   ASH                                             EW
+1601a                   ASV                                             BL
+1603a                   AS                                              BL
+1604a                   ASV                                             BL
+1607a                   ASV                                             CP
+1608a                   ASH                                             CP
+1610a                   AS                                              CP
+1612a                   AS                                              CP
+1702a                   ASH                                             CP
+1704a                   ASV                                             CP
+1706a                   AS                                              CP
+1707a                   ASH                                             CP
+1709a                   AS                                              CP
+1711a                   ASV                                             CP
+1801a                   ASH                                             CP
+1803a                   AS                                              CP
+1805a                   ASV                                             CP
+1807a                   AS                                              CP
+1808a                   ASH                                             CP
+1812a                   AS                                              CD
+1903a                   AS                                              CD
+1907a                   AS                                              CD
+1909a                   AS                                              CD
+1912a                   AS                                              CD
+2103a                   SA                                              SZ
+2107a                   SA                                              SZ
+2201a                   SA                                              VC
+2209a                   SA                                              SH
+2308a                   AS                                              CB
+2312a                   AS                                              CB
+2404a                   AS                                              NT
+2407a                   AS                                              PM
+2410a                   AS                                              CT
+2502a                   AS                                              CT
+2508a                   AS                                              CT
+
+^^kee                   w las
+ENDDA
+
+@@@-u                    (1-8                                           2).
+#- Se
+%- am
+^- am
+
+LDC =                   19 of
+
+Track
+  A
+  E
+  H
+  S
+  W
+  F                     as Sf
+  L
+  T
+  U
+  V
+
+ nb c                   d to
+ 9209
+ 9402                   tle v
+ 9806                   a Suv
+ to o
+ 8605
+ 8608
+ 9402
+ 9309                   gap b
+
+t = P
+
+#T =                    ta se
+
+Obser                   #.EDT
+  PB                       19
+  NB                        3
+  JKC
+  BC                      126
+  MD
+  BD
+  BS
+  CG                       19
+  JG
+  SH
+  RJ
+  LeL
+  LiL
+  CM
+  CPM                   m
+  MM
+  CO
+  JMO
+  JAP                   helst
+  GP/
+  JA
+  JDP
+  AQ
+  SQ
+  JHR
+  DR                      124
+  PMR
+  NRS
+  JeS
+  JS
+  PS                       45
+  PW
+  JW
+  CW
+  SY
+  Va
+  VC
+  SS
+
+Ships
+  AS                    8	
+  BL                    ELZY3
+  BS
+  PM                    (rena
+  CS                    F2
+  CC                     DDGY
+  CF
+  CP
+  CR
+  DC
+  DT
+  EW
+  IE                    A8ID9
+  JS                    A8KC6
+  MA                    A8ES9
+  MP
+  SH                    9V971
+  SS
+  SZ
+  VC                    8-pre
+  FL
+  CB                    9V759
+  NT                    9V941
+  CT                    9V599
+
+(Jday                   ays s
+(EDT
+
+Cof:                    nt
+                        of" i
+                        of" i
+                        oeffi
+                        oeffi
+	Note                    what
+	                       he .1
+
+28mar                   ol 80                                           t
+	tryi                   s tha
+	Non                    rly n
+-----
+NODC                    ion:
+cr                      er Da
+                           (d
+1101                        2
+1104                        2
+1108                        2
+1111                        2
+
+1202                        2
+1205                        2
+1208                        2
+1212                        2
+
+1001                        1
+1004                        1
+1007                        1
+1010                        1
+
+1403                        0                                           al,
+1405                        0                                           al,
+1407                        0                                           al,
+1409                        0                                           al,
+1410                        0                                           al,
+1412                        0                                           al,
+
+1503                        0                                           al,
+1505                        0                                           al,
+1507                        0                                           al,
+1509                        0                                           al,
+1511                        0                                           al,
+
+1601                        1                                           al,
+1603                        1                                           al,
+1604                        1                                           al,
+1607                        1                                           al,
+1608                        1                                           al,
+1610                        1                                           al,
+1612                        1                                           al,
+
+1702                        1                                           al,
+1704                        1                                           al,
+1706                        1                                           al,
+1707                        1                                           al,
+1709                        1                                           al,
+1711                        1                                           al,
+
+1801                        2                                           al,
+1803                        2                                           al,
+1805                        2                                           al,
+1807                        2                                           al,
+1808                        2                                           al,
+1812                        0                                           al,
+
+
+Notes
+1986-                   tted
+1990-                   old s
+
+2010-                    all
+
+2001-                   rgani
+2013
+

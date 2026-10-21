@@ -4,9 +4,7 @@
 #
 # Writes the HRX website page for one XBT cruise into the current directory.
 # Replaces the Fortran cruisehtml.f / cruisehtml.x, and writes the same page
-# byte for byte, with one deliberate fix that is the same on every page:
-#
-#   - The Next link's <font size=3"> is written as <font size="3">.
+# byte for byte, except for the "3" misprint.
 #
 # It reads the previous and next cruise, and the track letters, from
 # xbtinfo.<code> in the current directory (the same rules as rdxbtinfo1.f).
@@ -29,7 +27,9 @@ usage() {
     echo "Usage: cruisehtml.sh <cruise>  (e.g. p402508, or p282402a for IX28)" >&2
 }
 
+###############################################################################
 # read_xbtinfo FILE ID
+###############################################################################
 # Prints "PREV|NEXT|TRACK" for cruise ID (YYMM, or YYMML for p28), each field
 # padded to 5 characters. Returns 1, printing nothing, if ID isn't found.
 #   - Lines 1-3 are headers; only lines 4-303 are searched (as rdxbtinfo1.f).
@@ -70,7 +70,9 @@ read_xbtinfo() {
     ' "$1"
 }
 
+###############################################################################
 # line_settings CODE
+###############################################################################
 # Sets the per-line page settings as globals. Returns 1 for an unsupported code.
 #   PAGE_PREFIX   page file name, include files, previous/next links
 #   IMG_PREFIX    station map and temperature plot images
@@ -104,7 +106,9 @@ set_line() {
     STN_W=$6 STN_H=$7 TEM_H=$8 SPACER=$9
 }
 
+###############################################################################
 # track_label CODE TRACK YYMM
+###############################################################################
 # Prints the page label for lines whose label depends on the ports of call in
 # the xbtinfo Track column (rdtrack in rdxbtinfo1.f, nameit in cruisehtml.f).
 # Only the first 4 track characters count. With no line names the label is
@@ -153,7 +157,9 @@ track_label() {
     fi
 }
 
+###############################################################################
 # write_page FILE LABEL PREV_ID NEXT_ID
+###############################################################################
 # Writes the page from the template below, using the line_settings globals
 # plus ID and YYMM. Copied from cruisehtml.x output, trailing spaces included.
 # The temperature plot line is padded with 7 spaces, or 3 for IX28 (whose
@@ -240,6 +246,9 @@ write_page() {
 EOF
 }
 
+###############################################################################
+# Main Script Launch
+###############################################################################
 main() {
     if [[ $# -ne 1 ]]; then
         usage

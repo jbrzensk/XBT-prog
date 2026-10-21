@@ -635,7 +635,10 @@ fi
 #chmod a+x *html
 
 if [[ $html_ok != 1 ]]; then
-    echo "cruisehtml.sh failed for ${cruise_name} - no html moved. Fix the xbtinfo file, rerun cruisehtml.sh ${cruise_name} here, then move the page by hand."
+    echo "cruisehtml.sh failed for ${cruise_name} - no html moved."
+    echo "* Possibly due to an error in the xbtinfo file. "
+    echo "* Fix the xbtinfo file, rerun cruisehtml.sh ${cruise_name} here, "
+    echo "* then move the page by hand."
 elif [[ "$line" == 22 ]]; then
     mv *html "${ARGO_DIR}/ax${line}/."
 elif [[ "$line" == 15 ]]; then

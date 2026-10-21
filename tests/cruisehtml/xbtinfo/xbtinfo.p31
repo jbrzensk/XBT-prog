@@ -1,0 +1,203 @@
+
+Cr
+-----
+9105                    BN-S                                            A10
+9108                    BN-S                                            A10
+9112                    L -B                                            FK
+9203                    L -B                                            FK
+9206                    L -B                                            FK
+9210                    L -B                                            FK
+9302                    L -B                                            FK
+9305                    L -B                                            FK
+9308                    L -B                                            FK
+9311                    L -B                                            FK
+9403                    L -B                                            FK
+9406                    LN-B                                            FK
+9409                    L -B                                            FK
+9412                    L -B                                            FK
+9503                    L -B                                            FK
+9505                    L -B                                            FK
+9509                    B -L                                            FK
+9512                    B -S                                            FK
+9603                    B -L                                            FK
+9606                    B -S                                            FK
+9609                    B -L                                            FK
+9612                    B -L                                            FK
+9704                    B -L                                            FK
+9706                    L -B                                            FK
+9709                    L -B                                            FK
+9712                    L -B                                            FK
+9803                    L -B                                            FK
+9808                    L -B                                            FK
+9810                    L -B                                            FK
+9902                    L -B                                            FK
+9903                    B -L                                            FR
+9907                    L -B                                            FK
+9910                    BN-S                                            FTS
+0003                    BN-S                                            SMF
+0005                    BN-S                                            FTS
+0008                    BN-S                                            BHK
+0011                    BN-S                                            FTS
+0103                    B -L                                            FK
+0107                    L -B                                            FR
+0109                    B -L                                            FS
+0201                    S -B                                            FS
+0206                    L -B                                            CT
+0210                    L -B                                            CT
+0212                    L -B                                            CT
+0304                    L -B                                            FS
+0307                    L -B                                            FS
+0310                    L -B                                            FS
+0401                    L -B                                            FS
+0403                    L -B                                            FS
+0406                    L -B                                            FS
+0409                    L -B                                            FS
+0412                    L -B                                            FS
+0503                    L -B                                            FS
+0506                    L -B                                            FS
+0509                    L -B                                            FS
+0511                    L -B                                            FS
+0603                    L -B                                            FS
+0606                    L -B                                            FS
+0609                    L -B                                            FS
+0701                    S -B                                            FS
+0704                    S -B                                            FS
+0707                    S -B                                            FS
+0711                    S -B                                            FS
+0802                    S -B                                            FS
+0805                    S -B                                            FS
+0808                    S -B                                            FS
+0811                    S -B                                            FS
+0902                    S -B                                            FS
+0905                    S -B                                            FS
+0908                    BN-S                                            CT
+0911                    BN-S                                            CT
+1002                    BN-S                                            FL
+1005                    BN-S                                            FL
+1007                    BN-S                                            FL
+1010                    BN-S                                            FL
+1102                    BN-S                                            FL
+1104                    BN-S                                            FL
+1111                    BN-L                                            STS
+1203                    B -V                                            PG
+1205                    B -L                                            SS
+1209                    L -B                                            PG
+1306                    BN-L                                            SET
+1310                    S -B                                            CH
+1402                    S -B                                            SK
+1405                    S -B                                            SK
+1411                    S -B                                            CF
+1502                    S -B                                            SK
+1505                    S -B                                            SK
+1508                    S -B                                            SI
+1511                    S -B                                            SI
+1602                    S -B                                            SK
+1604                    S -B                                            SK
+1608                    S -B                                            SI
+1611                    S -B                                            SI
+1702                    S -B                                            SI
+1705                    S -B                                            SI
+1707                    S -B                                            SK
+1710                    S -B                                            SK
+1802                    S -B                                            SK
+1807                    S -B                                            CQ
+1811                    S -B                                            CQ
+1908                    BN-L                                            HC
+1910                    N -B                                            SO
+2002                    N -B                                            SO
+2009                    N -B                                            SR
+2012                    N -B                                            SR
+2103                    BN-L                                            SRS
+2106                    BN-S                                            SRS
+2112                    N -B                                            NO
+2201                    N -S                                            VC
+2203                    N -B                                            NO
+2206                    N -S                                            SH
+2207                    N -B                                            SB
+2208                    N -S                                            SH
+2210                    N -B                                            MR
+2301                    N -Y                                            SB
+2302                    N -B                                            SW
+2304                    N -B                                            SB
+2308                    N -B                                            SW
+2311                    N -B                                            SR
+2404                    N -B                                            SW
+2406                    B -S                                            AK
+
+^^kee
+ENDDA
+# 111
+H2 me
+H1 me
+LDC=
+
+Track
+	B Br
+	L La
+	N No
+	S Su
+	V La
+
+
+bath:
+
+
+
+
+
+Obser
+	BC B
+	CG C
+	JA1
+	JG J
+	AQ A
+	JS J
+Ships
+	A10
+
+	BH
+	CF
+
+	CQ
+	CT
+	FK
+	FL
+	FR
+
+
+
+	KC
+	MR
+
+
+	R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cof:
+
+
+
+
+	Note
+	
+	Note
+	just
+	to n
+	with
+	quit

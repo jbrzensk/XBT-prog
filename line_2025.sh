@@ -612,28 +612,34 @@ if [[ ! "$_html_confirm" =~ ^[Yy](es)?$ ]]; then
     exit 0
 fi
 
-# html file:
+# html file: cruisehtml.sh writes the cruise page into this folder.
+# IX28 cruise names need the leg letter, which is only in the folder name
+# (e.g. p28/2402a holds p282402e.* files), so IX28 uses p28 + folder name.
+html_ok=1
 if [[ "$line" == 28 ]]; then
-    echo "Running cruisehtml for P28."
-    cruisehtml.x << EOF5
-p$line$i
-p$line$i
-EOF5
-
+    leg_folder=$(basename "$PWD")
+    cruise_name="p${line}${leg_folder}"
+    if [[ ! "$leg_folder" =~ ^[0-9][0-9][0-9][0-9][a-z]$ ]]; then
+        echo "Error: IX28 folder name '${leg_folder}' should be YYMM plus the leg letter, e.g. 2402a."
+        html_ok=0
+    fi
 else
-    echo "Running cruisehtml.x for ${prefix}."
-    # this is backwards from the other files.
-    cruisehtml.x << EOF3
-$ch$line$i
-EOF3
+    cruise_name="${ch}${line}${i}"
 fi
 
-
-echo "cruisehtml ${ch}${line}${i}"
+if [[ $html_ok == 1 ]]; then
+    echo "Running cruisehtml.sh for ${cruise_name}."
+    cruisehtml.sh "$cruise_name" || html_ok=0
+fi
 
 #chmod a+x *html
 
-if [[ "$line" == 22 ]]; then
+if [[ $html_ok != 1 ]]; then
+    echo "cruisehtml.sh failed for ${cruise_name} - no html moved."
+    echo "* Possibly due to an error in the xbtinfo file. "
+    echo "* Fix the xbtinfo file, rerun cruisehtml.sh ${cruise_name} here, "
+    echo "* then move the page by hand."
+elif [[ "$line" == 22 ]]; then
     mv *html "${ARGO_DIR}/ax${line}/."
 elif [[ "$line" == 15 ]]; then
     mv *html "${ARGO_DIR}/ix${line}/."

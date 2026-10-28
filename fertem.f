@@ -172,7 +172,7 @@ c plus path to file
        write(path2(16:19),'(a4)') fnam(4:7)
 c p28 different path since a,b,c, etc is actually in path, not only filename
 c tc, tcp28 are path names to station.tics
-       if(fnam(1:3).eq.'p28'.or.fnam(1:3).eq.'p06') then
+       if(fnam(1:3).eq.'p28') then
           write(pathp28(12:14),'(a3)') fnam(1:3)
           write(pathp28(16:20),'(a5)') fnam(4:8)
           write(pathp28(22:29),'(a8)') fnam(1:8)
@@ -657,7 +657,7 @@ c p28
               write(level1(25:39),'(a15)') ' 36.00S: 22.00S'
             elseif(iendpoint.eq.3) then
               write(level1(25:39),'(a15)') '166.00E:178.00E'
-            elseif(iendpoint.eq.4) then
+            elseif(iendpoint.eq.1.or.iendpoint.eq.4) then
               write(level1(25:39),'(a15)') ' 36.00S: 18.00S'
             endif
            write(levp31(31:33),'(a3)') 'p06'
@@ -678,9 +678,8 @@ c p28
             write(65,'(a)')pcn
            write(55,*)
            write(65,*)
-           write(tcp28(33:35),'(a3)') 'p06'
-           write(55,'(a)') tcp28(1:55)
-           write(65,'(a)') tcp28(1:55)
+           write(55,'(a)') tc(1:54)
+           write(65,'(a)') tc(1:54)
            write(55,'(a)') tc1(1:35)
            write(65,'(a)') tc1(1:35)
            write(55,*)

@@ -63,13 +63,6 @@
         write(fxctd(6:12),'(a7)') acruise(1:7)
         write(pathp28_2(12:14),'(a3)') acruise(1:3)
         write(pathp28_2(16:20),'(a5)') acruisep28(4:8)
-       elseif(acruise(2:3).eq.'06') then
-        write(6,*)'p06, enter that cruise name again (p060907a) 8 chars'
-        read(5,'(a8)') acruisep28
-        write(fdat(1:7),'(a7)') acruise(1:7)
-        write(fxctd(6:12),'(a7)') acruise(1:7)
-        write(pathp28_2(12:14),'(a3)') acruise(1:3)
-        write(pathp28_2(16:20),'(a5)') acruisep28(4:8)
 ! note no xctd in p28
        else
         write(fdat(1:7),'(a7)') acruise(1:7)
@@ -558,8 +551,8 @@
               alinename(ip:ip+4) = 'PX06'
               ip = ip + 4
            endif
-           write(55,'(a,a7,a1,a5)') 'label 165.7,-25.5,-1,0,.20, ',
-     $                        alinename(1:ip),' ',acruisep28(4:8)
+           write(55,'(a,a7,a1,a4)') 'label 165.7,-25.5,-1,0,.20, ',
+     $                        alinename(1:ip),' ',acruise(4:7)
 
 ! p30/31
        elseif(acruise(1:3).eq.'p31') then
@@ -927,7 +920,7 @@ c p81 (& px25) 6jan2006 - working on new format:
 ! the plot_xbt line
 ! path to xbt station positions:
 ! p28 different path since a,b,c, etc is actually in path,
-       if(acruise(1:3).eq.'p28'.or.acruise(1:3).eq.'p06') then
+       if(acruise(1:3).eq.'p28') then
           write(55,'(a47,1x,a32)') path_1(1:47), pathp28_2(1:32)
           write(55,'(a45)') plot_xbt
        else

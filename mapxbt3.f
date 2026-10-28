@@ -559,14 +559,9 @@ c
      $     fnam(1:3).eq.'p22'.or.fnam(1:3).eq.'p06'.or.
      $     fnam(1:3).eq.'p05'.or.fnam(1:3).eq.'p13'.or.
      $     fnam(1:3).eq.'a08'.or.fnam(1:3).eq.'a10') then
-! special case p06 - it's lat and lon, b=N-S=lon
-           if(fnam(1:3).eq.'p06'.and.fnam(8:8).eq.'b') then
-              orient='lon'
-           else
              orient = 'lat'
              xmin = -90.0
              xmax = 90.0
-           endif
        else
           orient = 'lon'
        endif

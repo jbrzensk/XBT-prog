@@ -54,7 +54,7 @@
          if(test(1:5).eq.'-----') go to 100
 ! we have a match:
 ! this does not work for ix28 - need to compare test(1:5) to cruise(4:8)
-         if(cruise(1:3).eq.'p28'.or.cruise(1:3).eq.'p06') then
+         if(cruise(1:3).eq.'p28') then
           if(test(1:5).eq.cruise8(4:8)) then
             print *, 'match track=',track(1:5)
             call rdtrack(xbtinfo,track,iport,linename)

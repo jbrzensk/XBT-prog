@@ -118,7 +118,7 @@
           bathin(5:5) = fnam(8:8)
           output(14:14) = fnam(8:8)
           voutput(14:14) = fnam(8:8)
-!          latlonin(10:10) = fnam(8:8)
+          latlonin(10:10) = fnam(8:8)
           vlatlonin(10:10) = fnam(8:8)
        elseif(fnam(1:3).eq.'p09'.or.fnam(1:3).eq.'p13') then
 ! 9aug2019 increase          ngpts = 856

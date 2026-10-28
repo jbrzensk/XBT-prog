@@ -113,7 +113,8 @@ while read -r c; do
     else
         mkdir -p "$EXP/$c"
         rm -f "$EXP/$c"/*.html
-        cp "${trim_pages[0]}" "$EXP/$c/"
+        # IX21 cruises after the cutoff get the new names (i21_new_names.sh).
+        "$HERE/i21_new_names.sh" "$c" "${trim_pages[0]}" "$EXP/$c"
         count=$((count + 1))
     fi
     rm -rf "$work"

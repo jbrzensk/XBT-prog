@@ -74,7 +74,13 @@ for code in p22 p15 i15 i21 p28 p05 p09 p13 p31 p34 p37 s37 p40; do
         )
         (cd "$W/sh" && "$SH" "$c") > "$W/sh.log" 2>&1
 
-        xpage=("$W"/x/*.html)
+        # cruisehtml.x only knows the old IX21 names; convert its page for
+        # IX21 cruises after the cutoff (copied unchanged otherwise).
+        mkdir "$W/xnames"
+        for f in "$W"/x/*.html; do
+            [[ -f "$f" ]] && "$HERE/i21_new_names.sh" "$c" "$f" "$W/xnames"
+        done
+        xpage=("$W"/xnames/*.html)
         spage=("$W"/sh/*.html)
         if [[ ! -f "${xpage[0]}" ]] || has_nul "${xpage[0]}"; then
             echo "SKIP $c (cruisehtml.x output is broken)"

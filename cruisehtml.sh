@@ -10,18 +10,26 @@
 # xbtinfo.<code> in the current directory (the same rules as rdxbtinfo1.f).
 # IX21 cruises read xbtinfo.i21, which should be a link to xbtinfo.p15.
 #
+# IX21 cruises up to I21_LAST_OLD keep the old names: an i15 page and data in
+# ix15. Later IX21 cruises get i21 pages and data in ix21. Previous and next
+# links use the name of the cruise they point to.
+#
 # Usage:
 #   cruisehtml.sh <cruise>
 #
 # Examples:
 #   cruisehtml.sh p402508      # PX40 cruise 2508 -> p402508.html
-#   cruisehtml.sh i212507      # IX21 cruise 2507 -> i152507.html
+#   cruisehtml.sh i212507      # IX21 cruise 2507 (old names) -> i152507.html
+#   cruisehtml.sh i212602      # IX21 cruise 2602 (new names) -> i212602.html
 #   cruisehtml.sh p282402a     # IX28 needs the leg letter -> i282402a.html
 #
 # Brzenski: Oct 2026
 #=============================================================================#
 
-SUPPORTED_CODES="p22 p15 i15 i21 p28 p05 p09 p13 p31 p34 p37 s37 p40"
+SUPPORTED_CODES="p22 p15 i15 i21 p28 p05 p06 p09 p13 p31 p34 p37 s37 p40"
+
+# Last IX21 cruise (YYMM) with the old i15 page name and ix15 data folder.
+I21_LAST_OLD=2511
 
 usage() {
     echo "Usage: cruisehtml.sh <cruise>  (e.g. p402508, or p282402a for IX28)" >&2
@@ -82,14 +90,17 @@ read_xbtinfo() {
 #   TEM_H         temperature plot height
 #   SPACER        width of the first spacer cell
 line_settings() {
+    #               1          2          3           4            5
     # set_line PAGE_PREFIX IMG_PREFIX DATA_FOLDER DATA_PREFIX FIXED_LABEL
+    #            6     7     8     9
     #          STN_W STN_H TEM_H SPACER
-    case $1 in
+    case $1 in          #  1   2   3    4    5           6     7    8   9
         p22)     set_line a22 a22 ax22 a22 "AX22"      "155" "152" 244 50 ;;
         p15|i15) set_line i15 i15 ix15 i15 "IX21/IX15" "300" "152" 250 20 ;;
-        i21)     set_line i15 i21 ix15 i21 "IX21"      "200" "113" 250 20 ;;
+        i21)     set_line i21 i21 ix21 i21 "IX21"      "200" "113" 250 20 ;;
         p28)     set_line i28 i28 ix28 i28 "IX28"      " 90" "155" 250 50 ;;
         p05)     set_line p05 p05 px05 p05 "PX05"      " 78" "152" 250 50 ;;
+        p06)     set_line p06 p06 px06 p06 "PX06"      " 95" "152" 251 50 ;;
         p09)     set_line p09 p09 px09 p09 ""          " 95" "152" 251 50 ;;
         p13)     set_line p13 p13 px13 p13 "PX13"      " 95" "152" 251 50 ;;
         p31)     set_line p31 p31 px31 p31 "PX30/31"   "225" "103" 250 50 ;;
@@ -104,6 +115,31 @@ line_settings() {
 set_line() {
     PAGE_PREFIX=$1 IMG_PREFIX=$2 DATA_FOLDER=$3 DATA_PREFIX=$4 FIXED_LABEL=$5
     STN_W=$6 STN_H=$7 TEM_H=$8 SPACER=$9
+}
+
+###############################################################################
+# i21_old YYMM
+###############################################################################
+# True if IX21 cruise YYMM is at or before I21_LAST_OLD, so it keeps the old
+# names. Years 50-99 are 1900s and 00-49 are 2000s, so 9409 counts as old.
+i21_old() {
+    local yy=$((10#${1:0:2})) last=$((10#${I21_LAST_OLD:0:2}))
+    (( yy >= 50 )) && yy=$((yy - 100))
+    (( last >= 50 )) && last=$((last - 100))
+    (( yy * 100 + 10#${1:2:2} <= last * 100 + 10#${I21_LAST_OLD:2:2} ))
+}
+
+###############################################################################
+# page_name CODE ID
+###############################################################################
+# Prints the page file name for cruise ID on line CODE. Uses PAGE_PREFIX from
+# line_settings, except IX21 cruises with old names, which are i15 pages.
+page_name() {
+    if [[ $1 == i21 ]] && i21_old "$2"; then
+        echo "i15$2.html"
+    else
+        echo "${PAGE_PREFIX}$2.html"
+    fi
 }
 
 ###############################################################################
@@ -158,14 +194,14 @@ track_label() {
 }
 
 ###############################################################################
-# write_page FILE LABEL PREV_ID NEXT_ID
+# write_page FILE LABEL PREV_PAGE NEXT_PAGE
 ###############################################################################
 # Writes the page from the template below, using the line_settings globals
 # plus ID and YYMM. Copied from cruisehtml.x output, trailing spaces included.
 # The temperature plot line is padded with 7 spaces, or 3 for IX28 (whose
 # 5-character IDs make that line 2 characters longer in the Fortran).
 write_page() {
-    local LABEL=$2 PREV_ID=$3 NEXT_ID=$4
+    local LABEL=$2 PREV_PAGE=$3 NEXT_PAGE=$4
     local TEM_PAD="       "
     (( ${#ID} == 5 )) && TEM_PAD="   "
     cat > "$1" <<EOF
@@ -210,12 +246,12 @@ write_page() {
       <tr>
       <td width="20"> &nbsp;</td>
         <td align="left">
-        <a href="${PAGE_PREFIX}${PREV_ID}.html"><font size="3">Previous cruise</a></td>
+        <a href="${PREV_PAGE}"><font size="3">Previous cruise</a></td>
         <td width="40"> &nbsp;</td></tr>
       <tr>
         <td width="20"> &nbsp;</td>
         <td align="left">
-        <a href="${PAGE_PREFIX}${NEXT_ID}.html"><font size="3">Next cruise</a></td>
+        <a href="${NEXT_PAGE}"><font size="3">Next cruise</a></td>
         <td width="40"> &nbsp;</td></tr>
       <tr>
         <td width="20"> &nbsp;</td>
@@ -302,8 +338,16 @@ main() {
         label=$(track_label "$code" "$track" "$YYMM")
     fi
 
-    local page="${PAGE_PREFIX}${ID}.html"
-    if ! write_page "$page" "$label" "${prev:0:${#ID}}" "${next:0:${#ID}}"; then
+    local page prev_page next_page
+    page=$(page_name "$code" "$ID")
+    prev_page=$(page_name "$code" "${prev:0:${#ID}}")
+    next_page=$(page_name "$code" "${next:0:${#ID}}")
+    # Old-name IX21 cruises also keep the i15 include files and ix15 data.
+    if [[ $code == i21 ]] && i21_old "$ID"; then
+        PAGE_PREFIX=i15
+        DATA_FOLDER=ix15
+    fi
+    if ! write_page "$page" "$label" "$prev_page" "$next_page"; then
         rm -f "$page"
         echo "Error: could not write $page in $PWD." >&2
         return 1

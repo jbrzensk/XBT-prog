@@ -284,6 +284,15 @@ elif [[ "$line" == 08 ]]; then
     mv t-s.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-s.gif"
     mv t-t.gif "${ARGO_DIR}/px${line}/img/p${line}${i}t-t.gif"
 
+# p06 plots go to the px09 folder, with the p06 pages
+elif [[ "$line" == 06 ]]; then
+    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 1000x502! -flatten fer.pdf t-b.gif
+    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 500x251! -flatten fer.pdf t-s.gif
+    convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 100x50!  -flatten fer.pdf t-t.gif
+    mv t-b.gif "${ARGO_DIR}/px09/img/p${line}${i}t-b.gif"
+    mv t-s.gif "${ARGO_DIR}/px09/img/p${line}${i}t-s.gif"
+    mv t-t.gif "${ARGO_DIR}/px09/img/p${line}${i}t-t.gif"
+
 elif [[ "$line" == 09 ]]; then
     convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 1000x502! -flatten fer.pdf t-b.gif
     convert -density 600 -background white -alpha remove -alpha off -fuzz 10% -trim +repage -geometry 500x251! -flatten fer.pdf t-s.gif
@@ -657,8 +666,8 @@ elif [[ "$line" == 21 ]]; then
     echo "moving line 21 to ix15"
 elif [[ "$line" == 09 ]]; then
     mv *html "${ARGO_DIR}/px${line}/."
-# Move p13 to px09 directory
-elif [[ "$line" == 13 ]]; then
+# Move p06 and p13 to px09 directory
+elif [[ "$line" == 06 || "$line" == 13 ]]; then
     mv *html "${ARGO_DIR}/px09/."
 else
     mv *html "${ARGO_DIR}/px${line}/."
@@ -685,7 +694,17 @@ else
     elif [[ "$line" == 15 ]]; then
         A10_DEST="${A10_DIR}/ix${line}"
     elif [[ "$line" == 21 ]]; then
-        A10_DEST="${A10_DIR}/ix15"
+        # IX21 data goes to ix21, except cruises up to I21_LAST_OLD in
+        # cruisehtml.sh, which keep the old ix15 folder. The subshell keeps
+        # cruisehtml.sh's functions out of this script.
+        cruisehtml_path=$(command -v cruisehtml.sh)
+        if [[ -z "$cruisehtml_path" ]]; then
+            A10_DEST=""
+        elif (source "$cruisehtml_path" && i21_old "$i"); then
+            A10_DEST="${A10_DIR}/ix15"
+        else
+            A10_DEST="${A10_DIR}/ix${line}"
+        fi
     elif [[ "$line" == 28 ]]; then
         A10_DEST="${A10_DIR}/ix${line}"
     elif [[ "$line" == 37 ]]; then
@@ -698,7 +717,14 @@ else
         A10_DEST="${A10_DIR}/px${line}"
     fi
 
-    if cp "$A10_GZ" "${A10_DEST}/"; then
+    if [[ -z "$A10_DEST" ]]; then
+        echo "===================================================="
+        echo " a.10 copy status:"
+        echo "   Source   : ${PWD}/${A10_GZ}"
+        echo "   Status   : FAILED — cruisehtml.sh is not on the PATH, so the"
+        echo "              IX21 data folder (ix15 or ix21) is unknown."
+        echo "===================================================="
+    elif cp "$A10_GZ" "${A10_DEST}/"; then
         echo "===================================================="
         echo " a.10 copy status:"
         echo "   Original : ${PWD}/${A10_FILE}"

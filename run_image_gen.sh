@@ -122,24 +122,11 @@ link_bathy.sh "$line_number"
 # Run maketic.x
 #################################################
 echo ""
-# Separate case for p06
-if [[ $line_number == 'p06' ]]; then
-    echo -e "\033[1m **Running maketic.x with $prefix for p06** \033[0m"
-    # The p06 loop has multiple runs, assuming Suva to Auckland, vertical, 
-    # type "a".
-maketic.x << EOF1
-$prefix
-n
-a
-EOF1
-
-else
 echo -e "\033[1m **Running maketic.x with $prefix** \033[0m"
 maketic.x << EOF1
 $prefix
 n
 EOF1
-fi
 
 #################################################
 # Run ferstn.x

@@ -51,10 +51,10 @@ for filename in *a.10; do
         echo "Running mkgridlat.x"
         echo "$filename" | mkgridlat.x
 
-    elif [[ "$line_number" =~ ^(p05|p38|a08|a10|p09|p13)$ ]]; then
+    elif [[ "$line_number" =~ ^(a08|a10|p05|p06|p09|p13|p38)$ ]]; then
         
         echo "Line detected with multiple possible bathy files."
-        echo "Running link_bathy.sh to link P05, P06, P09 bathy files."
+        echo "Running link_bathy.sh to link P05, P06, P09 and P13 bathy files."
         link_bathy.sh p05
         link_bathy.sh p06
         link_bathy.sh p09
@@ -80,7 +80,7 @@ for filename in *a.10; do
         # fi
 
         echo "Running mkgridlon.x"
-        echo "$filename" | mkgridlon.x
+        # echo "$filename" | mkgridlon.x
 
         mkgridlon.x << EOF
 $filename
@@ -89,7 +89,7 @@ EOF
 
     else
         echo "Unknown line for grid generation: $line_number"
-        echo "Skipping mkgridlat.x or mkgridlon.x"
+        echo "Skipping mkgridlat.x or mkgridlon.x in run_bath_new.sh"
 
     fi
 
